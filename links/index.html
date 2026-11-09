@@ -49,20 +49,25 @@
   .marquee .track span { padding-right: 2em; }
   @keyframes scroll { to { transform: translateX(-50%); } }
 
-  .cols { display: grid; grid-template-columns: 300px 1fr; gap: 14px; padding: 12px 10px 4px; }
+  .cols { display: grid; grid-template-columns: 360px 1fr; gap: 14px; padding: 12px 10px 4px; }
 
   /* ---- left column ---- */
-  .name-row { display: flex; align-items: center; gap: 6px; margin: 0 0 6px; }
-  .name { font: 40px/1 "UnifrakturMaguntia", serif; margin: 0; color: #fff; text-shadow: 0 0 8px var(--teal), 0 0 2px #fff; }
-  .name-row img { width: 64px; height: auto; }
-  .name-row img.dripfangs { width: 58px; mix-blend-mode: screen; }
+  /* MySpace-style profile box: name plate over the banner, big pfp + details */
+  .banner { border-bottom: 2px solid var(--teal); box-shadow: 0 4px 18px rgba(45,224,200,.35); background: #000; }
+  .banner img { display: block; width: 100%; height: 190px; object-fit: cover; object-position: 50% 35%; }
+  .cols > section:last-child { padding-top: 28px; }
+  .pbox { position: relative; margin: -40px 0 12px; padding: 0 8px 8px; border: 1px solid var(--teal); background: linear-gradient(#001f1c, #000 60%); box-shadow: 0 0 14px rgba(45,224,200,.25); z-index: 2; }
+  .nameplate { display: inline-flex; align-items: center; gap: 4px; margin: -14px 0 8px -9px; padding: 2px 10px 2px 14px; background: linear-gradient(rgba(0,20,18,.55), rgba(0,20,18,.55)), url("assets/gg/turquoise-diamonds.gif"); background-size: auto, 120px; border: 2px solid var(--teal-hi); box-shadow: 0 0 0 2px #000, 0 0 16px rgba(45,224,200,.8), inset 0 0 12px rgba(0,0,0,.6); }
+  .name { font: 44px/1 "UnifrakturMaguntia", serif; margin: 0; color: #fff; text-shadow: 0 0 6px #000, 0 0 10px var(--teal), 0 0 2px #fff; }
+  .nameplate img.dripfangs { width: 38px; height: auto; mix-blend-mode: screen; }
 
-  .profile { display: grid; grid-template-columns: 150px 1fr; gap: 8px; }
-  .pfp { width: 150px; height: auto; border: 1px solid var(--teal); display: block; }
+  .profile { display: grid; grid-template-columns: 175px 1fr; gap: 10px; align-items: start; }
+  .pfp { width: 175px; height: auto; border: 2px solid var(--teal); box-shadow: 0 0 10px rgba(45,224,200,.4); display: block; }
   .profile .info p { margin: 0 0 6px; }
-  .quote { color: var(--teal-hi); font: 16px/1.1 "VT323", monospace; white-space: nowrap; }
-  .online-now { display: block; margin: 6px 0 4px; }
-  .mood { margin: 0 0 12px; }
+  .quote { color: var(--teal-hi); font: 17px/1.1 "VT323", monospace; }
+  .online-now { display: block; margin: 4px 0 0; }
+  .profile .info p.login { margin-bottom: 2px; }
+  .mood { margin: 8px 0 0; padding-top: 6px; border-top: 1px dashed var(--teal-dk); }
   .mood b { color: var(--teal-hi); }
 
   /* classic "Contacting X" box */
@@ -110,8 +115,6 @@
   .cds { float: right; width: 56px; height: auto; margin: 0 0 4px 6px; border: 1px solid var(--teal-dk); border-radius: 3px; }
   .meet { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
   .meet .gg { width: 90px; height: auto; border: 1px solid var(--teal); flex: none; transform: rotate(3deg); box-shadow: 0 0 10px rgba(45,224,200,.35); }
-  .halo { text-align: center; padding: 6px 10px 0; }
-  .halo video, .halo img { width: 100%; max-width: 356px; height: auto; border: 1px solid var(--teal); display: inline-block; box-shadow: 0 0 14px rgba(45,224,200,.35); }
   .player .bar { display: flex; align-items: center; gap: 8px; }
   .player button { width: 36px; height: 36px; flex: none; cursor: pointer; background: #000; color: var(--zg); border: 2px solid var(--zg); font: 18px "VT323", monospace; }
   .player button:hover { border-color: var(--pink); color: var(--pink); }
@@ -282,9 +285,11 @@
     body { font-size: 12px; }
     .site { border: 0; }
     .cols { grid-template-columns: 1fr; padding: 10px 10px 4px; }
+    .cols > section:last-child { padding-top: 0; }
     .navbar .hide-sm { display: none; }
-    .profile { grid-template-columns: 120px 1fr; }
-    .pfp { width: 120px; }
+    .banner img { height: 150px; }
+    .profile { grid-template-columns: 170px 1fr; }
+    .pfp { width: 170px; }
     .sect h3, .ctable h3, .sect h4 { font-size: 12px; }
     .contact a { min-height: 46px; }
     .comments td.who { width: 82px; }
@@ -315,30 +320,30 @@
   </nav>
   <div class="marquee" aria-hidden="true"><div class="track"><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span></div></div>
 
-  <div class="halo">
+  <div class="banner">
     <img src="assets/media/halo.gif" alt="" width="300" height="169">
   </div>
 
   <main class="cols" id="top">
     <!-- ================= LEFT ================= -->
     <section>
-      <div class="name-row">
-        <h1 class="name">vivi</h1>
-        <img class="dripfangs" src="assets/gg/teal-drip-fangs.gif" alt="" width="190" height="285">
-      </div>
-
-      <div class="profile">
-        <img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="400" height="372">
-        <div class="info">
-          <p class="quote">"† ur digital angel †"</p>
-          <p>music project<br>bridging IRL &amp; URL</p>
-          <p>22 years old</p>
-          <p>Last Login:<br><span id="login"></span></p>
-          <img class="online-now" src="assets/gg/online-now.jpg" alt="Online Now!" width="95" height="37">
+      <div class="pbox">
+        <div class="nameplate">
+          <h1 class="name">vivi</h1>
+          <img class="dripfangs" src="assets/gg/teal-drip-fangs.gif" alt="" width="190" height="285">
         </div>
+        <div class="profile">
+          <img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="400" height="372">
+          <div class="info">
+            <p class="quote">"† ur digital angel †"</p>
+            <p>music project<br>bridging IRL &amp; URL</p>
+            <p>22 years old</p>
+            <p class="login">Last Login:<br><span id="login"></span></p>
+            <img class="online-now" src="assets/gg/online-now.jpg" alt="Online Now!" width="95" height="37">
+          </div>
+        </div>
+        <p class="mood"><b>Mood:</b> silly <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228"></p>
       </div>
-
-      <p class="mood"><b>Mood:</b> silly <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228"></p>
 
       <div class="ctable linkbox" id="contact">
         <div class="contact" id="links"></div>
