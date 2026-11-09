@@ -72,6 +72,8 @@
   @keyframes xhspin { to { rotate: 360deg; } }
   @keyframes xhpulse { from { scale: .9; opacity: .85; } to { scale: 1.05; opacity: 1; } }
   .online-now { display: block; width: 95px; height: auto; margin: 6px auto 0; }
+  .online-now { animation: onflash 1s steps(1) infinite; }
+  @keyframes onflash { 50% { filter: grayscale(1) brightness(1.75) contrast(1.4) drop-shadow(0 0 6px #fff) drop-shadow(0 0 12px rgba(255,255,255,.8)); } }
   .profile .info p.login { margin-bottom: 2px; }
   .profile .info b { color: var(--teal-hi); font-weight: bold; }
   .profile .info .mood { margin: 0 0 6px; }
