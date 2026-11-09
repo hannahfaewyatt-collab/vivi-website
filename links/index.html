@@ -57,9 +57,10 @@
   .banner img { display: block; width: 100%; height: 190px; object-fit: cover; object-position: 50% 35%; }
   .cols > section:last-child { padding-top: 28px; }
   .pbox { position: relative; margin: -40px 0 12px; padding: 0 8px 8px; border: 1px solid var(--teal); background: linear-gradient(#001f1c, #000 60%); box-shadow: 0 0 14px rgba(45,224,200,.25); z-index: 2; }
-  .nameplate { display: inline-flex; align-items: center; gap: 4px; margin: -14px 0 8px -9px; padding: 2px 10px 2px 14px; background: linear-gradient(rgba(0,20,18,.55), rgba(0,20,18,.55)), url("assets/gg/turquoise-diamonds.gif"); background-size: auto, 120px; border: 2px solid var(--teal-hi); box-shadow: 0 0 0 2px #000, 0 0 16px rgba(45,224,200,.8), inset 0 0 12px rgba(0,0,0,.6); }
-  .name { font: 44px/1 "UnifrakturMaguntia", serif; margin: 0; color: #fff; text-shadow: 0 0 6px #000, 0 0 10px var(--teal), 0 0 2px #fff; }
-  .nameplate img.dripfangs { width: 38px; height: auto; mix-blend-mode: screen; }
+  .nameplate { display: inline-block; margin: -16px 0 10px; padding: 4px 16px 6px; background: linear-gradient(180deg, #3ff0d8, #12a593); border: 1px solid #b8fff5; border-radius: 2px; box-shadow: 0 4px 0 #0b5c53, 0 0 18px rgba(45,224,200,.55); }
+  .name { font: 44px/1 "UnifrakturMaguntia", serif; margin: 0; color: #fff; text-shadow: 0 2px 0 #0b5c53, 0 0 8px rgba(0,60,54,.6); }
+  .pfp-wrap { position: relative; }
+  .pfp-fangs { position: absolute; left: -10px; bottom: -14px; width: 40px; height: auto; transform: rotate(10deg); filter: drop-shadow(0 0 2px #000) drop-shadow(0 0 6px rgba(45,224,200,.9)); }
 
   .profile { display: grid; grid-template-columns: 175px 1fr; gap: 10px; align-items: start; }
   .pfp { width: 175px; height: auto; border: 2px solid var(--teal); box-shadow: 0 0 10px rgba(45,224,200,.4); display: block; }
@@ -67,7 +68,8 @@
   .quote { color: var(--teal-hi); font: 17px/1.1 "VT323", monospace; }
   .online-now { display: block; margin: 4px 0 0; }
   .profile .info p.login { margin-bottom: 2px; }
-  .mood { margin: 8px 0 0; padding-top: 6px; border-top: 1px dashed var(--teal-dk); }
+  .profile .info b { color: var(--teal-hi); font-weight: bold; }
+  .profile .info .mood { margin: 0 0 6px; }
   .mood b { color: var(--teal-hi); }
 
   /* classic "Contacting X" box */
@@ -328,21 +330,18 @@
     <!-- ================= LEFT ================= -->
     <section>
       <div class="pbox">
-        <div class="nameplate">
-          <h1 class="name">vivi</h1>
-          <img class="dripfangs" src="assets/gg/teal-drip-fangs.gif" alt="" width="190" height="285">
-        </div>
+        <div class="nameplate"><h1 class="name">vivi</h1></div>
         <div class="profile">
-          <img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="400" height="372">
+          <div class="pfp-wrap"><img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="400" height="372"><img class="pfp-fangs" src="assets/gg/teal-drip-fangs-clear.gif" alt=""></div>
           <div class="info">
             <p class="quote">"† ur digital angel †"</p>
             <p>music project<br>bridging IRL &amp; URL</p>
             <p>22 years old</p>
-            <p class="login">Last Login:<br><span id="login"></span></p>
+            <p class="mood"><b>Mood:</b> silly <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228"></p>
+            <p class="login"><b>Last Login:</b><br><span id="login"></span></p>
             <img class="online-now" src="assets/gg/online-now.jpg" alt="Online Now!" width="95" height="37">
           </div>
         </div>
-        <p class="mood"><b>Mood:</b> silly <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228"></p>
       </div>
 
       <div class="ctable linkbox" id="contact">
