@@ -219,13 +219,26 @@
   @keyframes bounce { to { transform: translateY(4px); } }
 
   /* ViVi's Desktop: overlapping 2000s windows */
+  .wmp { position: absolute; left: 9%; top: 30%; width: 82%; z-index: 30; background: #c0c0c0; border: 2px outset #fff; box-shadow: 6px 8px 0 rgba(0,0,0,.65), 0 0 24px rgba(45,224,200,.5); padding: 0 3px 3px; animation: wmpin .5s ease-out both; }
+  @keyframes wmpin { from { transform: scale(.5) rotate(-4deg); opacity: 0; } 70% { transform: scale(1.04) rotate(1deg); opacity: 1; } to { transform: none; } }
+  .wmp-bar { display: flex; align-items: center; gap: 3px; margin: 0 -3px 3px; padding: 2px 3px 2px 5px; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font: bold 10px/1.4 Tahoma, sans-serif; }
+  .wmp-bar span { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .wmp-bar i, .wmp-bar button { font-style: normal; width: 15px; height: 13px; display: grid; place-items: center; padding: 0; background: #c0c0c0; color: #000; border: 1px outset #fff; font: bold 9px/1 Tahoma, sans-serif; cursor: pointer; }
+  .wmp-screen { background: #000; border: 2px inset #fff; }
+  .wmp-screen img { display: block; width: 100%; height: auto; }
+  .wmp-ctrl { display: flex; align-items: center; gap: 3px; margin-top: 3px; font: 9px Tahoma, sans-serif; }
+  .wmp-ctrl b { width: 18px; height: 15px; display: grid; place-items: center; border: 1px outset #fff; font-size: 8px; }
+  .wmp-ctrl .seek { flex: 1; height: 6px; border: 1px inset #fff; background: #fff; position: relative; }
+  .wmp-ctrl .seek i { position: absolute; left: 0; top: 0; bottom: 0; background: #000080; animation: seek 2.5s linear infinite; }
+  @keyframes seek { from { width: 0; } to { width: 100%; } }
   .desktop { position: relative; aspect-ratio: 3 / 4.4; background: #001a3a url("assets/gg/cyber-bg.gif"); background-size: 180px; border: 2px inset #c0c0c0; overflow: hidden; }
   .win { position: absolute; background: #c0c0c0; border: 2px outset #fff; box-shadow: 3px 3px 0 rgba(0,0,0,.6); padding: 0 2px 2px; }
   .win .tb { display: flex; align-items: center; gap: 4px; margin: 0 -2px 2px; padding: 1px 2px 1px 4px; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font: bold 9px/1.4 Tahoma, sans-serif; white-space: nowrap; }
   .win .tb span { flex: 1; overflow: hidden; text-overflow: ellipsis; }
   .win .tb i { font-style: normal; width: 12px; height: 11px; display: grid; place-items: center; background: #c0c0c0; color: #000; border: 1px outset #fff; font-size: 8px; }
   .win img { display: block; width: 100%; height: auto; border: 1px inset #fff; }
-  .desktop img { filter: grayscale(1) sepia(1) hue-rotate(165deg) saturate(2.6) brightness(.95) contrast(1.1); }
+  .desktop .wmp img { filter: none; }
+  .desktop img:not(.wmp img) { filter: grayscale(1) sepia(1) hue-rotate(165deg) saturate(2.6) brightness(.95) contrast(1.1); }
   .loose { position: absolute; height: auto; }
   .w1 { left: 1%;  top: 0%;  width: 55%; z-index: 2; }
   .w2 { left: 47%; top: 3%;  width: 51%; z-index: 1; }
@@ -385,7 +398,12 @@
 
       <div class="sect desk-sect">
         <h3>ViVi's Desktop</h3>
-        <div class="desktop" aria-hidden="true">
+        <div class="desktop">
+          <div class="wmp" id="wmp">
+            <div class="wmp-bar"><span>▶ vivi.wmv - Windows Media Player</span><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" id="wmpx" aria-label="Close">✕</button></div>
+            <div class="wmp-screen"><img src="assets/media/vivi-clip.gif" alt="ViVi clip" width="300" height="187"></div>
+            <div class="wmp-ctrl" aria-hidden="true"><b>▶</b><b>❚❚</b><b>■</b><span class="seek"><i></i></span><span class="t">0:02</span></div>
+          </div>
           <div class="win w1"><div class="tb"><span>skull_tv.mpg</span><i>✕</i></div><img src="assets/collage/skulltv.jpg" alt="" width="480" height="383"></div>
           <div class="win w2"><div class="tb"><span>void.bmp</span><i>✕</i></div><img src="assets/collage/blackorb.jpg" alt="" width="420" height="398"></div>
           <div class="win w4"><div class="tb"><span>AngelS.gif</span><i>✕</i></div><img src="assets/collage/angels.jpg" alt="" width="339" height="91"></div>
@@ -662,6 +680,8 @@
     v.addEventListener("error", toGif);
     setTimeout(() => { if (v.paused || v.currentTime === 0) toGif(); }, 2500);
   });
+
+  document.getElementById("wmpx").addEventListener("click", () => { document.getElementById("wmp").hidden = true; });
 
   const store = {
     get(k) { try { return localStorage.getItem(k); } catch { return null; } },
