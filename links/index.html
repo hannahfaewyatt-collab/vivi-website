@@ -65,8 +65,7 @@
   .pfp { width: 140px; height: auto; border: 2px solid var(--teal); box-shadow: 0 0 10px rgba(45,224,200,.4); display: block; }
   .profile .info p { margin: 0 0 4px; }
   .quote { color: var(--teal-hi); font: 17px/1.1 "VT323", monospace; }
-  .online-now { display: flex; align-items: center; justify-content: center; gap: 6px; margin: 6px 0 0; padding: 3px 0; border: 1px solid var(--teal); background: #001f1c; color: #9ffff2; font: 18px/1 "VT323", monospace; letter-spacing: 1px; }
-  .online-now::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #7dff9a; box-shadow: 0 0 6px #7dff9a; animation: blink 1s steps(2) infinite; }
+  .online-now { display: block; width: 95px; height: auto; margin: 6px auto 0; }
   .profile .info p.login { margin-bottom: 2px; }
   .profile .info b { color: var(--teal-hi); font-weight: bold; }
   .profile .info .mood { margin: 0 0 6px; }
@@ -346,7 +345,7 @@
         <div class="profile">
           <div class="pfp-col">
             <img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="500" height="460">
-            <span class="online-now">Online Now!</span>
+            <img class="online-now" src="assets/gg/online-now.jpg" alt="Online Now!" width="95" height="37">
           </div>
           <div class="info">
             <p class="quote">"† ur digital angel †"</p>
