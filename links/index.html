@@ -193,6 +193,18 @@
   .dp-bar { display: flex; align-items: center; gap: 3px; margin: 0 -3px 3px; padding: 2px 3px 2px 6px; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font: bold 11px/1.4 Tahoma, sans-serif; position: sticky; top: 0; z-index: 40; }
   .dp-bar span { flex: 1; }
   .dp-bar i, .dp-bar button { font-style: normal; width: 16px; height: 14px; display: grid; place-items: center; padding: 0; background: #c0c0c0; color: #000; border: 1px outset #fff; font: bold 9px/1 Tahoma, sans-serif; cursor: pointer; }
+  #secretpop { width: min(300px, calc(100vw - 32px)); padding: 0 3px 3px; border: 2px outset #dfdfdf; background: #c0c0c0; box-shadow: 6px 6px 0 rgba(0,0,0,.6), 0 0 30px rgba(45,224,200,.6); animation: hvshake .45s ease-out; }
+  #secretpop::backdrop { background: rgba(0,0,0,.45); }
+  .sp-body { margin-top: 3px; padding: 14px 12px 12px; text-align: center; background: #000 url("assets/gg/turquoise-diamonds.gif"); background-size: 140px; border: 2px inset #fff; position: relative; }
+  .sp-body::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.62); }
+  .sp-body > * { position: relative; }
+  .sp-fangs { width: 46px; height: auto; filter: drop-shadow(0 0 6px rgba(45,224,200,.9)); }
+  #secretpop h2 { margin: 6px 0 8px; font: 34px/1 "VT323", monospace; color: #9ffff2; text-shadow: 0 0 8px var(--teal), 0 0 2px #fff; animation: blink 1s steps(2) infinite; }
+  #secretpop p { margin: 0 0 4px; color: #fff; font: 13px Verdana, sans-serif; }
+  #secretpop p b { color: var(--pink); }
+  #secretpop .sp-small { color: var(--muted); font-size: 11px; }
+  .sp-ok { margin: 10px 3px 0; min-width: 80px; padding: 4px 12px; background: #c0c0c0; color: #000; border: 2px outset #fff; font: bold 12px Tahoma, sans-serif; }
+  .sp-ok:active { border-style: inset; }
   #heaven { width: min(340px, calc(100vw - 32px)); padding: 0; border: 2px outset #dfdfdf; background: #c0c0c0; color: #000; font: 11px Tahoma, Verdana, sans-serif; box-shadow: 6px 6px 0 rgba(0,0,0,.6); animation: hvshake .45s ease-out; }
   #heaven::backdrop { background: rgba(0,0,0,.35); }
   @keyframes hvshake { 0% { transform: scale(.6); } 40% { transform: scale(1.05) rotate(-2deg); } 60% { transform: rotate(2deg); } 100% { transform: none; } }
@@ -338,6 +350,13 @@
     .comments .pic { width: 170px; }
     .comments .pic.sm { width: 120px; }
   }
+
+  /* old-school pixel Windows cursor */
+  html, body, * { cursor: url("assets/gg/cursor-arrow.png") 0 0, auto !important; }
+  a, a *, button, button *, canvas, label, [data-open-gb], .msp-bar, .hv-yes, #deskpop, #deskpop *, .secret-btn { cursor: url("assets/gg/cursor-hand.png") 10 0, pointer !important; }
+  input[type=email], input[type=text], textarea { cursor: text !important; }
+  .tapcur { position: fixed; z-index: 9999; width: 24px; height: auto; pointer-events: none; image-rendering: pixelated; filter: drop-shadow(1px 1px 0 rgba(0,0,0,.5)); animation: tapcur .7s steps(6) forwards; }
+  @keyframes tapcur { 0% { transform: translate(-2px, 6px) scale(.8); opacity: 0; } 20% { transform: none; opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; } }
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; }
@@ -557,6 +576,18 @@
     <img class="loose cg c2" src="assets/gg/canva-computer.gif" alt="" width="84" height="90">
     <img class="loose cg c3" src="assets/gg/canva-revolver.gif" alt="" width="135" height="132">
     <img class="loose cg c4" src="assets/gg/canva-dollar.gif" alt="" width="159" height="93">
+  </div>
+</dialog>
+
+<dialog id="secretpop" aria-labelledby="sptitle">
+  <div class="dp-bar"><span>secret.exe</span><button type="button" data-sp-close aria-label="Close">✕</button></div>
+  <div class="sp-body">
+    <img class="sp-fangs" src="assets/gg/teal-drip-fangs-clear.gif" alt="">
+    <h2 id="sptitle">u found a secret</h2>
+    <p>an unreleased demo: <b>HD</b></p>
+    <p class="sp-small">shhh... this stays between us †</p>
+    <button type="button" class="sp-ok" id="splisten">▶ listen</button>
+    <button type="button" class="sp-ok" data-sp-close>OK</button>
   </div>
 </dialog>
 
@@ -827,12 +858,39 @@
     const btn2 = document.getElementById("secretbtn"), box = document.getElementById("secret");
     const au = document.getElementById("hdaudio"), pb = document.getElementById("hdplay");
     const fill = document.getElementById("hdfill"), cur = document.getElementById("hdcur"), bar = document.getElementById("hdbar");
+    // "u found a secret" pops up once per visit when they scroll down to ViVi's Rules.
+    const sp = document.getElementById("secretpop");
+    sp.querySelectorAll("[data-sp-close]").forEach(x => x.addEventListener("click", () => sp.close()));
+    sp.addEventListener("close", () => { try { sessionStorage.setItem("vivi-secret-seen", "1"); } catch {} });
+    document.getElementById("splisten").addEventListener("click", () => {
+      sp.close();
+      box.hidden = false; btn2.setAttribute("aria-expanded", "true");
+      if (typeof spotify !== "undefined" && spotify && playing) spotify.togglePlay();
+      au.play();
+      box.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+    let spSeen = null; try { spSeen = sessionStorage.getItem("vivi-secret-seen"); } catch {}
+    const rulesEl = document.getElementById("rules");
+    if (!spSeen && rulesEl && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver(entries => {
+        if (!entries.some(en => en.isIntersecting)) return;
+        const show = () => {
+          if (document.querySelector("dialog[open]")) { setTimeout(show, 1000); return; } // wait for other popups
+          if (!sp.open) sp.showModal();
+        };
+        io.disconnect(); show();
+      }, { threshold: 0.5 });
+      io.observe(rulesEl);
+    }
     btn2.addEventListener("click", () => {
       box.hidden = !box.hidden; btn2.setAttribute("aria-expanded", String(!box.hidden));
       if (!box.hidden) box.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
     pb.addEventListener("click", () => {
-      if (au.paused) { if (typeof spotify !== "undefined" && spotify && playing) spotify.togglePlay(); au.play(); }
+      if (au.paused) {
+        if (typeof spotify !== "undefined" && spotify && playing) spotify.togglePlay();
+        au.play();
+      }
       else au.pause();
     });
     au.addEventListener("play", () => { pb.textContent = "❚❚"; pb.setAttribute("aria-label", "Pause HD"); });
@@ -848,6 +906,16 @@
       if (au.paused) au.play();
     });
   })();
+
+  // On touch screens there's no cursor, so flash a little pixel Windows arrow where you tap.
+  addEventListener("pointerdown", e => {
+    if (e.pointerType === "mouse") return;
+    const host = e.target.closest && e.target.closest("dialog[open]") || document.body;
+    const c = document.createElement("img");
+    c.src = "assets/gg/cursor-arrow.png"; c.alt = ""; c.className = "tapcur";
+    c.style.left = e.clientX + "px"; c.style.top = e.clientY + "px";
+    host.appendChild(c); setTimeout(() => c.remove(), 750);
+  }, { passive: true });
 
   if (matchMedia("(pointer: fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     let last = 0;
