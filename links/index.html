@@ -644,21 +644,25 @@
   };
 
   const SPOTIFY_URL = "https://open.spotify.com/track/5dydrnBvJBTEgO5CHUAuY5";
-  // Tapping the waveform plays ZOMBIE (and jumps to that spot once it's playing).
+  const START_AT = 104; // first play starts ZOMBIE at 1:44
+  let started = false;
+  const startPlaying = () => { started = true; spotify.togglePlay(); setTimeout(() => spotify.seek(START_AT), 400); };
+  // Tapping the waveform plays ZOMBIE from 1:44; once it's playing, taps jump to that spot.
   wave.addEventListener("click", e => {
     const r = wave.getBoundingClientRect();
     const at = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
     if (!spotify) { window.open(SPOTIFY_URL, "_blank", "noopener"); return; }
-    if (!playing) { spotify.togglePlay(); setTimeout(() => spotify.seek(at * DURATION), 400); }
-    else spotify.seek(at * DURATION);
+    if (!started) { startPlaying(); return; }
+    if (!playing) spotify.togglePlay();
+    spotify.seek(at * DURATION);
     progress = at; drawWave();
   });
   addEventListener("resize", () => drawWave());
   drawWave();
 
   btn.addEventListener("click", () => {
-    if (spotify) spotify.togglePlay();   // Spotify's events keep the button + waveform in sync
-    else window.open(SPOTIFY_URL, "_blank", "noopener"); // embed couldn't load: open Spotify
+    if (!spotify) { window.open(SPOTIFY_URL, "_blank", "noopener"); return; } // embed couldn't load: open Spotify
+    if (!started) startPlaying(); else spotify.togglePlay();
   });
 
   window.onSpotifyIframeApiReady = api => {
