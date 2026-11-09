@@ -88,6 +88,9 @@
   /* ---- right column ---- */
   .player { --zg: #7dff3a; border: 1px solid var(--zg); background: linear-gradient(#071a03, #020a01); padding: 6px; margin-bottom: 12px; box-shadow: 0 0 12px rgba(125,255,58,.25); }
   .player .label { color: #a8e88a; }
+  .spotify { margin-top: 8px; min-height: 80px; }
+  .spotify iframe { display: block; width: 100%; border: 0; border-radius: 12px; }
+  .spotify a { display: block; padding: 28px 0; text-align: center; color: var(--zg); font-weight: bold; }
   .zmode { margin-top: 8px; padding-top: 8px; border-top: 1px dashed #2f6a1a; }
   .zmode video { width: 100%; max-width: 300px; height: auto; border: 1px solid var(--zg); display: block; margin: 0 auto; }
   .halo { text-align: center; padding: 10px 10px 0; }
@@ -266,8 +269,11 @@
             <div class="track">ViVi — ZOMBIE <img src="assets/gg/attack-of-the-zombies.png" alt="" width="70" height="37"></div>
             <div class="label">new single · out now</div>
             <canvas class="wave" id="wave" aria-hidden="true"></canvas>
-            <div class="times"><span id="tcur">0:00</span><span>2:47</span></div>
+            <div class="times"><span id="tcur">0:00</span><span id="tdur">2:47</span></div>
           </div>
+        </div>
+        <div class="spotify">
+          <div id="spotify-embed"><a href="https://open.spotify.com/track/5dydrnBvJBTEgO5CHUAuY5" target="_blank" rel="noopener">▶ listen to ZOMBIE on Spotify</a></div>
         </div>
         <div class="zmode">
           <video src="assets/media/l4d2.mp4" poster="assets/media/l4d2.jpg" autoplay muted loop playsinline width="220" height="124" aria-label="Left 4 Dead 2 gif"></video>
@@ -381,8 +387,9 @@
   const GUESTBOOK_ENDPOINT = "https://formsubmit.co/ajax/vivi.online.music@gmail.com";
   const GUESTBOOK_DELAY_MS = 4000;
 
-  // Optional: path to an mp3 snippet (e.g. "assets/zombie-snippet.mp3"). Leave "" for a visual-only player.
-  const SNIPPET = "";
+  // The player plays ZOMBIE through Spotify's embed (full song if the listener is
+  // logged in to Spotify in their browser, otherwise Spotify's 30-second preview).
+  const SPOTIFY_TRACK = "spotify:track:5dydrnBvJBTEgO5CHUAuY5";
 
   const shown = LINKS.filter(l => l.url);
   const isWeb = u => /^https?:/.test(u);
@@ -422,7 +429,7 @@
   /* ---- realistic waveform: seeded peaks with a song-shaped envelope ---- */
   const wave = document.getElementById("wave");
   const wctx = wave.getContext("2d");
-  const DURATION = 167; // 2:47 shown in the player
+  let DURATION = 167; // updated from Spotify once the track loads
   const BARS = 140;
   let seed = 1337;
   const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
@@ -467,28 +474,55 @@
     drawWave(now);
     requestAnimationFrame(tick);
   }
+  const player = document.getElementById("player");
+  const btn = document.getElementById("play");
+  let spotify = null;
+  const setPlaying = on => {
+    if (on === playing) return;
+    playing = on;
+    player.classList.toggle("playing", on);
+    btn.textContent = on ? "❚❚" : "▶";
+    btn.setAttribute("aria-label", on ? "Pause" : "Play");
+    lastT = 0;
+    if (on) requestAnimationFrame(tick); else drawWave();
+  };
+
   wave.addEventListener("click", e => {
     const r = wave.getBoundingClientRect();
-    progress = (e.clientX - r.left) / r.width;
-    if (audio && audio.duration) audio.currentTime = progress * audio.duration;
+    progress = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+    if (spotify) spotify.seek(progress * DURATION);
     drawWave();
   });
   addEventListener("resize", () => drawWave());
   drawWave();
 
-  const player = document.getElementById("player");
-  const btn = document.getElementById("play");
-  const audio = SNIPPET ? new Audio(SNIPPET) : null;
   btn.addEventListener("click", () => {
-    playing = !playing;
-    player.classList.toggle("playing", playing);
-    btn.textContent = playing ? "❚❚" : "▶";
-    btn.setAttribute("aria-label", playing ? "Pause" : "Play");
-    if (audio) playing ? audio.play() : audio.pause();
-    lastT = 0;
-    if (playing) requestAnimationFrame(tick); else drawWave();
+    if (spotify) spotify.togglePlay();   // Spotify's events keep the button + waveform in sync
+    else setPlaying(!playing);          // embed not loaded yet: just animate
   });
-  if (audio) audio.addEventListener("ended", () => { playing = false; player.classList.remove("playing"); btn.textContent = "▶"; });
+
+  window.onSpotifyIframeApiReady = api => {
+    api.createController(document.getElementById("spotify-embed"),
+      { uri: SPOTIFY_TRACK, width: "100%", height: 80, theme: "dark" },
+      ctrl => {
+        spotify = ctrl;
+        ctrl.addListener("playback_update", e => {
+          const { isPaused, position, duration } = e.data;
+          if (duration) {
+            DURATION = duration / 1000;
+            document.getElementById("tdur").textContent = fmt(DURATION);
+            progress = position / duration;
+          }
+          lastT = 0;
+          setPlaying(!isPaused);
+          drawWave();
+        });
+      });
+  };
+  const sp = document.createElement("script");
+  sp.src = "https://open.spotify.com/embed/iframe-api/v1";
+  sp.async = true;
+  document.body.appendChild(sp);
 
   const store = {
     get(k) { try { return localStorage.getItem(k); } catch { return null; } },
