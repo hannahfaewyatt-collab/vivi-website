@@ -65,6 +65,8 @@
   .pfp { width: 140px; height: auto; border: 2px solid var(--teal); box-shadow: 0 0 10px rgba(45,224,200,.4); display: block; }
   .profile .info p { margin: 0 0 4px; }
   .quote { color: var(--teal-hi); font: 17px/1.1 "VT323", monospace; }
+  .pfp-wrap { position: relative; }
+  .crosshair { position: absolute; left: 50%; top: 42%; width: 78%; height: auto; transform: translate(-50%, -50%); pointer-events: none; filter: drop-shadow(0 0 4px rgba(45,224,200,.8)); }
   .online-now { display: block; width: 95px; height: auto; margin: 6px auto 0; }
   .profile .info p.login { margin-bottom: 2px; }
   .profile .info b { color: var(--teal-hi); font-weight: bold; }
@@ -344,7 +346,7 @@
         </div>
         <div class="profile">
           <div class="pfp-col">
-            <img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="500" height="460">
+            <div class="pfp-wrap"><img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="500" height="460"><img class="crosshair" src="assets/media/crosshair.png" alt=""></div>
             <img class="online-now" src="assets/gg/online-now.jpg" alt="Online Now!" width="95" height="37">
           </div>
           <div class="info">
