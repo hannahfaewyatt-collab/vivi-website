@@ -591,7 +591,7 @@
   <div class="sp-body">
     <img class="sp-fangs" src="assets/gg/teal-drip-fangs-clear.gif" alt="">
     <h2 id="sptitle">u found a secret</h2>
-    <p>an unreleased demo: <b>HD</b></p>
+    <p id="spline">an unreleased demo: <b>HD</b></p>
     <p class="sp-small">shhh... this stays between us †</p>
     <button type="button" class="sp-ok" id="splisten">▶ listen</button>
     <button type="button" class="sp-ok" data-sp-close>OK</button>
@@ -873,13 +873,27 @@
     const sp = document.getElementById("secretpop");
     sp.querySelectorAll("[data-sp-close]").forEach(x => x.addEventListener("click", () => sp.close()));
     sp.addEventListener("close", () => { try { sessionStorage.setItem("vivi-secret-seen", "1"); } catch {} });
-    document.getElementById("splisten").addEventListener("click", () => {
-      sp.close();
+    const startHD = () => {
       box.hidden = false; btn2.setAttribute("aria-expanded", "true");
       if (typeof spotify !== "undefined" && spotify && playing) spotify.togglePlay();
-      au.play();
+      return au.play();
+    };
+    const listenBtn = document.getElementById("splisten"), spline = document.getElementById("spline");
+    listenBtn.addEventListener("click", () => {
+      sp.close(); startHD();
       box.scrollIntoView({ behavior: "smooth", block: "center" });
     });
+    // Phones only let audio start after a tap, so on the visitor's first tap anywhere
+    // (e.g. closing a popup) we silently "unlock" the HD player. Then HD can start by itself later.
+    const unlock = () => {
+      removeEventListener("pointerup", unlock, true); removeEventListener("touchend", unlock, true);
+      if (!au.paused) return;
+      au.muted = true;
+      const pr = au.play();
+      const done = () => { if (au.muted) { au.pause(); au.currentTime = 0; au.muted = false; } };
+      if (pr && pr.then) pr.then(done, () => { au.muted = false; }); else done();
+    };
+    addEventListener("pointerup", unlock, true); addEventListener("touchend", unlock, true);
     let spSeen = null; try { spSeen = sessionStorage.getItem("vivi-secret-seen"); } catch {}
     const rulesEl = document.getElementById("rules");
     if (!spSeen && rulesEl && "IntersectionObserver" in window) {
@@ -887,10 +901,15 @@
         if (!entries.some(en => en.isIntersecting)) return;
         const show = () => {
           if (document.querySelector("dialog[open]")) { setTimeout(show, 1000); return; } // wait for other popups
-          if (!sp.open) sp.showModal();
+          if (sp.open) return;
+          sp.showModal();
+          // try to start HD automatically; if the phone blocks it, keep the "▶ listen" button
+          const pr = startHD();
+          const ok = () => { spline.innerHTML = "now playing: <b>HD</b> (unreleased demo)"; listenBtn.hidden = true; };
+          if (pr && pr.then) pr.then(ok, () => {}); else ok();
         };
         io.disconnect(); show();
-      }, { threshold: 0.5 });
+      }, { threshold: 0.3 });
       io.observe(rulesEl);
     }
     btn2.addEventListener("click", () => {
