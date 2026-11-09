@@ -339,6 +339,13 @@
     .comments .pic.sm { width: 120px; }
   }
 
+  /* old-school pixel Windows cursor */
+  html, body, * { cursor: url("assets/gg/cursor-arrow.png") 0 0, auto !important; }
+  a, a *, button, button *, canvas, label, [data-open-gb], .msp-bar, .hv-yes, #deskpop, #deskpop *, .secret-btn { cursor: url("assets/gg/cursor-hand.png") 10 0, pointer !important; }
+  input[type=email], input[type=text], textarea { cursor: text !important; }
+  .tapcur { position: fixed; z-index: 9999; width: 24px; height: auto; pointer-events: none; image-rendering: pixelated; filter: drop-shadow(1px 1px 0 rgba(0,0,0,.5)); animation: tapcur .7s steps(6) forwards; }
+  @keyframes tapcur { 0% { transform: translate(-2px, 6px) scale(.8); opacity: 0; } 20% { transform: none; opacity: 1; } 75% { opacity: 1; } 100% { opacity: 0; } }
+
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; }
   }
@@ -848,6 +855,16 @@
       if (au.paused) au.play();
     });
   })();
+
+  // On touch screens there's no cursor, so flash a little pixel Windows arrow where you tap.
+  addEventListener("pointerdown", e => {
+    if (e.pointerType === "mouse") return;
+    const host = e.target.closest && e.target.closest("dialog[open]") || document.body;
+    const c = document.createElement("img");
+    c.src = "assets/gg/cursor-arrow.png"; c.alt = ""; c.className = "tapcur";
+    c.style.left = e.clientX + "px"; c.style.top = e.clientY + "px";
+    host.appendChild(c); setTimeout(() => c.remove(), 750);
+  }, { passive: true });
 
   if (matchMedia("(pointer: fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     let last = 0;
