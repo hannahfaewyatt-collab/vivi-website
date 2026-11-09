@@ -146,7 +146,6 @@
   .rules ol { margin: 0; padding-left: 20px; }
   .rules li { margin-bottom: 3px; }
   .rules li::marker { color: var(--teal); font-weight: bold; }
-  .kiss .lp { width: 44px; vertical-align: middle; }
   .kiss { margin: 8px 0 0; text-align: center; font: 20px/1 "VT323", monospace; color: var(--pink); text-shadow: 0 0 6px rgba(255,63,176,.6); }
 
   .gb-open { text-align: center; }
@@ -192,7 +191,7 @@
   .hv-congrats { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 4px 6px 0; padding: 4px; text-align: center; font: bold 16px/1.1 Impact, "Arial Black", sans-serif; letter-spacing: .5px; color: #ff0; background: linear-gradient(90deg, #00d4c8, #1e6fe0, #00d4c8); background-size: 200% 100%; text-shadow: 2px 2px 0 #c00, 0 0 6px #000; animation: slide 1.2s linear infinite; }
   .hv-congrats span { white-space: nowrap; font-size: 15px; }
   .hv-congrats small { display: block; margin-top: 2px; font: bold 11px Tahoma, sans-serif; color: #fff; text-shadow: 1px 1px 0 #000; }
-  .hv-congrats img { width: 34px; height: auto; image-rendering: pixelated; }
+  .hv-congrats img { width: 18px; height: auto; }
   @keyframes slide { to { background-position: 200% 0; } }
   .hv-down { text-align: center; font: bold 13px Tahoma, sans-serif; color: #c00; animation: blink .6s steps(2) infinite; padding: 2px 0 4px; }
   .hv-arr { font-size: 22px; color: #c00; animation: nudge .5s ease-in-out infinite alternate; }
@@ -211,9 +210,7 @@
   .hv-yes { outline: 1px dotted #000; outline-offset: -5px; }
 
   .clicknow { text-align: center; margin: 2px 0 4px; }
-  .cn-row { display: flex; align-items: center; justify-content: center; gap: 2px; }
-  .clicknow .cn { display: block; width: 100%; max-width: 260px; min-width: 0; flex: 1 1 auto; height: auto; animation: blink 1.2s steps(2) infinite; }
-  .clicknow .lp, .lp { width: 56px; height: auto; flex: none; image-rendering: pixelated; }
+  .clicknow img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto; animation: blink 1.2s steps(2) infinite; }
   .clicknow span { display: block; font: bold 18px/1 Tahoma, sans-serif; color: var(--teal-hi); text-shadow: 0 0 6px var(--teal); animation: bounce .6s ease-in-out infinite alternate; }
   @keyframes bounce { to { transform: translateY(4px); } }
 
@@ -240,9 +237,6 @@
   .l3 { left: 82%; top: 88%; width: 16%; z-index: 8; }
   .l4 { left: 38%; top: 47%; width: 14%; z-index: 7; mix-blend-mode: screen; }
   .l5 { left: 0%;  top: 72%; width: 15%; z-index: 8; border-radius: 50%; }
-  .desktop .l6 { left: 30%; top: 19%; width: 30%; z-index: 9; }
-  .desktop .l7 { left: 64%; top: 60%; width: 28%; z-index: 9; }
-  .desktop .l8 { left: 4%; top: 64%; width: 26%; z-index: 9; }
 
   footer { text-align: center; padding: 14px 10px 20px; font-size: 10px; color: var(--muted); border-top: 1px solid var(--teal-dk); }
   footer .divider { max-width: 300px; margin: 0 auto 8px; }
@@ -315,11 +309,7 @@
       <p class="mood"><b>Mood:</b> silly <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228"></p>
 
       <div class="clicknow" aria-hidden="true">
-        <div class="cn-row">
-          <img class="lp" src="assets/gg/lowpoly-cash.gif" alt="" width="224" height="224">
-          <img class="cn" src="assets/collage/clickhere.jpg" alt="" width="600" height="82">
-          <img class="lp" src="assets/gg/lowpoly-coin.gif" alt="" width="224" height="224">
-        </div>
+        <img src="assets/collage/clickhere.jpg" alt="" width="600" height="82">
         <span>⬇ ⬇ ⬇</span>
       </div>
       <div class="ctable" id="contact">
@@ -408,9 +398,6 @@
           <img class="loose l3" src="assets/gg/cyber-heart.jpg" alt="" width="100" height="100">
           <img class="loose l4" src="assets/collage/cross.jpg" alt="" width="200" height="231">
           <img class="loose l5" src="assets/gg/warp.gif" alt="" width="100" height="100">
-          <img class="loose lp l6" src="assets/gg/lowpoly-uzi.gif" alt="" width="224" height="224">
-          <img class="loose lp l7" src="assets/gg/lowpoly-gun.gif" alt="" width="224" height="224">
-          <img class="loose lp l8" src="assets/gg/lowpoly-cash.gif" alt="" width="224" height="224">
         </div>
       </div>
 
@@ -450,7 +437,7 @@
   <footer>
     <img class="divider" src="assets/gg/heart-wings-divider.jpg" alt="" width="494" height="83">
     <div class="links"><a href="#top">Top</a>|<a href="#music">Music</a>|<a href="#contact">Links</a>|<a href="#guestbook">Guestbook</a></div>
-    <p class="kiss"><img class="lp" src="assets/gg/lowpoly-gun.gif" alt="" width="224" height="224" style="transform:scaleX(-1)"> byte byte kiss kiss 💋 xoxo <img class="lp" src="assets/gg/lowpoly-gun.gif" alt="" width="224" height="224"></p>
+    <p class="kiss">byte byte kiss kiss 💋 xoxo</p>
     <p>© <span id="yr"></span> ViVi · graphics from <a href="https://www.glitter-graphics.com" target="_blank" rel="noopener">glitter-graphics.com</a></p>
   </footer>
 </div>
@@ -479,7 +466,7 @@
   </div>
   <div class="hv-menu" aria-hidden="true">File&nbsp; Edit&nbsp; View&nbsp; Favorites&nbsp; Tools&nbsp; Help</div>
   <div class="hv-addr" aria-hidden="true">Address <span>http://www.heaven-online.net/claim_ur_wings.exe</span><b>Go</b></div>
-  <div class="hv-congrats"><img class="lp" src="assets/gg/lowpoly-coin.gif" alt="" width="224" height="224"><span>★CONGRATULATIONS!!★<small>u are visitor #1,000,000</small></span><img class="lp" src="assets/gg/lowpoly-coin.gif" alt="" width="224" height="224"></div>
+  <div class="hv-congrats"><img src="assets/gg/cash.gif" alt="" width="58" height="91"><span>★CONGRATULATIONS!!★<small>u are visitor #1,000,000</small></span><img src="assets/gg/cash.gif" alt="" width="58" height="91"></div>
   <div class="hv-body">
     <img src="assets/media/heaven.jpg" alt="" width="612" height="348">
     <div class="hv-text">
