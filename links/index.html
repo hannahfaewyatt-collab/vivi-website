@@ -57,15 +57,18 @@
   .banner img { display: block; width: 100%; height: 190px; object-fit: cover; object-position: 50% 35%; }
   .cols > section:last-child { padding-top: 28px; }
   .pbox { position: relative; margin: -40px 0 12px; padding: 0 8px 8px; border: 1px solid var(--teal); background: linear-gradient(#001f1c, #000 60%); box-shadow: 0 0 14px rgba(45,224,200,.25); z-index: 2; }
-  .nameplate { display: flex; align-items: center; gap: 8px; margin: 6px 0 10px; }
+  .nameplate { display: flex; align-items: center; gap: 8px; margin: 4px 0 4px; min-height: 0; }
   .name { font: 50px/1 "UnifrakturMaguntia", serif; margin: 0; color: #9ffff2; text-shadow: 0 0 10px rgba(159,255,242,.6), 0 0 2px #fff; }
   .name-fangs { width: 34px; height: auto; filter: drop-shadow(0 0 6px rgba(45,224,200,.8)); }
 
-  .profile { display: grid; grid-template-columns: 175px 1fr; gap: 10px; align-items: start; }
-  .pfp { width: 175px; height: auto; border: 2px solid var(--teal); box-shadow: 0 0 10px rgba(45,224,200,.4); display: block; }
-  .profile .info p { margin: 0 0 6px; }
+  .profile { display: grid; grid-template-columns: 140px 1fr; gap: 10px; align-items: start; }
+  .pfp { width: 140px; height: auto; display: block; }
+  .profile .info p { margin: 0 0 4px; }
   .quote { color: var(--teal-hi); font: 17px/1.1 "VT323", monospace; }
-  .online-now { display: block; margin: 4px 0 0; }
+  .pfp-wrap { position: relative; padding: 8%; }
+  .pfp-wrap .pfp { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 45% 25%; border-radius: 50%; }
+  .crosshair { position: absolute; left: 50%; top: 50%; width: 102%; height: auto; transform: translate(-50%, -50%); pointer-events: none; filter: drop-shadow(0 0 4px rgba(45,224,200,.8)); }
+  .online-now { display: block; width: 95px; height: auto; margin: 6px auto 0; }
   .profile .info p.login { margin-bottom: 2px; }
   .profile .info b { color: var(--teal-hi); font-weight: bold; }
   .profile .info .mood { margin: 0 0 6px; }
@@ -76,12 +79,12 @@
   .ctable h3 { margin: 0; padding: 3px 6px; background: var(--teal); color: #002a26; font-size: 11px; }
   .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--teal-dk); }
   .contact a {
-    display: flex; align-items: center; gap: 6px; min-height: 40px; padding: 6px;
+    display: flex; align-items: center; gap: 6px; min-height: 30px; padding: 3px 6px;
     background: #000; color: var(--text); font-weight: bold; line-height: 1.2;
   }
   .contact a:hover { background: #052a27; color: var(--pink); text-decoration: none; }
-  .contact .ico { width: 22px; height: 22px; flex: none; display: grid; place-items: center; background: #04312d; border: 1px solid var(--teal); color: var(--teal-hi); font: 18px/1 "VT323", monospace; }
-  .contact a.featured { grid-column: 1 / -1; min-height: 50px; background: #0a1414 url("assets/gg/turquoise-diamonds.gif"); background-size: 150px; color: #fff; text-shadow: 0 1px 2px #000, 0 0 4px #000; font-size: 14px; }
+  .contact .ico { width: 20px; height: 20px; flex: none; display: grid; place-items: center; background: #04312d; border: 1px solid var(--teal); color: var(--teal-hi); font: 18px/1 "VT323", monospace; }
+  .contact a.featured { grid-column: 1 / -1; min-height: 40px; background: #0a1414 url("assets/gg/turquoise-diamonds.gif"); background-size: 150px; color: #fff; text-shadow: 0 1px 2px #000, 0 0 4px #000; font-size: 14px; }
   .contact a.featured .ico { background: var(--pink); border-color: #fff; color: #fff; }
   .contact a.featured small { display: block; font-weight: normal; font-size: 10px; }
   .contact a.featured .new { margin-left: auto; font: 15px "VT323", monospace; background: var(--pink); color: #fff; padding: 0 4px; animation: blink 1s steps(2) infinite; text-shadow: none; }
@@ -112,7 +115,8 @@
   @keyframes twinkle { 0%,100% { transform: scale(.4) rotate(0); opacity: .5; } 50% { transform: scale(1.1) rotate(45deg); opacity: 1; } }
   .sparkbar i { position: absolute; left: 50%; width: 10px; height: 10px; margin-left: -5px; background: #fff; clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); filter: drop-shadow(0 0 3px #9ffff2); animation: twinkle 1.4s ease-in-out infinite; }
   .sparkbar i:nth-child(1) { top: 8%; } .sparkbar i:nth-child(2) { top: 28%; animation-delay: .3s; } .sparkbar i:nth-child(3) { top: 48%; animation-delay: .6s; } .sparkbar i:nth-child(4) { top: 68%; animation-delay: .9s; } .sparkbar i:nth-child(5) { top: 88%; animation-delay: 1.2s; }
-  .linkbox .cheer { flex: 0 0 40%; width: 40%; min-width: 0; object-fit: cover; object-position: 30% 50%; display: block; height: auto; }
+  .linkbox .cheerbox { flex: 0 0 34%; position: relative; min-width: 0; }
+  .linkbox .cheer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% 40%; display: block; }
   .cds { float: right; width: 56px; height: auto; margin: 0 0 4px 6px; border: 1px solid var(--teal-dk); border-radius: 3px; }
   .meet { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
   .meet .gg { width: 90px; height: auto; border: 1px solid var(--teal); flex: none; transform: rotate(3deg); box-shadow: 0 0 10px rgba(45,224,200,.35); }
@@ -264,9 +268,12 @@
   .desktop .l3 { filter: grayscale(1) sepia(1) hue-rotate(265deg) saturate(5) brightness(1.1) drop-shadow(0 0 6px rgba(255,63,176,.8)); }
   .l4 { left: 38%; top: 47%; width: 14%; z-index: 7; mix-blend-mode: screen; }
   .zwrap { position: relative; max-width: 300px; margin: 0 auto; }
-  .zmode .win.nv { position: absolute; right: -10px; top: -14px; width: 42%; max-width: none; margin: 0; z-index: 2; transform: rotate(3deg); border-color: #fff; }
-  .zmode .win.nv .tb { font-size: 8px; }
-  .zmode .win.nv video, .zmode .win.nv img { border: 1px inset #fff; max-width: none; }
+  .zmode .win.zr { position: absolute; right: -10px; top: -14px; width: 42%; margin: 0; z-index: 2; transform: rotate(3deg); }
+  .zmode .win.zr .tb { font-size: 8px; }
+  .zmode .win.zr img { display: block; width: 100%; height: auto; border: 1px inset #fff; }
+  .pbox .win.nv { position: absolute; right: 10px; top: -34px; width: 36%; max-width: 140px; margin: 0; z-index: 3; transform: rotate(3deg); }
+  .pbox .win.nv .tb { font-size: 8px; }
+  .pbox .win.nv img { border: 1px inset #fff; }
   .win.nv video, .win.nv img { display: block; width: 100%; height: auto; }
   .l5 { left: 0%;  top: 72%; width: 15%; z-index: 8; border-radius: 50%; }
   .desktop .c1 { left: 30%; top: 17%; width: 17%; z-index: 9; }
@@ -275,6 +282,7 @@
   .desktop .c4 { left: 4%;  top: 66%; width: 22%; z-index: 9; }
 
   .dump { padding: 4px 10px 16px; }
+  .rules-bottom .rules { max-width: 460px; margin: 0 auto; }
   .dumpwin { position: static; max-width: 460px; margin: 0 auto; }
   .dumpwin img { display: block; width: 100%; height: auto; border: 1px inset #fff; }
   footer { text-align: center; padding: 14px 10px 20px; font-size: 10px; color: var(--muted); border-top: 1px solid var(--teal-dk); }
@@ -292,10 +300,10 @@
     .cols > section:last-child { padding-top: 0; }
     .navbar .hide-sm { display: none; }
     .banner img { height: 150px; }
-    .profile { grid-template-columns: 170px 1fr; }
-    .pfp { width: 170px; }
+    .profile { grid-template-columns: 135px 1fr; }
+    .pfp { width: 135px; }
     .sect h3, .ctable h3, .sect h4 { font-size: 12px; }
-    .contact a { min-height: 46px; }
+    .contact a { min-height: 34px; }
     .comments td.who { width: 82px; }
     .comments td.who img { width: 64px; }
     .comments .pic { width: 170px; }
@@ -333,15 +341,21 @@
     <section>
       <div class="pbox">
         <div class="nameplate"><h1 class="name">vivi</h1><img class="name-fangs" src="assets/gg/teal-drip-fangs-clear.gif" alt=""></div>
+        <div class="win nv">
+          <div class="tb"><span>snipelol.mp3</span><i>✕</i></div>
+          <img src="assets/media/nightvision.gif" alt="" width="300" height="160">
+        </div>
         <div class="profile">
-          <img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="500" height="460">
+          <div class="pfp-col">
+            <div class="pfp-wrap"><img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="500" height="460"><img class="crosshair" src="assets/media/crosshair.png" alt=""></div>
+            <img class="online-now" src="assets/gg/online-now.jpg" alt="Online Now!" width="95" height="37">
+          </div>
           <div class="info">
             <p class="quote">"† ur digital angel †"</p>
             <p>music project<br>bridging IRL &amp; URL</p>
             <p>22 years old</p>
             <p class="mood"><b>Mood:</b> silly <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228"></p>
-            <p class="login"><b>Last Login:</b><br><span id="login"></span></p>
-            <img class="online-now" src="assets/gg/online-now.jpg" alt="Online Now!" width="95" height="37">
+            <p class="login"><b>Last Login:</b> <span id="login"></span></p>
           </div>
         </div>
       </div>
@@ -349,7 +363,7 @@
       <div class="ctable linkbox" id="contact">
         <div class="contact" id="links"></div>
         <div class="sparkbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-        <img class="cheer" src="assets/media/cheer.jpg" alt="ViVi in a cheer uniform with teal pom-poms" width="600" height="578">
+        <div class="cheerbox"><img class="cheer" src="assets/media/cheer.jpg" alt="ViVi in a cheer uniform with teal pom-poms" width="600" height="578"></div>
       </div>
 
       <img class="wire" src="assets/media/barbed-wire.gif" alt="" width="160" height="47">
@@ -360,14 +374,6 @@
         <tr><th>Movies</th><td>Donnie Darko, The Virgin Suicides, mid90s</td></tr>
       </table>
 
-      <div class="rules" id="rules">
-        <h3>~*~ ViVi's Rules ~*~</h3>
-        <ol>
-          <li>no lurking!! sign my guestbook or i'll know :3</li>
-          <li>be nice or get bitten 🦇</li>
-        </ol>
-        <p class="kiss">byte byte kiss kiss 💋</p>
-      </div>
     </section>
 
     <!-- ================= RIGHT ================= -->
@@ -388,9 +394,9 @@
         <div class="zmode">
           <div class="zwrap">
             <img src="assets/media/l4d2.gif" alt="" width="200" height="113">
-            <div class="win nv">
-              <div class="tb"><span>snipelol.mp3</span><i>✕</i></div>
-              <img src="assets/media/nightvision.gif" alt="" width="300" height="160">
+            <div class="win zr">
+              <div class="tb"><span>spitter_l4d2</span><i>✕</i></div>
+              <img src="assets/media/zombie-rage.gif" alt="" width="240" height="127">
             </div>
           </div>
         </div>
@@ -474,6 +480,17 @@
       <div class="tb"><span>pic_dump.jpg</span><i>✕</i></div>
       <img src="assets/media/pic-dump.jpg" alt="ViVi cheer pic dump" width="700" height="874">
     </div>
+  </section>
+
+  <section class="dump rules-bottom">
+      <div class="rules" id="rules">
+        <h3>~*~ ViVi's Rules ~*~</h3>
+        <ol>
+          <li>no lurking!! sign my guestbook or i'll know :3</li>
+          <li>be nice or get bitten 🦇</li>
+        </ol>
+        <p class="kiss">byte byte kiss kiss 💋</p>
+      </div>
   </section>
 
   <footer>
