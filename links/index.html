@@ -93,17 +93,16 @@
   .spotify iframe { display: block; width: 100%; border: 0; border-radius: 12px; }
   .spotify a { display: block; padding: 28px 0; text-align: center; color: var(--zg); font-weight: bold; }
   .zmode { margin-top: 8px; padding-top: 8px; border-top: 1px dashed #2f6a1a; }
-  .zmode video { width: 100%; max-width: 300px; height: auto; border: 1px solid var(--zg); display: block; margin: 0 auto; }
-  .topdeco { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 10px 0; }
-  .topdeco .wire { width: 70%; max-width: 360px; height: auto; display: block; }
-  .topdeco .ball { width: 64px; height: auto; border-radius: 50%; mix-blend-mode: screen; animation: bob 2.4s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(45,224,200,.7)); }
+  .zmode video, .zmode img { width: 100%; max-width: 300px; height: auto; border: 1px solid var(--zg); display: block; margin: 0 auto; }
+  .wire { display: block; width: 110px; height: auto; margin: 0 auto 4px; }
+  .mood .ball { width: 26px; height: auto; vertical-align: middle; margin-left: 4px; border-radius: 50%; mix-blend-mode: screen; animation: bob 2.4s ease-in-out infinite; filter: drop-shadow(0 0 6px rgba(45,224,200,.8)); }
   @keyframes bob { 50% { transform: translateY(-6px) rotate(-6deg); } }
   .blogpic { display: block; width: 100%; max-width: 300px; height: auto; margin: 4px auto 8px; border: 1px solid var(--teal); box-shadow: 0 0 12px rgba(45,224,200,.35); }
   .cds { float: right; width: 56px; height: auto; margin: 0 0 4px 6px; border: 1px solid var(--teal-dk); border-radius: 3px; }
   .meet { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
   .meet .gg { width: 90px; height: auto; border: 1px solid var(--teal); flex: none; transform: rotate(3deg); box-shadow: 0 0 10px rgba(45,224,200,.35); }
   .halo { text-align: center; padding: 6px 10px 0; }
-  .halo video { width: 100%; max-width: 356px; height: auto; border: 1px solid var(--teal); display: inline-block; box-shadow: 0 0 14px rgba(45,224,200,.35); }
+  .halo video, .halo img { width: 100%; max-width: 356px; height: auto; border: 1px solid var(--teal); display: inline-block; box-shadow: 0 0 14px rgba(45,224,200,.35); }
   .player .bar { display: flex; align-items: center; gap: 8px; }
   .player button { width: 36px; height: 36px; flex: none; cursor: pointer; background: #000; color: var(--zg); border: 2px solid var(--zg); font: 18px "VT323", monospace; }
   .player button:hover { border-color: var(--pink); color: var(--pink); }
@@ -211,12 +210,8 @@
   </nav>
   <div class="marquee" aria-hidden="true"><div class="track"><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span></div></div>
 
-  <div class="topdeco">
-    <video class="wire" src="assets/media/barbed-wire.mp4" poster="assets/media/barbed-wire.jpg" autoplay muted loop playsinline width="464" height="136" aria-hidden="true"></video>
-    <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228">
-  </div>
   <div class="halo">
-    <video src="assets/media/halo.mp4" poster="assets/media/halo.jpg" autoplay muted loop playsinline width="356" height="200" aria-label="Halo gif"></video>
+    <video src="assets/media/halo.mp4" poster="assets/media/halo.jpg" data-gif="assets/media/halo.gif" autoplay muted loop playsinline width="356" height="200" aria-label="Halo gif"></video>
   </div>
 
   <main class="cols" id="top">
@@ -238,12 +233,13 @@
         </div>
       </div>
 
-      <p class="mood"><b>Mood:</b> cannibal</p>
+      <p class="mood"><b>Mood:</b> silly <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228"></p>
 
       <div class="ctable" id="contact">
         <div class="contact" id="links"></div>
       </div>
 
+      <img class="wire" src="assets/media/barbed-wire.gif" alt="" width="160" height="47">
       <table class="itable">
         <caption>ViVi's Interests</caption>
         <tr><th>General</th><td>electric guitar, video games, dancing, cats :3</td></tr>
@@ -282,7 +278,7 @@
           <div id="spotify-embed"><a href="https://open.spotify.com/track/5dydrnBvJBTEgO5CHUAuY5" target="_blank" rel="noopener">▶ listen to ZOMBIE on Spotify</a></div>
         </div>
         <div class="zmode">
-          <video src="assets/media/l4d2.mp4" poster="assets/media/l4d2.jpg" autoplay muted loop playsinline width="220" height="124" aria-label="Left 4 Dead 2 gif"></video>
+          <video src="assets/media/l4d2.mp4" poster="assets/media/l4d2.jpg" data-gif="assets/media/l4d2.gif" autoplay muted loop playsinline width="220" height="124" aria-label="Left 4 Dead 2 gif"></video>
         </div>
       </div>
 
@@ -516,6 +512,22 @@
   sp.src = "https://open.spotify.com/embed/iframe-api/v1";
   sp.async = true;
   document.body.appendChild(sp);
+
+  // Make every clip move: if the phone blocks video autoplay (e.g. iPhone Low Power Mode),
+  // swap the clip for its GIF version, which always animates.
+  document.querySelectorAll("video[data-gif]").forEach(v => {
+    const toGif = () => {
+      if (!v.isConnected) return;
+      const img = document.createElement("img");
+      img.src = v.dataset.gif; img.alt = ""; img.width = v.width; img.height = v.height;
+      v.replaceWith(img);
+    };
+    v.muted = true;
+    const p = v.play();
+    if (p && p.catch) p.catch(toGif);
+    v.addEventListener("error", toGif);
+    setTimeout(() => { if (v.paused || v.currentTime === 0) toGif(); }, 2500);
+  });
 
   const store = {
     get(k) { try { return localStorage.getItem(k); } catch { return null; } },
