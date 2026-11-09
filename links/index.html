@@ -265,6 +265,9 @@
   .desktop .l3 { filter: grayscale(1) sepia(1) hue-rotate(265deg) saturate(5) brightness(1.1) drop-shadow(0 0 6px rgba(255,63,176,.8)); }
   .l4 { left: 38%; top: 47%; width: 14%; z-index: 7; mix-blend-mode: screen; }
   .zwrap { position: relative; max-width: 300px; margin: 0 auto; }
+  .zmode .win.zr { position: absolute; right: -10px; top: -14px; width: 42%; margin: 0; z-index: 2; transform: rotate(3deg); }
+  .zmode .win.zr .tb { font-size: 8px; }
+  .zmode .win.zr img { display: block; width: 100%; height: auto; border: 1px inset #fff; }
   .pbox .win.nv { position: absolute; right: 10px; top: -34px; width: 36%; max-width: 140px; margin: 0; z-index: 3; transform: rotate(3deg); }
   .pbox .win.nv .tb { font-size: 8px; }
   .pbox .win.nv img { border: 1px inset #fff; }
@@ -386,6 +389,10 @@
         <div class="zmode">
           <div class="zwrap">
             <img src="assets/media/l4d2.gif" alt="" width="200" height="113">
+            <div class="win zr">
+              <div class="tb"><span>tank_rage.gif</span><i>✕</i></div>
+              <img src="assets/media/zombie-rage.gif" alt="" width="240" height="127">
+            </div>
           </div>
         </div>
       </div>
