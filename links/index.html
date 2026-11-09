@@ -105,6 +105,10 @@
   .player .label { color: #a8e88a; }
   .player { position: relative; }
   .spotify { position: absolute; left: 0; bottom: 0; width: 100%; height: 80px; opacity: 0; pointer-events: none; z-index: -1; overflow: hidden; }
+  /* if the hidden player won't start (common on iPhones), Spotify's own bar slides in so they can tap it */
+  .spotify.show { position: static; opacity: 1; pointer-events: auto; z-index: auto; margin-top: 8px; border-radius: 12px; }
+  .sp-hint { display: none; margin: 6px 0 0; font: 15px "VT323", monospace; color: #a8e88a; text-align: center; }
+  .sp-hint.show { display: block; animation: blink 1s steps(2) infinite; }
   .spotify iframe { display: block; width: 100%; border: 0; }
   .zmode { margin-top: 8px; padding-top: 8px; border-top: 1px dashed #2f6a1a; }
   .zwrap > video, .zwrap > img { width: 100%; max-width: 300px; height: auto; border: 1px solid var(--zg); display: block; margin: 0 auto; }
@@ -446,6 +450,7 @@
         </div>
         <div class="spotify">
           <div id="spotify-embed" aria-hidden="true"></div>
+          <p class="sp-hint" id="sphint">↓ tap play on spotify ↓</p>
         </div>
         <div class="zmode">
           <div class="zwrap">
@@ -748,7 +753,15 @@
   // First play: ask Spotify to start at 1:44 (startAt), then double-check once audio is
   // actually running and jump there if Spotify ignored it. Retries a few times.
   let needJump = 0;
-  const startPlaying = () => { started = true; needJump = 4; (spotify.play ? spotify.play() : spotify.togglePlay()); };
+  const revealSpotify = () => {
+    const box = document.querySelector(".spotify");
+    if (box.classList.contains("show")) return;
+    box.classList.add("show"); box.querySelector("#spotify-embed").removeAttribute("aria-hidden");
+    const h = document.getElementById("sphint"); box.before(h); h.classList.add("show");
+  };
+  // If Spotify hasn't actually started ~2s after a tap, show its own player so they can tap play there.
+  const checkStarted = () => setTimeout(() => { if (!playing) revealSpotify(); }, 2000);
+  const startPlaying = () => { started = true; needJump = 4; (spotify.play ? spotify.play() : spotify.togglePlay()); checkStarted(); };
   // Tapping the waveform plays ZOMBIE from 1:44; once it's playing, taps jump to that spot.
   wave.addEventListener("click", e => {
     const r = wave.getBoundingClientRect();
@@ -764,7 +777,7 @@
 
   btn.addEventListener("click", () => {
     if (!spotify) { window.open(SPOTIFY_URL, "_blank", "noopener"); return; } // embed couldn't load: open Spotify
-    if (!started) startPlaying(); else spotify.togglePlay();
+    if (!started) startPlaying(); else { const was = playing; spotify.togglePlay(); if (!was) checkStarted(); }
   });
 
   window.onSpotifyIframeApiReady = api => {
@@ -785,6 +798,7 @@
           }
           lastT = 0;
           setPlaying(!isPaused);
+          if (!isPaused) { const h = document.getElementById("sphint"); h && h.classList.remove("show"); }
           drawWave();
         });
       });
