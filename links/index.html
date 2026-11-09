@@ -55,19 +55,18 @@
   /* MySpace-style profile box: name plate over the banner, big pfp + details */
   .banner { border-bottom: 2px solid var(--teal); box-shadow: 0 4px 18px rgba(45,224,200,.35); background: #000; }
   .banner img { display: block; width: 100%; height: 190px; object-fit: cover; object-position: 50% 35%; }
-  .cols > section:last-child { padding-top: 28px; }
-  .pbox { position: relative; margin: -40px 0 12px; padding: 0 8px 8px; border: 1px solid var(--teal); background: linear-gradient(#001f1c, #000 60%); box-shadow: 0 0 14px rgba(45,224,200,.25); z-index: 2; }
+  .pbox { position: relative; margin: 48px 0 12px; padding: 0 8px 8px; border: 1px solid var(--teal); background: linear-gradient(#001f1c, #000 60%); box-shadow: 0 0 14px rgba(45,224,200,.25); z-index: 2; }
   .nameplate { display: flex; align-items: center; gap: 8px; margin: 4px 0 4px; min-height: 0; }
   .name { font: 50px/1 "UnifrakturMaguntia", serif; margin: 0; color: #9ffff2; text-shadow: 0 0 10px rgba(159,255,242,.6), 0 0 2px #fff; }
   .name-fangs { width: 34px; height: auto; filter: drop-shadow(0 0 6px rgba(45,224,200,.8)); }
 
-  .profile { display: grid; grid-template-columns: 140px 1fr; gap: 10px; align-items: start; }
-  .pfp { width: 140px; height: auto; display: block; }
+  .profile { display: grid; grid-template-columns: 190px 1fr; gap: 20px; align-items: start; }
+  .pfp { width: 190px; height: auto; display: block; }
   .profile .info p { margin: 0 0 4px; }
-  .quote { color: var(--teal-hi); font: 17px/1.1 "VT323", monospace; }
-  .pfp-wrap { position: relative; padding: 8%; }
-  .pfp-wrap .pfp { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 45% 25%; border-radius: 50%; }
-  .crosshair { position: absolute; left: 50%; top: 50%; width: 102%; height: auto; transform: translate(-50%, -50%); pointer-events: none; filter: drop-shadow(0 0 4px rgba(45,224,200,.8)); }
+  .quote { color: var(--teal-hi); font: 17px/1.1 "VT323", monospace; white-space: nowrap; font-size: clamp(14px, 4.2vw, 17px); }
+  .pfp-wrap { position: relative; margin: 14px 0; }
+  .pfp-wrap .pfp { width: 100%; height: auto; }
+  .crosshair { position: absolute; left: 56%; top: 50%; width: 118%; height: auto; transform: translate(-50%, -50%); pointer-events: none; filter: drop-shadow(0 0 4px rgba(45,224,200,.8)); z-index: 1; }
   .online-now { display: block; width: 95px; height: auto; margin: 6px auto 0; }
   .profile .info p.login { margin-bottom: 2px; }
   .profile .info b { color: var(--teal-hi); font-weight: bold; }
@@ -188,6 +187,11 @@
   .gbmsg { margin: 8px 0 0; min-height: 1em; color: var(--teal-hi); font-weight: bold; }
 
   /* ---- fake "scam" popup window: heaven.exe ---- */
+  #deskpop { width: min(420px, calc(100vw - 24px)); max-height: calc(100vh - 24px); overflow: auto; padding: 0 3px 3px; border: 2px outset #dfdfdf; background: #c0c0c0; box-shadow: 6px 6px 0 rgba(0,0,0,.6); animation: hvshake .45s ease-out; }
+  #deskpop::backdrop { background: rgba(0,0,0,.35); }
+  .dp-bar { display: flex; align-items: center; gap: 3px; margin: 0 -3px 3px; padding: 2px 3px 2px 6px; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font: bold 11px/1.4 Tahoma, sans-serif; position: sticky; top: 0; z-index: 40; }
+  .dp-bar span { flex: 1; }
+  .dp-bar i, .dp-bar button { font-style: normal; width: 16px; height: 14px; display: grid; place-items: center; padding: 0; background: #c0c0c0; color: #000; border: 1px outset #fff; font: bold 9px/1 Tahoma, sans-serif; cursor: pointer; }
   #heaven { width: min(340px, calc(100vw - 32px)); padding: 0; border: 2px outset #dfdfdf; background: #c0c0c0; color: #000; font: 11px Tahoma, Verdana, sans-serif; box-shadow: 6px 6px 0 rgba(0,0,0,.6); animation: hvshake .45s ease-out; }
   #heaven::backdrop { background: rgba(0,0,0,.35); }
   @keyframes hvshake { 0% { transform: scale(.6); } 40% { transform: scale(1.05) rotate(-2deg); } 60% { transform: rotate(2deg); } 100% { transform: none; } }
@@ -288,6 +292,8 @@
   footer { text-align: center; padding: 14px 10px 20px; font-size: 10px; color: var(--muted); border-top: 1px solid var(--teal-dk); }
   footer .divider { max-width: 300px; margin: 0 auto 8px; }
   footer .links a { margin: 0 4px; }
+  footer .email { font-size: 12px; margin-top: 4px; }
+  footer .email a { color: var(--teal-hi); }
 
   .trail { position: fixed; pointer-events: none; width: 10px; height: 10px; z-index: 99; animation: fall .8s linear forwards; }
   @keyframes fall { to { transform: translateY(24px) scale(.2); opacity: 0; } }
@@ -300,8 +306,8 @@
     .cols > section:last-child { padding-top: 0; }
     .navbar .hide-sm { display: none; }
     .banner img { height: 150px; }
-    .profile { grid-template-columns: 135px 1fr; }
-    .pfp { width: 135px; }
+    .profile { grid-template-columns: 175px 1fr; }
+    .pfp { width: 175px; }
     .sect h3, .ctable h3, .sect h4 { font-size: 12px; }
     .contact a { min-height: 34px; }
     .comments td.who { width: 82px; }
@@ -339,6 +345,13 @@
   <main class="cols" id="top">
     <!-- ================= LEFT ================= -->
     <section>
+      <div class="ctable linkbox" id="contact">
+        <div class="contact" id="links"></div>
+        <div class="sparkbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="cheerbox"><img class="cheer" src="assets/media/cheer.jpg" alt="ViVi in a cheer uniform with teal pom-poms" width="600" height="578"></div>
+      </div>
+
+
       <div class="pbox">
         <div class="nameplate"><h1 class="name">vivi</h1><img class="name-fangs" src="assets/gg/teal-drip-fangs-clear.gif" alt=""></div>
         <div class="win nv">
@@ -358,12 +371,6 @@
             <p class="login"><b>Last Login:</b> <span id="login"></span></p>
           </div>
         </div>
-      </div>
-
-      <div class="ctable linkbox" id="contact">
-        <div class="contact" id="links"></div>
-        <div class="sparkbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="cheerbox"><img class="cheer" src="assets/media/cheer.jpg" alt="ViVi in a cheer uniform with teal pom-poms" width="600" height="578"></div>
       </div>
 
       <img class="wire" src="assets/media/barbed-wire.gif" alt="" width="160" height="47">
@@ -406,34 +413,6 @@
         <h3>ViVi's Latest Blog Entry <a href="#contact">[Subscribe to this Blog]</a></h3>
         <div class="body">
           <p>just released my first single check it out lowk :&gt;</p>
-        </div>
-      </div>
-
-      <div class="sect desk-sect">
-        <h3>ViVi's Desktop</h3>
-        <div class="desktop">
-          <div class="wmp" id="wmp">
-            <div class="wmp-bar"><span>▶ vivi.wmv - Windows Media Player</span><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" id="wmpx" aria-label="Close">✕</button></div>
-            <div class="wmp-screen"><img src="assets/media/vivi-clip.gif" alt="ViVi clip" width="300" height="187"></div>
-            <div class="wmp-ctrl" aria-hidden="true"><b>▶</b><b>❚❚</b><b>■</b><span class="seek"><i></i></span><span class="t">0:02</span></div>
-          </div>
-          <div class="win w1"><div class="tb"><span>skull_tv.mpg</span><i>✕</i></div><img src="assets/collage/skulltv.jpg" alt="" width="480" height="383"></div>
-          <div class="win w2"><div class="tb"><span>void.bmp</span><i>✕</i></div><img src="assets/collage/blackorb.jpg" alt="" width="420" height="398"></div>
-          <div class="win w4"><div class="tb"><span>AngelS.gif</span><i>✕</i></div><img src="assets/collage/angels.jpg" alt="" width="339" height="91"></div>
-          <div class="win w5"><div class="tb"><span>depart.jpg</span><i>✕</i></div><img src="assets/collage/sadangel.jpg" alt="" width="330" height="248"></div>
-          <div class="win w6"><div class="tb"><span>orb.exe</span><i>✕</i></div><img src="assets/collage/orb.jpg" alt="" width="254" height="179"></div>
-          <div class="win w7"><div class="tb"><span>README.TXT</span><i>✕</i></div><img src="assets/collage/mosh.jpg" alt="" width="480" height="266"></div>
-          <div class="win w8"><div class="tb"><span>message.txt</span><i>✕</i></div><img src="assets/collage/trumpet.jpg" alt="" width="380" height="135"></div>
-          <div class="win w9"><div class="tb"><span>CYBER</span><i>✕</i></div><img src="assets/collage/sendable.jpg" alt="" width="260" height="261"></div>
-          <div class="win w10"><div class="tb"><span>angel_dream.gif</span><i>✕</i></div><img src="assets/gg/angel-dream.gif" alt="" width="320" height="256"></div>
-          <img class="loose l2" src="assets/gg/money-chain.jpg" alt="" width="230" height="175">
-          <img class="loose l3" src="assets/gg/cyber-heart.jpg" alt="" width="100" height="100">
-          <img class="loose l4" src="assets/collage/cross.jpg" alt="" width="200" height="231">
-          <img class="loose l5" src="assets/gg/warp.gif" alt="" width="100" height="100">
-          <img class="loose cg c1" src="assets/gg/canva-skull.gif" alt="" width="153" height="147">
-          <img class="loose cg c2" src="assets/gg/canva-computer.gif" alt="" width="84" height="90">
-          <img class="loose cg c3" src="assets/gg/canva-revolver.gif" alt="" width="135" height="132">
-          <img class="loose cg c4" src="assets/gg/canva-dollar.gif" alt="" width="159" height="93">
         </div>
       </div>
 
@@ -498,6 +477,7 @@
     <div class="links"><a href="#top">Top</a>|<a href="#music">Music</a>|<a href="#contact">Links</a>|<a href="#guestbook">Guestbook</a></div>
     <p class="kiss"><img class="cg" src="assets/gg/canva-revolver.gif" alt="" width="135" height="132" style="transform:scaleX(-1)"> byte byte kiss kiss 💋 xoxo <img class="cg" src="assets/gg/canva-revolver.gif" alt="" width="135" height="132"></p>
     <p>© <span id="yr"></span> ViVi · graphics from <a href="https://www.glitter-graphics.com" target="_blank" rel="noopener">glitter-graphics.com</a></p>
+    <p class="email">email: <a href="mailto:vivi.online.music@gmail.com">vivi.online.music@gmail.com</a></p>
   </footer>
 </div>
 
@@ -514,6 +494,34 @@
     <button type="submit" aria-label="sign it">♡</button>
   </form>
   <p class="gbmsg" id="gbmsg" role="status"></p>
+</dialog>
+
+<dialog id="deskpop" aria-labelledby="dptitle">
+  <div class="dp-bar"><span id="dptitle">ViVi's Desktop</span><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" id="dpclose" aria-label="Close">✕</button></div>
+        <div class="desktop">
+    <div class="wmp" id="wmp">
+      <div class="wmp-bar"><span>▶ vivi.wmv - Windows Media Player</span><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" id="wmpx" aria-label="Close">✕</button></div>
+      <div class="wmp-screen"><img src="assets/media/vivi-clip.gif" alt="ViVi clip" width="300" height="187"></div>
+      <div class="wmp-ctrl" aria-hidden="true"><b>▶</b><b>❚❚</b><b>■</b><span class="seek"><i></i></span><span class="t">0:02</span></div>
+    </div>
+    <div class="win w1"><div class="tb"><span>skull_tv.mpg</span><i>✕</i></div><img src="assets/collage/skulltv.jpg" alt="" width="480" height="383"></div>
+    <div class="win w2"><div class="tb"><span>void.bmp</span><i>✕</i></div><img src="assets/collage/blackorb.jpg" alt="" width="420" height="398"></div>
+    <div class="win w4"><div class="tb"><span>AngelS.gif</span><i>✕</i></div><img src="assets/collage/angels.jpg" alt="" width="339" height="91"></div>
+    <div class="win w5"><div class="tb"><span>depart.jpg</span><i>✕</i></div><img src="assets/collage/sadangel.jpg" alt="" width="330" height="248"></div>
+    <div class="win w6"><div class="tb"><span>orb.exe</span><i>✕</i></div><img src="assets/collage/orb.jpg" alt="" width="254" height="179"></div>
+    <div class="win w7"><div class="tb"><span>README.TXT</span><i>✕</i></div><img src="assets/collage/mosh.jpg" alt="" width="480" height="266"></div>
+    <div class="win w8"><div class="tb"><span>message.txt</span><i>✕</i></div><img src="assets/collage/trumpet.jpg" alt="" width="380" height="135"></div>
+    <div class="win w9"><div class="tb"><span>CYBER</span><i>✕</i></div><img src="assets/collage/sendable.jpg" alt="" width="260" height="261"></div>
+    <div class="win w10"><div class="tb"><span>angel_dream.gif</span><i>✕</i></div><img src="assets/gg/angel-dream.gif" alt="" width="320" height="256"></div>
+    <img class="loose l2" src="assets/gg/money-chain.jpg" alt="" width="230" height="175">
+    <img class="loose l3" src="assets/gg/cyber-heart.jpg" alt="" width="100" height="100">
+    <img class="loose l4" src="assets/collage/cross.jpg" alt="" width="200" height="231">
+    <img class="loose l5" src="assets/gg/warp.gif" alt="" width="100" height="100">
+    <img class="loose cg c1" src="assets/gg/canva-skull.gif" alt="" width="153" height="147">
+    <img class="loose cg c2" src="assets/gg/canva-computer.gif" alt="" width="84" height="90">
+    <img class="loose cg c3" src="assets/gg/canva-revolver.gif" alt="" width="135" height="132">
+    <img class="loose cg c4" src="assets/gg/canva-dollar.gif" alt="" width="159" height="93">
+  </div>
 </dialog>
 
 <dialog id="heaven" aria-labelledby="hvtitle">
@@ -565,9 +573,10 @@
   // GUESTBOOK: pops up after 4 seconds; emails get forwarded to ViVi via formsubmit.co.
   // After activating FormSubmit you can swap the address for the random alias they give you.
   const GUESTBOOK_ENDPOINT = "https://formsubmit.co/ajax/vivi.online.music@gmail.com";
-  const GUESTBOOK_DELAY_MS = 4000;
-  const HEAVEN_AFTER_GUESTBOOK_MS = 3000;  // heaven.exe follows this long after the guestbook closes
-  const HEAVEN_DELAY_MS = 5000;            // used when the guestbook doesn't show (already signed/seen)
+  // Popup timeline (ms after the page loads). Each shows once per visit and stacks on top of the last.
+  const DESKTOP_AT = 1000;               // ViVi's Desktop
+  const HEAVEN_AT = DESKTOP_AT + 4000;   // heaven.exe, 4s after the desktop
+  const GUESTBOOK_AT = HEAVEN_AT + 9000; // guestbook, 9s after heaven
 
   // The player plays ZOMBIE through Spotify's embed (full song if the listener is
   // logged in to Spotify in their browser, otherwise Spotify's 30-second preview).
@@ -737,19 +746,22 @@
   let seen = null; try { seen = sessionStorage.getItem("vivi-gb-seen"); } catch {}
   const wantGB = !store.get("vivi-gb-signed") && !seen;
 
-  // Guestbook pops up first (~4s in); heaven.exe follows a few seconds after it closes. Each once per visit.
+  dlg.addEventListener("close", () => { try { sessionStorage.setItem("vivi-gb-seen", "1"); } catch {} });
+
   const hv = document.getElementById("heaven");
   hv.querySelectorAll("[data-hv-close]").forEach(b => b.addEventListener("click", () => hv.close()));
   hv.querySelector(".hv-yes").addEventListener("click", () => hv.close());
   hv.addEventListener("close", () => { try { sessionStorage.setItem("vivi-hv-seen", "1"); } catch {} });
   let hvSeen = null; try { hvSeen = sessionStorage.getItem("vivi-hv-seen"); } catch {}
-  const openHeaven = () => { if (!hvSeen && !hv.open && !dlg.open) { hvSeen = "1"; hv.showModal(); } };
-  dlg.addEventListener("close", () => {
-    try { sessionStorage.setItem("vivi-gb-seen", "1"); } catch {}
-    setTimeout(openHeaven, HEAVEN_AFTER_GUESTBOOK_MS);
-  });
-  if (wantGB) setTimeout(openGB, GUESTBOOK_DELAY_MS);
-  else setTimeout(openHeaven, HEAVEN_DELAY_MS);
+
+  const dp = document.getElementById("deskpop");
+  document.getElementById("dpclose").addEventListener("click", () => dp.close());
+  dp.addEventListener("close", () => { try { sessionStorage.setItem("vivi-dt-seen", "1"); } catch {} });
+  let dtSeen = null; try { dtSeen = sessionStorage.getItem("vivi-dt-seen"); } catch {}
+
+  if (!dtSeen) setTimeout(() => { if (!dp.open) dp.showModal(); }, DESKTOP_AT);
+  if (!hvSeen) setTimeout(() => { if (!hv.open) hv.showModal(); }, HEAVEN_AT);
+  if (wantGB) setTimeout(openGB, GUESTBOOK_AT);
 
   gb.addEventListener("submit", async e => {
     e.preventDefault();
