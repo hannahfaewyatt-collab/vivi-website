@@ -1,0 +1,419 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ViVi's Space</title>
+<meta name="description" content="† ur digital angel † — ViVi is a music project bridging IRL and URL.">
+<meta property="og:title" content="ViVi's Space">
+<meta property="og:description" content="† ur digital angel † — ViVi is a music project bridging IRL and URL.">
+<meta property="og:image" content="assets/vivi-pfp.jpg">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=VT323&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000;
+    --panel: #050b0b;
+    --teal: #2de0c8;
+    --teal-hi: #8ffff0;
+    --teal-dk: #0d4a44;
+    --pink: #ff2fa8;
+    --blood: #c4002b;
+    --text: #e8fffb;
+    --muted: #7fb8b0;
+    --head: #0f3a36;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background-color: var(--bg);
+    /* tiled pixel-star wallpaper, classic profile-layout style */
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' shape-rendering='crispEdges'%3E%3Cg fill='%232de0c8' fill-opacity='.35'%3E%3Crect x='10' y='8' width='2' height='6'/%3E%3Crect x='8' y='10' width='6' height='2'/%3E%3Crect x='44' y='40' width='2' height='8'/%3E%3Crect x='41' y='43' width='8' height='2'/%3E%3C/g%3E%3Cg fill='%23ff2fa8' fill-opacity='.25'%3E%3Crect x='50' y='12' width='2' height='2'/%3E%3Crect x='20' y='50' width='2' height='2'/%3E%3C/g%3E%3C/svg%3E"),
+      radial-gradient(ellipse at top, #062421 0%, #000 60%);
+    background-attachment: fixed;
+    color: var(--text);
+    font: 13px/1.45 Verdana, Tahoma, Arial, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  a { color: var(--teal); }
+  a:hover { color: var(--pink); }
+
+  /* ===== top nav bar ===== */
+  .topbar {
+    background: linear-gradient(#0b5a52, #06302c);
+    border-bottom: 2px solid var(--teal);
+    padding: 6px 16px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    font-family: "VT323", monospace; font-size: 20px; letter-spacing: 1px;
+  }
+  .topbar .brand { color: var(--teal-hi); text-shadow: 0 0 6px var(--teal); }
+  .topbar nav { display: flex; gap: 10px; flex-wrap: wrap; font-size: 16px; }
+  .topbar nav a { color: #cffff7; text-decoration: none; }
+  .topbar nav a:hover { color: var(--pink); text-decoration: underline; }
+
+  .marquee {
+    overflow: hidden; white-space: nowrap;
+    background: #000; border-bottom: 1px dashed var(--teal-dk);
+    font-family: "VT323", monospace; font-size: 18px; color: var(--teal);
+    padding: 3px 0;
+  }
+  .marquee span { display: inline-block; padding-left: 100%; animation: scroll 22s linear infinite; }
+  @keyframes scroll { to { transform: translateX(-100%); } }
+
+  /* ===== layout ===== */
+  .wrap {
+    max-width: 860px; margin: 18px auto 40px; padding: 0 16px;
+    display: grid; grid-template-columns: 300px 1fr; gap: 18px;
+  }
+  @media (max-width: 720px) {
+    .wrap { grid-template-columns: 1fr; }
+    .topbar nav { display: none; }
+  }
+
+  .box {
+    background: var(--panel);
+    border: 1px solid var(--teal);
+    box-shadow: 0 0 0 1px #000, 0 0 14px rgba(45,224,200,.25);
+    margin-bottom: 16px;
+  }
+  .box h2 {
+    margin: 0; padding: 4px 8px;
+    background: var(--head);
+    color: var(--teal-hi);
+    font: bold 12px Verdana, sans-serif;
+    border-bottom: 1px solid var(--teal);
+  }
+  .box .in { padding: 10px; }
+
+  /* ===== glitter text ===== */
+  .glitter {
+    background:
+      radial-gradient(circle, #fff 0 1px, transparent 1.5px) 0 0 / 7px 7px,
+      radial-gradient(circle, var(--teal-hi) 0 1px, transparent 1.5px) 3px 4px / 9px 9px,
+      linear-gradient(90deg, var(--teal), #b6fff4, var(--teal), #0fa596, var(--teal));
+    background-size: 7px 7px, 9px 9px, 300% 100%;
+    -webkit-background-clip: text; background-clip: text;
+    color: transparent;
+    animation: glit 1.2s steps(4) infinite, shimmer 6s linear infinite;
+    filter: drop-shadow(0 0 4px rgba(45,224,200,.7));
+  }
+  @keyframes glit {
+    0% { background-position: 0 0, 3px 4px, 0 0; }
+    50% { background-position: 3px 2px, 0 1px, 50% 0; }
+    100% { background-position: 1px 5px, 5px 3px, 100% 0; }
+  }
+  @keyframes shimmer { to { filter: drop-shadow(0 0 7px rgba(45,224,200,.9)); } }
+
+  /* ===== profile column ===== */
+  .name {
+    font-family: "UnifrakturMaguntia", serif;
+    font-size: 54px; line-height: 1; margin: 0 0 2px; text-align: center;
+  }
+  .fangs { display: block; margin: -4px auto 4px; width: 120px; height: auto; }
+  .pfp-frame {
+    position: relative; width: 100%;
+    border: 3px double var(--teal);
+    padding: 4px; background: #000;
+  }
+  .pfp-frame img { display: block; width: 100%; height: auto; image-rendering: auto; }
+  .pfp-frame .spark { position: absolute; width: 22px; height: 22px; animation: twinkle 1.4s ease-in-out infinite; }
+  .spark.a { top: -10px; left: -10px; }
+  .spark.b { top: 30%; right: -11px; animation-delay: .5s; }
+  .spark.c { bottom: -10px; left: 40%; animation-delay: .9s; }
+  @keyframes twinkle { 0%,100% { transform: scale(.5) rotate(0); opacity: .4; } 50% { transform: scale(1.1) rotate(45deg); opacity: 1; } }
+
+  .tag { text-align: center; font-family: "VT323", monospace; font-size: 24px; margin: 10px 0 4px; }
+  .facts { margin: 8px 0 0; padding: 0; list-style: none; font-size: 12px; color: var(--muted); }
+  .facts li { padding: 2px 0; }
+  .facts b { color: var(--text); font-weight: normal; }
+  .online { color: #7dff9a; font-weight: bold; }
+  .online::before { content: ""; display: inline-block; width: 8px; height: 8px; background: #7dff9a; margin-right: 5px; box-shadow: 0 0 6px #7dff9a; animation: blink 1s steps(2) infinite; }
+  @keyframes blink { 50% { opacity: .2; } }
+
+  /* ===== contact / link buttons ===== */
+  .links { display: grid; gap: 8px; }
+  .link {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 10px; min-height: 44px;
+    background: linear-gradient(#0a2a27, #041311);
+    border: 1px solid var(--teal);
+    color: var(--text); text-decoration: none;
+    font-weight: bold;
+    transition: transform .08s, background .15s;
+    position: relative;
+  }
+  .link:hover, .link:focus-visible {
+    background: linear-gradient(#11504a, #062421);
+    color: #fff; transform: translate(-1px,-1px);
+    box-shadow: 3px 3px 0 var(--pink);
+    outline: none;
+  }
+  .link .ico { width: 22px; text-align: center; font-family: "VT323", monospace; font-size: 22px; color: var(--teal-hi); flex: none; }
+  .link .sub { display: block; font-weight: normal; font-size: 11px; color: var(--muted); }
+  .link.featured { border-color: var(--pink); box-shadow: 0 0 10px rgba(255,47,168,.4); }
+  .link.featured::after {
+    content: "NEW!"; position: absolute; right: 8px; top: 50%; transform: translateY(-50%) rotate(-8deg);
+    font: 16px "VT323", monospace; color: #fff; background: var(--pink); padding: 0 5px;
+    animation: blink 0.9s steps(2) infinite;
+  }
+
+  /* ===== right column ===== */
+  .network {
+    border: 1px solid var(--teal); padding: 12px; text-align: center;
+    font-size: 15px; font-weight: bold; background: #000; margin-bottom: 16px;
+  }
+  .network .glitter { font-size: 18px; }
+  .blurb p { margin: 0 0 8px; }
+  .blurb h3 { margin: 10px 0 4px; font-size: 12px; color: var(--pink); }
+
+  .player { display: flex; gap: 10px; align-items: center; }
+  .player button {
+    width: 40px; height: 40px; flex: none; cursor: pointer;
+    background: #000; color: var(--teal-hi); border: 2px solid var(--teal);
+    font: 20px "VT323", monospace;
+  }
+  .player button:hover { border-color: var(--pink); color: var(--pink); }
+  .player .meta { flex: 1; min-width: 0; }
+  .player .track { font-weight: bold; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .wave { display: flex; gap: 2px; align-items: flex-end; height: 34px; margin-top: 4px; }
+  .wave i {
+    flex: 1; background: var(--teal);
+    background-image: linear-gradient(transparent 50%, rgba(0,0,0,.55) 50%);
+    background-size: 100% 4px;
+    height: 20%;
+  }
+  .playing .wave i { animation: bar .7s ease-in-out infinite alternate; }
+  @keyframes bar { from { height: 15%; } to { height: 100%; } }
+
+  .top8 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; text-align: center; font-size: 11px; }
+  .top8 a { text-decoration: none; color: var(--teal); display: block; }
+  .top8 .tile {
+    aspect-ratio: 1; border: 1px solid var(--teal-dk); background: #000;
+    display: grid; place-items: center; margin-bottom: 3px;
+    font: 30px "VT323", monospace; color: var(--teal-hi);
+  }
+  .top8 a:hover .tile { border-color: var(--pink); color: var(--pink); }
+  @media (max-width: 380px) { .top8 { grid-template-columns: repeat(2, 1fr); } }
+
+  .comments .c { display: grid; grid-template-columns: 54px 1fr; gap: 8px; padding: 8px 0; border-top: 1px dashed var(--teal-dk); }
+  .comments .c:first-child { border-top: 0; }
+  .comments .av { width: 54px; height: 54px; border: 1px solid var(--teal-dk); display: grid; place-items: center; font: 26px "VT323", monospace; color: var(--pink); background: #000; }
+  .comments .who { color: var(--teal); font-weight: bold; font-size: 11px; }
+
+  footer { text-align: center; font-size: 11px; color: var(--muted); padding: 0 16px 30px; }
+  footer .glitter { font-family: "VT323", monospace; font-size: 20px; }
+
+  /* sparkle cursor trail */
+  .trail { position: fixed; pointer-events: none; width: 10px; height: 10px; z-index: 99; animation: fall .8s linear forwards; }
+  @keyframes fall { to { transform: translateY(24px) scale(.2); opacity: 0; } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; }
+    .marquee span { padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- reusable pixel sparkle -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="spark" viewBox="0 0 11 11" shape-rendering="crispEdges">
+      <rect x="5" y="0" width="1" height="11" fill="#8ffff0"/>
+      <rect x="0" y="5" width="11" height="1" fill="#8ffff0"/>
+      <rect x="4" y="4" width="3" height="3" fill="#fff"/>
+      <rect x="2" y="2" width="1" height="1" fill="#2de0c8"/><rect x="8" y="2" width="1" height="1" fill="#2de0c8"/>
+      <rect x="2" y="8" width="1" height="1" fill="#2de0c8"/><rect x="8" y="8" width="1" height="1" fill="#2de0c8"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="topbar">
+  <span class="brand">ViVi's Space</span>
+  <nav aria-label="Site">
+    <a href="../">Home</a> | <a href="#music">Music</a> | <a href="#contact">Links</a> | <a href="#comments">Comments</a>
+  </nav>
+</header>
+<div class="marquee" aria-hidden="true"><span>† ur digital angel † &nbsp;✦&nbsp; bridging IRL and URL &nbsp;✦&nbsp; new music coming soon &nbsp;✦&nbsp; add ViVi to ur top 8 &nbsp;✦&nbsp; † ur digital angel †</span></div>
+
+<main class="wrap">
+  <!-- ========== LEFT COLUMN ========== -->
+  <section>
+    <div class="box">
+      <div class="in">
+        <h1 class="name glitter">ViVi</h1>
+        <!-- dripping fangs -->
+        <svg class="fangs" viewBox="0 0 60 22" shape-rendering="crispEdges" aria-hidden="true">
+          <rect x="0" y="0" width="60" height="3" fill="#2de0c8"/>
+          <polygon points="12,3 20,3 16,16" fill="#f4fffd"/>
+          <polygon points="40,3 48,3 44,16" fill="#f4fffd"/>
+          <rect x="15" y="15" width="2" height="3" fill="#c4002b"><animate attributeName="height" values="2;6;2" dur="2.4s" repeatCount="indefinite"/></rect>
+          <rect x="43" y="15" width="2" height="2" fill="#c4002b"><animate attributeName="height" values="1;5;1" dur="3s" repeatCount="indefinite"/></rect>
+        </svg>
+        <div class="pfp-frame">
+          <img src="assets/vivi-pfp.jpg" alt="ViVi" width="600" height="600">
+          <svg class="spark a" aria-hidden="true"><use href="#spark"/></svg>
+          <svg class="spark b" aria-hidden="true"><use href="#spark"/></svg>
+          <svg class="spark c" aria-hidden="true"><use href="#spark"/></svg>
+        </div>
+        <p class="tag glitter">† ur digital angel †</p>
+        <ul class="facts">
+          <li><b>Mood:</b> undead &amp; online 🦇</li>
+          <li><b>Genre:</b> IRL / URL</li>
+          <li><b>Location:</b> the server room in ur heart</li>
+          <li class="online">Online Now!</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="box" id="contact">
+      <h2>Contacting ViVi</h2>
+      <div class="in links" id="links"></div>
+    </div>
+  </section>
+
+  <!-- ========== RIGHT COLUMN ========== -->
+  <section>
+    <div class="network">
+      <span class="glitter">ViVi is in your extended network</span>
+    </div>
+
+    <div class="box" id="music">
+      <h2>ViVi's Music Player</h2>
+      <div class="in player" id="player">
+        <button type="button" id="play" aria-label="Play">▶</button>
+        <div class="meta">
+          <div class="track" id="track">ViVi — digital angel (snippet)</div>
+          <div class="wave" id="wave" aria-hidden="true"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box blurb">
+      <h2>ViVi's Blurbs</h2>
+      <div class="in">
+        <h3>About me:</h3>
+        <p>ViVi is a music project bridging IRL and URL.</p>
+        <p>half signal, half soul. made for headphones, dark rooms, and screens at 3am.</p>
+        <h3>Who I'd like to meet:</h3>
+        <p>u. the ones who stay online after the lights go out. †</p>
+      </div>
+    </div>
+
+    <div class="box">
+      <h2>ViVi's Friend Space — ViVi has <span id="fcount">8</span> friends</h2>
+      <div class="in top8" id="top8"></div>
+    </div>
+
+    <div class="box comments" id="comments">
+      <h2>ViVi's Friends Comments</h2>
+      <div class="in">
+        <div class="c"><div class="av">†</div><div><div class="who">xX_angel_URL_Xx</div>thanks 4 the add!!! ur music lives in my head rent free ♡</div></div>
+        <div class="c"><div class="av">🦇</div><div><div class="who">teal.gl1tter</div>pc4pc? ur layout is sooo cute</div></div>
+        <div class="c"><div class="av">✦</div><div><div class="who">3am_listener</div>when is the next drop ViVi??</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="glitter">✦ thanks 4 visiting ✦</div>
+  © <span id="yr"></span> ViVi
+</footer>
+
+<script>
+  /* ============================================================
+     EDIT YOUR LINKS HERE
+     - url: paste the real link (leave "" to hide a button)
+     - featured: true adds the blinking NEW! tag
+     ============================================================ */
+  const LINKS = [
+    { label: "NEW SINGLE", sub: "listen everywhere", icon: "♫", url: "", featured: true },
+    { label: "Spotify",    sub: "stream ViVi",          icon: "♪", url: "" },
+    { label: "Apple Music",sub: "stream ViVi",          icon: "♪", url: "" },
+    { label: "SoundCloud", sub: "demos & snippets",     icon: "☁", url: "" },
+    { label: "YouTube",    sub: "videos & visualizers", icon: "▶", url: "" },
+    { label: "TikTok",     sub: "@vivi",                icon: "✦", url: "" },
+    { label: "Instagram",  sub: "@vivi",                icon: "†", url: "" },
+    { label: "Website",    sub: "the full ViVi world",  icon: "⌂", url: "../" },
+    { label: "Booking / Email", sub: "send a message",  icon: "✉", url: "" }, // e.g. "mailto:you@example.com"
+  ];
+
+  // Optional: path to an mp3 snippet (e.g. "assets/snippet.mp3"). Leave "" for a visual-only player.
+  const SNIPPET = "";
+
+  const shown = LINKS.filter(l => l.url);
+  const linkBox = document.getElementById("links");
+  const top8 = document.getElementById("top8");
+  const ext = u => /^(https?:|mailto:)/.test(u);
+
+  shown.forEach(l => {
+    const a = document.createElement("a");
+    a.className = "link" + (l.featured ? " featured" : "");
+    a.href = l.url;
+    if (ext(l.url) && !l.url.startsWith("mailto:")) { a.target = "_blank"; a.rel = "noopener"; }
+    a.innerHTML = `<span class="ico"></span><span><span class="lbl"></span><span class="sub"></span></span>`;
+    a.querySelector(".ico").textContent = l.icon;
+    a.querySelector(".lbl").textContent = l.label;
+    a.querySelector(".sub").textContent = l.sub;
+    linkBox.appendChild(a);
+  });
+  if (!shown.length) linkBox.innerHTML = '<p style="margin:0;color:var(--muted)">links coming soon †</p>';
+
+  // Top 8 = first 8 links, MySpace friend-grid style
+  shown.slice(0, 8).forEach(l => {
+    const a = document.createElement("a");
+    a.href = l.url;
+    if (ext(l.url) && !l.url.startsWith("mailto:")) { a.target = "_blank"; a.rel = "noopener"; }
+    a.innerHTML = `<div class="tile"></div><span></span>`;
+    a.querySelector(".tile").textContent = l.icon;
+    a.querySelector("span").textContent = l.label;
+    top8.appendChild(a);
+  });
+  document.getElementById("fcount").textContent = Math.min(shown.length, 8);
+  if (!shown.length) top8.closest(".box").hidden = true;
+
+  // pixel waveform (echoes the turquoise screen in the pfp)
+  const wave = document.getElementById("wave");
+  for (let i = 0; i < 28; i++) {
+    const b = document.createElement("i");
+    b.style.height = (20 + Math.abs(Math.sin(i * 0.7)) * 70) + "%";
+    b.style.animationDelay = (i * 37 % 700) + "ms";
+    wave.appendChild(b);
+  }
+  const player = document.getElementById("player");
+  const btn = document.getElementById("play");
+  const audio = SNIPPET ? new Audio(SNIPPET) : null;
+  btn.addEventListener("click", () => {
+    const on = player.classList.toggle("playing");
+    btn.textContent = on ? "❚❚" : "▶";
+    btn.setAttribute("aria-label", on ? "Pause" : "Play");
+    if (audio) on ? audio.play() : audio.pause();
+  });
+  if (audio) audio.addEventListener("ended", () => { player.classList.remove("playing"); btn.textContent = "▶"; });
+
+  document.getElementById("yr").textContent = new Date().getFullYear();
+
+  // sparkle cursor trail (desktop only, respects reduced motion)
+  if (matchMedia("(pointer: fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    let last = 0;
+    addEventListener("mousemove", e => {
+      const now = performance.now();
+      if (now - last < 45) return;
+      last = now;
+      const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      s.setAttribute("class", "trail");
+      s.innerHTML = '<use href="#spark"/>';
+      s.style.left = e.clientX - 5 + "px";
+      s.style.top = e.clientY - 5 + "px";
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 800);
+    });
+  }
+</script>
+</body>
+</html>
