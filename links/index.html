@@ -82,7 +82,8 @@
 
 
   .itable { width: 100%; border: 1px solid var(--teal); border-collapse: collapse; margin-bottom: 12px; }
-  .itable caption { text-align: left; padding: 3px 6px; background: var(--teal); color: #002a26; font-weight: bold; }
+  .itable caption { text-align: left; padding: 3px 26px 3px 6px; background: linear-gradient(90deg, #000080, #1084d0 70%, #2de0c8); color: #fff; font: bold 11px Tahoma, Verdana, sans-serif; position: relative; }
+  .itable caption::after { content: "✕"; position: absolute; right: 3px; top: 50%; transform: translateY(-50%); width: 16px; height: 14px; display: grid; place-items: center; background: #c0c0c0; color: #000; border: 1px outset #fff; font: bold 9px/1 Tahoma, sans-serif; }
   .itable th, .itable td { border: 1px solid var(--teal-dk); padding: 5px 6px; vertical-align: top; text-align: left; }
   .itable th { width: 84px; background: var(--head); color: var(--teal-hi); }
 
@@ -119,7 +120,9 @@
   .network strong { font-size: 15px; color: #fff; text-shadow: 0 0 6px var(--teal); }
 
   .sect { margin-bottom: 12px; }
-  .sect h3 { margin: 0 0 6px; padding: 3px 6px; background: var(--head); border: 1px solid var(--teal); color: var(--teal-hi); font-size: 11px; display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
+  .sect h3 { margin: 0 0 6px; padding: 3px 4px 3px 6px; background: linear-gradient(90deg, #000080, #1084d0 70%, #2de0c8); border: 2px outset #c0c0c0; color: #fff; font: bold 11px Tahoma, Verdana, sans-serif; display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+  .sect h3::after { content: "✕"; flex: none; width: 16px; height: 14px; display: grid; place-items: center; background: #c0c0c0; color: #000; border: 1px outset #fff; font: bold 9px/1 Tahoma, sans-serif; }
+  .sect h3 a { margin-left: auto; }
   .sect h3 a { color: #fff; font-weight: normal; font-size: 10px; }
   .sect .body { padding: 0 4px; }
   .sect h4 { margin: 8px 0 3px; color: var(--pink); font-size: 11px; }
@@ -169,21 +172,71 @@
   #heaven { width: min(340px, calc(100vw - 32px)); padding: 0; border: 2px outset #dfdfdf; background: #c0c0c0; color: #000; font: 11px Tahoma, Verdana, sans-serif; box-shadow: 6px 6px 0 rgba(0,0,0,.6); animation: hvshake .45s ease-out; }
   #heaven::backdrop { background: rgba(0,0,0,.35); }
   @keyframes hvshake { 0% { transform: scale(.6); } 40% { transform: scale(1.05) rotate(-2deg); } 60% { transform: rotate(2deg); } 100% { transform: none; } }
-  .hv-bar { display: flex; align-items: center; gap: 4px; padding: 3px 3px 3px 6px; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font-weight: bold; }
+  .hv-bar img { width: 16px; height: 16px; flex: none; }
+  .hv-bar { display: flex; align-items: center; gap: 4px; padding: 3px 3px 3px 4px; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font-weight: bold; }
   .hv-bar > span:first-child { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .hv-btns i, .hv-x { display: inline-grid; place-items: center; width: 18px; height: 16px; background: #c0c0c0; color: #000; border: 1px outset #fff; font: bold 10px/1 Tahoma, sans-serif; font-style: normal; margin-left: 2px; }
   .hv-x { cursor: pointer; padding: 0; }
   .hv-body { position: relative; margin: 6px; border: 2px inset #fff; background: #000; }
   .hv-body img { display: block; width: 100%; height: auto; }
   .hv-text { position: absolute; inset: 0; display: grid; place-content: center; text-align: center; padding-bottom: 10px; }
-  .hv-text h2, .hv-text p { margin: 0; font-family: "UnifrakturMaguntia", serif; font-weight: normal; color: #fff; text-shadow: 0 0 6px #000, 0 0 14px rgba(0,0,0,.8), 0 0 2px #000; }
+  .hv-text h2, .hv-text p { margin: 0; font-family: "UnifrakturMaguntia", serif; font-weight: normal; color: #fff; text-shadow: 0 0 2px #0a3d91, 0 0 8px #1e6fe0, 0 0 16px rgba(30,111,224,.9); }
   .hv-text h2 { font-size: 34px; line-height: 1.05; }
   .hv-text p { font-size: 28px; }
   .hv-flash { position: absolute; left: 0; right: 0; bottom: 4px; text-align: center; font: bold 11px Tahoma, sans-serif; color: #ff0; text-shadow: 1px 1px 0 #f00; animation: blink .7s steps(2) infinite; }
-  .hv-actions { display: flex; justify-content: center; gap: 10px; padding: 2px 6px 8px; }
-  .hv-actions a, .hv-actions button { min-width: 84px; padding: 5px 10px; background: #c0c0c0; color: #000; border: 2px outset #fff; font: bold 12px Tahoma, sans-serif; text-align: center; text-decoration: none; cursor: pointer; }
+  .hv-menu { padding: 2px 6px; border-bottom: 1px solid #808080; }
+  .hv-addr { display: flex; align-items: center; gap: 4px; padding: 3px 6px; }
+  .hv-addr span { flex: 1; min-width: 0; background: #fff; border: 2px inset #fff; padding: 1px 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #00c; }
+  .hv-addr b { border: 2px outset #fff; padding: 0 5px; }
+  .hv-congrats { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 4px 6px 0; padding: 4px; text-align: center; font: bold 16px/1.1 Impact, "Arial Black", sans-serif; letter-spacing: .5px; color: #ff0; background: linear-gradient(90deg, #00d4c8, #1e6fe0, #00d4c8); background-size: 200% 100%; text-shadow: 2px 2px 0 #c00, 0 0 6px #000; animation: slide 1.2s linear infinite; }
+  .hv-congrats span { white-space: nowrap; font-size: 15px; }
+  .hv-congrats small { display: block; margin-top: 2px; font: bold 11px Tahoma, sans-serif; color: #fff; text-shadow: 1px 1px 0 #000; }
+  .hv-congrats img { width: 18px; height: auto; }
+  @keyframes slide { to { background-position: 200% 0; } }
+  .hv-down { text-align: center; font: bold 13px Tahoma, sans-serif; color: #c00; animation: blink .6s steps(2) infinite; padding: 2px 0 4px; }
+  .hv-arr { font-size: 22px; color: #c00; animation: nudge .5s ease-in-out infinite alternate; }
+  .hv-arr.flip { transform: scaleX(-1); animation-name: nudgeflip; }
+  @keyframes nudge { to { transform: translateX(6px); } }
+  @keyframes nudgeflip { from { transform: scaleX(-1); } to { transform: scaleX(-1) translateX(6px); } }
+  .hv-prog { display: flex; align-items: center; gap: 6px; padding: 0 8px 6px; font-size: 10px; }
+  .hv-prog .bar { flex: 1; height: 12px; border: 2px inset #fff; background: #fff; padding: 1px; }
+  .hv-prog .bar i { display: block; height: 100%; width: 87%; background: repeating-linear-gradient(90deg, #000080 0 8px, transparent 8px 10px); animation: load 2.5s steps(10) infinite; }
+  @keyframes load { from { width: 10%; } to { width: 87%; } }
+  .hv-status { display: flex; justify-content: space-between; padding: 2px 6px; border-top: 1px solid #808080; font-size: 10px; }
+  .hv-status span { border: 1px inset #fff; padding: 0 6px; }
+  .hv-actions { display: flex; justify-content: center; align-items: center; gap: 8px; padding: 2px 6px 8px; }
+  .hv-actions a, .hv-actions button { min-width: 72px; padding: 5px 10px; background: #c0c0c0; color: #000; border: 2px outset #fff; font: bold 12px Tahoma, sans-serif; text-align: center; text-decoration: none; cursor: pointer; }
   .hv-actions a:active, .hv-actions button:active { border-style: inset; }
   .hv-yes { outline: 1px dotted #000; outline-offset: -5px; }
+
+  .clicknow { text-align: center; margin: 2px 0 4px; }
+  .clicknow img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0 auto; animation: blink 1.2s steps(2) infinite; }
+  .clicknow span { display: block; font: bold 18px/1 Tahoma, sans-serif; color: var(--teal-hi); text-shadow: 0 0 6px var(--teal); animation: bounce .6s ease-in-out infinite alternate; }
+  @keyframes bounce { to { transform: translateY(4px); } }
+
+  /* ViVi's Desktop: overlapping 2000s windows */
+  .desktop { position: relative; aspect-ratio: 3 / 4.4; background: #001a3a url("assets/gg/cyber-bg.gif"); background-size: 180px; border: 2px inset #c0c0c0; overflow: hidden; }
+  .win { position: absolute; background: #c0c0c0; border: 2px outset #fff; box-shadow: 3px 3px 0 rgba(0,0,0,.6); padding: 0 2px 2px; }
+  .win .tb { display: flex; align-items: center; gap: 4px; margin: 0 -2px 2px; padding: 1px 2px 1px 4px; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font: bold 9px/1.4 Tahoma, sans-serif; white-space: nowrap; }
+  .win .tb span { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+  .win .tb i { font-style: normal; width: 12px; height: 11px; display: grid; place-items: center; background: #c0c0c0; color: #000; border: 1px outset #fff; font-size: 8px; }
+  .win img { display: block; width: 100%; height: auto; border: 1px inset #fff; }
+  .loose { position: absolute; height: auto; }
+  .w1 { left: 1%;  top: 0%;  width: 55%; z-index: 2; }
+  .w2 { left: 47%; top: 3%;  width: 51%; z-index: 1; }
+  .w3 { left: 6%;  top: 27%; width: 58%; z-index: 4; }
+  .w4 { left: 44%; top: 33%; width: 50%; z-index: 5; }
+  .w5 { left: 0%;  top: 41%; width: 45%; z-index: 3; }
+  .w6 { left: 54%; top: 45%; width: 43%; z-index: 4; }
+  .w7 { left: 16%; top: 58%; width: 60%; z-index: 6; }
+  .w8 { left: 2%;  top: 83%; width: 54%; z-index: 7; }
+  .w9 { left: 62%; top: 72%; width: 34%; z-index: 7; }
+  .w10 { left: 70%; top: 58%; width: 30%; z-index: 5; }
+  .l1 { left: 78%; top: 24%; width: 20%; z-index: 8; animation: bob 2.4s ease-in-out infinite; }
+  .l2 { left: 56%; top: 88%; width: 24%; z-index: 8; mix-blend-mode: screen; }
+  .l3 { left: 82%; top: 88%; width: 16%; z-index: 8; }
+  .l4 { left: 38%; top: 47%; width: 14%; z-index: 7; mix-blend-mode: screen; }
+  .l5 { left: 0%;  top: 72%; width: 15%; z-index: 8; border-radius: 50%; }
 
   footer { text-align: center; padding: 14px 10px 20px; font-size: 10px; color: var(--muted); border-top: 1px solid var(--teal-dk); }
   footer .divider { max-width: 300px; margin: 0 auto 8px; }
@@ -255,6 +308,10 @@
 
       <p class="mood"><b>Mood:</b> silly <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228"></p>
 
+      <div class="clicknow" aria-hidden="true">
+        <img src="assets/collage/clickhere.jpg" alt="" width="600" height="82">
+        <span>⬇ ⬇ ⬇</span>
+      </div>
       <div class="ctable" id="contact">
         <div class="contact" id="links"></div>
       </div>
@@ -323,6 +380,27 @@
         </div>
       </div>
 
+      <div class="sect desk-sect">
+        <h3>ViVi's Desktop</h3>
+        <div class="desktop" aria-hidden="true">
+          <div class="win w1"><div class="tb"><span>skull_tv.mpg</span><i>✕</i></div><img src="assets/collage/skulltv.jpg" alt="" width="480" height="383" loading="lazy"></div>
+          <div class="win w2"><div class="tb"><span>void.bmp</span><i>✕</i></div><img src="assets/collage/blackorb.jpg" alt="" width="420" height="398" loading="lazy"></div>
+          <div class="win w3"><div class="tb"><span>ERROR!!</span><i>✕</i></div><img src="assets/gg/system-error.gif" alt="" width="300" height="129" loading="lazy"></div>
+          <div class="win w4"><div class="tb"><span>AngelS.gif</span><i>✕</i></div><img src="assets/collage/angels.jpg" alt="" width="339" height="91" loading="lazy"></div>
+          <div class="win w5"><div class="tb"><span>depart.jpg</span><i>✕</i></div><img src="assets/collage/sadangel.jpg" alt="" width="330" height="248" loading="lazy"></div>
+          <div class="win w6"><div class="tb"><span>orb.exe</span><i>✕</i></div><img src="assets/collage/orb.jpg" alt="" width="254" height="179" loading="lazy"></div>
+          <div class="win w7"><div class="tb"><span>README.TXT</span><i>✕</i></div><img src="assets/collage/mosh.jpg" alt="" width="480" height="266" loading="lazy"></div>
+          <div class="win w8"><div class="tb"><span>message.txt</span><i>✕</i></div><img src="assets/collage/trumpet.jpg" alt="" width="380" height="135" loading="lazy"></div>
+          <div class="win w9"><div class="tb"><span>CYBER</span><i>✕</i></div><img src="assets/collage/sendable.jpg" alt="" width="260" height="261" loading="lazy"></div>
+          <div class="win w10"><div class="tb"><span>angel_dream.gif</span><i>✕</i></div><img src="assets/gg/angel-dream.gif" alt="" width="320" height="256" loading="lazy"></div>
+          <img class="loose l1" src="assets/gg/teal-skull.gif" alt="" width="150" height="150">
+          <img class="loose l2" src="assets/gg/money-chain.jpg" alt="" width="230" height="175">
+          <img class="loose l3" src="assets/gg/cyber-heart.jpg" alt="" width="100" height="100">
+          <img class="loose l4" src="assets/collage/cross.jpg" alt="" width="200" height="231">
+          <img class="loose l5" src="assets/gg/warp.gif" alt="" width="100" height="100">
+        </div>
+      </div>
+
       <img class="divider" src="assets/gg/emo-stars-divider.jpg" alt="" width="579" height="88">
 
       <div class="sect" id="guestbook">
@@ -381,10 +459,14 @@
 
 <dialog id="heaven" aria-labelledby="hvtitle">
   <div class="hv-bar">
-    <span>⚠ heaven.exe — 1 new message</span>
+    <img src="assets/gg/teal-skull.gif" alt="" width="16" height="16">
+    <span>heaven.exe - Microsoft Internet Explorer</span>
     <span class="hv-btns" aria-hidden="true"><i>_</i><i>□</i></span>
     <button type="button" class="hv-x" data-hv-close aria-label="Close">✕</button>
   </div>
+  <div class="hv-menu" aria-hidden="true">File&nbsp; Edit&nbsp; View&nbsp; Favorites&nbsp; Tools&nbsp; Help</div>
+  <div class="hv-addr" aria-hidden="true">Address <span>http://www.heaven-online.net/claim_ur_wings.exe</span><b>Go</b></div>
+  <div class="hv-congrats"><img src="assets/gg/cash.gif" alt="" width="58" height="91"><span>★CONGRATULATIONS!!★<small>u are visitor #1,000,000</small></span><img src="assets/gg/cash.gif" alt="" width="58" height="91"></div>
   <div class="hv-body">
     <img src="assets/media/heaven.jpg" alt="" width="612" height="348">
     <div class="hv-text">
@@ -393,10 +475,15 @@
     </div>
     <span class="hv-flash">!! U HAVE BEEN CHOSEN !!</span>
   </div>
+  <div class="hv-down" aria-hidden="true">⬇ ⬇ CLICK YES TO ASCEND ⬇ ⬇</div>
   <div class="hv-actions">
+    <span class="hv-arr" aria-hidden="true">➤➤</span>
     <a class="hv-yes" href="https://open.spotify.com/track/5dydrnBvJBTEgO5CHUAuY5" target="_blank" rel="noopener">YES ↑</a>
     <button type="button" data-hv-close>no</button>
+    <span class="hv-arr flip" aria-hidden="true">➤➤</span>
   </div>
+  <div class="hv-prog" aria-hidden="true">downloading wings.exe… <span class="bar"><i></i></span> 87%</div>
+  <div class="hv-status" aria-hidden="true"><span>Done</span><span>🌐 Internet</span></div>
 </dialog>
 
 <script>
@@ -420,7 +507,8 @@
   // After activating FormSubmit you can swap the address for the random alias they give you.
   const GUESTBOOK_ENDPOINT = "https://formsubmit.co/ajax/vivi.online.music@gmail.com";
   const GUESTBOOK_DELAY_MS = 4000;
-  const HEAVEN_DELAY_MS = 5000; // "heaven is online" popup
+  const HEAVEN_DELAY_MS = 5000;            // heaven.exe pops up first
+  const GUESTBOOK_AFTER_HEAVEN_MS = 3000;  // then the guestbook, this long after heaven closes
 
   // The player plays ZOMBIE through Spotify's embed (full song if the listener is
   // logged in to Spotify in their browser, otherwise Spotify's 30-second preview).
@@ -579,20 +667,19 @@
   dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
   dlg.addEventListener("close", () => { try { sessionStorage.setItem("vivi-gb-seen", "1"); } catch {} });
   let seen = null; try { seen = sessionStorage.getItem("vivi-gb-seen"); } catch {}
-  if (!store.get("vivi-gb-signed") && !seen) setTimeout(openGB, GUESTBOOK_DELAY_MS);
+  const wantGB = !store.get("vivi-gb-signed") && !seen;
 
-  // heaven.exe popup: ~5s in, once per visit. If the guestbook is still open, it waits its turn.
+  // heaven.exe pops up first (~5s in, once per visit); the guestbook follows a few seconds after it closes.
   const hv = document.getElementById("heaven");
   hv.querySelectorAll("[data-hv-close]").forEach(b => b.addEventListener("click", () => hv.close()));
   hv.querySelector(".hv-yes").addEventListener("click", () => hv.close());
-  hv.addEventListener("close", () => { try { sessionStorage.setItem("vivi-hv-seen", "1"); } catch {} });
-  const openHeaven = () => {
-    if (hv.open) return;
-    if (dlg.open) { dlg.addEventListener("close", () => setTimeout(openHeaven, 800), { once: true }); return; }
-    hv.showModal();
-  };
+  hv.addEventListener("close", () => {
+    try { sessionStorage.setItem("vivi-hv-seen", "1"); } catch {}
+    if (wantGB) setTimeout(openGB, GUESTBOOK_AFTER_HEAVEN_MS);
+  });
   let hvSeen = null; try { hvSeen = sessionStorage.getItem("vivi-hv-seen"); } catch {}
-  if (!hvSeen) setTimeout(openHeaven, HEAVEN_DELAY_MS);
+  if (!hvSeen) setTimeout(() => { if (!dlg.open) hv.showModal(); }, HEAVEN_DELAY_MS);
+  else if (wantGB) setTimeout(openGB, GUESTBOOK_DELAY_MS);
 
   gb.addEventListener("submit", async e => {
     e.preventDefault();
