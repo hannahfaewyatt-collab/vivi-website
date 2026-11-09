@@ -66,7 +66,11 @@
   .quote { color: var(--teal-hi); font: 17px/1.1 "VT323", monospace; white-space: nowrap; font-size: clamp(14px, 4.2vw, 17px); }
   .pfp-wrap { position: relative; margin: 8px 0; }
   .pfp-wrap .pfp { width: 100%; height: auto; }
-  .crosshair { position: absolute; left: 56%; top: 50%; width: 118%; height: auto; transform: translate(-50%, -50%); pointer-events: none; filter: drop-shadow(0 0 4px rgba(45,224,200,.8)); z-index: 1; }
+  .linkbox .contact-wrap { flex: 1 1 56%; min-width: 0; position: relative; }
+  .linkbox .contact-wrap .contact { height: 100%; }
+  .cheer-xh { position: absolute; right: 10px; top: 58%; margin-top: -40px; width: 80px; height: auto; pointer-events: none; filter: drop-shadow(0 0 4px rgba(45,224,200,.9)); animation: xhspin 6s linear infinite, xhpulse 1.2s ease-in-out infinite alternate; }
+  @keyframes xhspin { to { rotate: 360deg; } }
+  @keyframes xhpulse { from { scale: .9; opacity: .85; } to { scale: 1.05; opacity: 1; } }
   .online-now { display: block; width: 95px; height: auto; margin: 6px auto 0; }
   .profile .info p.login { margin-bottom: 2px; }
   .profile .info b { color: var(--teal-hi); font-weight: bold; }
@@ -108,7 +112,7 @@
   .mood .ball { width: 26px; height: auto; vertical-align: middle; margin-left: 4px; border-radius: 50%; mix-blend-mode: screen; animation: bob 2.4s ease-in-out infinite; filter: drop-shadow(0 0 6px rgba(45,224,200,.8)); }
   @keyframes bob { 50% { transform: translateY(-6px) rotate(-6deg); } }
   .linkbox { display: flex; align-items: stretch; background: var(--teal-dk); gap: 1px; }
-  .linkbox .contact { flex: 1 1 56%; min-width: 0; grid-template-columns: 1fr; }
+  .linkbox .contact { min-width: 0; grid-template-columns: 1fr; }
   .sparkbar { flex: 0 0 18px; position: relative; overflow: hidden; background: #0a3a36 url("assets/gg/turquoise-diamonds.gif"); background-size: 90px; box-shadow: inset 0 0 8px rgba(0,0,0,.6), 0 0 10px rgba(45,224,200,.6); border-left: 1px solid var(--teal-hi); border-right: 1px solid var(--teal-hi); animation: sbscroll 3s linear infinite; }
   @keyframes sbscroll { to { background-position: 0 90px; } }
   @keyframes twinkle { 0%,100% { transform: scale(.4) rotate(0); opacity: .5; } 50% { transform: scale(1.1) rotate(45deg); opacity: 1; } }
@@ -290,6 +294,8 @@
   .zmode .win.zr img { display: block; width: 100%; height: auto; border: 1px inset #fff; }
   .pbox .win.nv { position: absolute; right: 10px; top: -34px; width: 36%; max-width: 140px; margin: 0; z-index: 3; transform: rotate(3deg); }
   .pbox .win.nv .tb { font-size: 8px; }
+  .pin-heart { position: absolute; right: 22px; top: 76px; width: 74px; height: auto; z-index: 2; transform: rotate(-8deg); filter: drop-shadow(0 0 6px rgba(255,63,176,.5)); pointer-events: none; }
+  @media (min-width: 761px) { .pin-heart { width: 50px; right: 12px; top: 70px; } }
   .pbox .win.nv img { border: 1px inset #fff; }
   .win.nv video, .win.nv img { display: block; width: 100%; height: auto; }
   .l5 { left: 0%;  top: 72%; width: 15%; z-index: 8; border-radius: 50%; }
@@ -388,7 +394,7 @@
     <!-- ================= LEFT ================= -->
     <section>
       <div class="ctable linkbox" id="contact">
-        <div class="contact" id="links"></div>
+        <div class="contact-wrap"><div class="contact" id="links"></div><img class="cheer-xh" src="assets/media/crosshair.png" alt=""></div>
         <div class="sparkbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
         <div class="cheerbox"><img class="cheer" src="assets/media/cheer.jpg" alt="ViVi in a cheer uniform with teal pom-poms" width="600" height="578"></div>
       </div>
@@ -400,9 +406,10 @@
           <div class="tb"><span>snipelol.mp3</span><i>✕</i></div>
           <img src="assets/media/nightvision.gif" alt="" width="300" height="160">
         </div>
+        <img class="pin-heart" src="assets/media/pin-heart.gif" alt="" width="200" height="171">
         <div class="profile">
           <div class="pfp-col">
-            <div class="pfp-wrap"><img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="500" height="460"><img class="crosshair" src="assets/media/crosshair.png" alt=""></div>
+            <div class="pfp-wrap"><img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="500" height="497"></div>
             <img class="online-now" src="assets/gg/online-now.jpg" alt="Online Now!" width="95" height="37">
           </div>
           <div class="info">
