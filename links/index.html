@@ -666,7 +666,10 @@
   const SPOTIFY_URL = "https://open.spotify.com/track/5dydrnBvJBTEgO5CHUAuY5";
   const START_AT = 104; // first play starts ZOMBIE at 1:44
   let started = false;
-  const startPlaying = () => { started = true; spotify.togglePlay(); setTimeout(() => spotify.seek(START_AT), 400); };
+  // First play: ask Spotify to start at 1:44 (startAt), then double-check once audio is
+  // actually running and jump there if Spotify ignored it. Retries a few times.
+  let needJump = 0;
+  const startPlaying = () => { started = true; needJump = 4; (spotify.play ? spotify.play() : spotify.togglePlay()); };
   // Tapping the waveform plays ZOMBIE from 1:44; once it's playing, taps jump to that spot.
   wave.addEventListener("click", e => {
     const r = wave.getBoundingClientRect();
@@ -687,7 +690,7 @@
 
   window.onSpotifyIframeApiReady = api => {
     api.createController(document.getElementById("spotify-embed"),
-      { uri: SPOTIFY_TRACK, width: "100%", height: 80, theme: "dark" },
+      { uri: SPOTIFY_TRACK, width: "100%", height: 80, theme: "dark", startAt: START_AT },
       ctrl => {
         spotify = ctrl;
         ctrl.addListener("playback_update", e => {
@@ -696,6 +699,10 @@
             DURATION = duration / 1000;
             document.getElementById("tdur").textContent = fmt(DURATION);
             progress = position / duration;
+          }
+          if (needJump && !isPaused && duration > START_AT * 1000) {
+            if (Math.abs(position / 1000 - START_AT) > 3) { needJump--; ctrl.seek(START_AT); return; }
+            needJump = 0; // landed on 1:44
           }
           lastT = 0;
           setPlaying(!isPaused);
