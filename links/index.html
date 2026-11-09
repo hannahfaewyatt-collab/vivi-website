@@ -193,6 +193,18 @@
   .dp-bar { display: flex; align-items: center; gap: 3px; margin: 0 -3px 3px; padding: 2px 3px 2px 6px; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font: bold 11px/1.4 Tahoma, sans-serif; position: sticky; top: 0; z-index: 40; }
   .dp-bar span { flex: 1; }
   .dp-bar i, .dp-bar button { font-style: normal; width: 16px; height: 14px; display: grid; place-items: center; padding: 0; background: #c0c0c0; color: #000; border: 1px outset #fff; font: bold 9px/1 Tahoma, sans-serif; cursor: pointer; }
+  #secretpop { width: min(300px, calc(100vw - 32px)); padding: 0 3px 3px; border: 2px outset #dfdfdf; background: #c0c0c0; box-shadow: 6px 6px 0 rgba(0,0,0,.6), 0 0 30px rgba(45,224,200,.6); animation: hvshake .45s ease-out; }
+  #secretpop::backdrop { background: rgba(0,0,0,.45); }
+  .sp-body { margin-top: 3px; padding: 14px 12px 12px; text-align: center; background: #000 url("assets/gg/turquoise-diamonds.gif"); background-size: 140px; border: 2px inset #fff; position: relative; }
+  .sp-body::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.62); }
+  .sp-body > * { position: relative; }
+  .sp-fangs { width: 46px; height: auto; filter: drop-shadow(0 0 6px rgba(45,224,200,.9)); }
+  #secretpop h2 { margin: 6px 0 8px; font: 34px/1 "VT323", monospace; color: #9ffff2; text-shadow: 0 0 8px var(--teal), 0 0 2px #fff; animation: blink 1s steps(2) infinite; }
+  #secretpop p { margin: 0 0 4px; color: #fff; font: 13px Verdana, sans-serif; }
+  #secretpop p b { color: var(--pink); }
+  #secretpop .sp-small { color: var(--muted); font-size: 11px; }
+  .sp-ok { margin-top: 10px; min-width: 80px; padding: 4px 12px; background: #c0c0c0; color: #000; border: 2px outset #fff; font: bold 12px Tahoma, sans-serif; }
+  .sp-ok:active { border-style: inset; }
   #heaven { width: min(340px, calc(100vw - 32px)); padding: 0; border: 2px outset #dfdfdf; background: #c0c0c0; color: #000; font: 11px Tahoma, Verdana, sans-serif; box-shadow: 6px 6px 0 rgba(0,0,0,.6); animation: hvshake .45s ease-out; }
   #heaven::backdrop { background: rgba(0,0,0,.35); }
   @keyframes hvshake { 0% { transform: scale(.6); } 40% { transform: scale(1.05) rotate(-2deg); } 60% { transform: rotate(2deg); } 100% { transform: none; } }
@@ -567,6 +579,17 @@
   </div>
 </dialog>
 
+<dialog id="secretpop" aria-labelledby="sptitle">
+  <div class="dp-bar"><span>secret.exe</span><button type="button" data-sp-close aria-label="Close">✕</button></div>
+  <div class="sp-body">
+    <img class="sp-fangs" src="assets/gg/teal-drip-fangs-clear.gif" alt="">
+    <h2 id="sptitle">u found a secret</h2>
+    <p>now playing: <b>HD</b> (unreleased demo)</p>
+    <p class="sp-small">shhh... this stays between us †</p>
+    <button type="button" class="sp-ok" data-sp-close>OK</button>
+  </div>
+</dialog>
+
 <dialog id="heaven" aria-labelledby="hvtitle">
   <div class="hv-bar">
     <img src="assets/gg/teal-skull.gif" alt="" width="16" height="16">
@@ -834,12 +857,18 @@
     const btn2 = document.getElementById("secretbtn"), box = document.getElementById("secret");
     const au = document.getElementById("hdaudio"), pb = document.getElementById("hdplay");
     const fill = document.getElementById("hdfill"), cur = document.getElementById("hdcur"), bar = document.getElementById("hdbar");
+    const sp = document.getElementById("secretpop"); let foundSecret = false;
+    sp.querySelectorAll("[data-sp-close]").forEach(x => x.addEventListener("click", () => sp.close()));
     btn2.addEventListener("click", () => {
       box.hidden = !box.hidden; btn2.setAttribute("aria-expanded", String(!box.hidden));
       if (!box.hidden) box.scrollIntoView({ behavior: "smooth", block: "nearest" });
     });
     pb.addEventListener("click", () => {
-      if (au.paused) { if (typeof spotify !== "undefined" && spotify && playing) spotify.togglePlay(); au.play(); }
+      if (au.paused) {
+        if (typeof spotify !== "undefined" && spotify && playing) spotify.togglePlay();
+        au.play();
+        if (!foundSecret) { foundSecret = true; sp.showModal(); setTimeout(() => sp.open && sp.close(), 4000); }
+      }
       else au.pause();
     });
     au.addEventListener("play", () => { pb.textContent = "❚❚"; pb.setAttribute("aria-label", "Pause HD"); });
