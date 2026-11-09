@@ -65,8 +65,9 @@
   .pfp { width: 140px; height: auto; display: block; }
   .profile .info p { margin: 0 0 4px; }
   .quote { color: var(--teal-hi); font: 17px/1.1 "VT323", monospace; }
-  .pfp-wrap { position: relative; }
-  .crosshair { position: absolute; left: 50%; top: 42%; width: 78%; height: auto; transform: translate(-50%, -50%); pointer-events: none; filter: drop-shadow(0 0 4px rgba(45,224,200,.8)); }
+  .pfp-wrap { position: relative; padding: 8%; }
+  .pfp-wrap .pfp { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: 45% 25%; border-radius: 50%; }
+  .crosshair { position: absolute; left: 50%; top: 50%; width: 102%; height: auto; transform: translate(-50%, -50%); pointer-events: none; filter: drop-shadow(0 0 4px rgba(45,224,200,.8)); }
   .online-now { display: block; width: 95px; height: auto; margin: 6px auto 0; }
   .profile .info p.login { margin-bottom: 2px; }
   .profile .info b { color: var(--teal-hi); font-weight: bold; }
