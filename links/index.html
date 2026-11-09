@@ -120,12 +120,6 @@
   /* white-background glitter jpgs → inverted to glow on black */
   .divider { display: block; width: 100%; height: auto; filter: invert(1) sepia(1) hue-rotate(130deg) saturate(3); margin: 4px 0 10px; }
 
-  .friends .count b { color: var(--pink); }
-  .top8 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px 6px; text-align: center; }
-  .top8 a { display: block; font-size: 10px; font-weight: bold; }
-  .top8 .tile { aspect-ratio: 1; margin-top: 3px; border: 1px solid var(--teal); display: grid; place-items: center; background: #000 url("assets/gg/teal-bg.gif"); background-size: 120px; font: 30px "VT323", monospace; color: #fff; text-shadow: 0 0 6px #000, 0 0 2px #000; }
-  .top8 a:hover .tile { border-color: var(--pink); }
-  .friends .all { text-align: right; margin: 6px 0 0; }
 
   .comments { width: 100%; border-collapse: collapse; }
   .comments td { border: 1px solid var(--teal-dk); padding: 6px; vertical-align: top; }
@@ -205,7 +199,7 @@
 
 <div class="site">
   <nav class="navbar" aria-label="Profile sections">
-    <a href="#top">Home</a><span>|</span><a href="#music">Music</a><span>|</span><a href="#contact">Links</a><span>|</span><a href="#guestbook">Guestbook</a><span class="hide-sm">|</span><a class="hide-sm" href="#rules">Rules</a><span>|</span><a href="#friends">Friends</a><span>|</span><a href="#comments">Comments</a>
+    <a href="#top">Home</a><span>|</span><a href="#music">Music</a><span>|</span><a href="#contact">Links</a><span>|</span><a href="#guestbook">Guestbook</a><span class="hide-sm">|</span><a class="hide-sm" href="#rules">Rules</a><span>|</span><a href="#comments">Comments</a>
   </nav>
   <div class="marquee" aria-hidden="true"><span>~*~ new single ZOMBIE out now ~*~ &nbsp;✦&nbsp; byte byte kiss kiss 💋 &nbsp;✦&nbsp; rawr means i love u in dinosaur XD &nbsp;✦&nbsp; sign my guestbook :3 &nbsp;✦&nbsp; add ViVi to ur top 8 x3</span></div>
 
@@ -301,15 +295,6 @@
       </div>
 
       <img class="divider" src="assets/gg/emo-stars-divider.jpg" alt="" width="579" height="88">
-
-      <div class="sect friends" id="friends">
-        <h3>ViVi's Friend Space</h3>
-        <div class="body">
-          <p class="count">ViVi has <b id="fcount">0</b> friends.</p>
-          <div class="top8" id="top8"></div>
-          <p class="all"><a href="#contact">View All of ViVi's Friends</a></p>
-        </div>
-      </div>
 
       <div class="sect" id="guestbook">
         <h3>✎ ViVi's Guestbook ✎</h3>
@@ -411,16 +396,6 @@
     if (l.featured) { const n = document.createElement("span"); n.className = "new"; n.textContent = "NEW!"; a.appendChild(n); }
     box.appendChild(a);
   });
-
-  const top8 = document.getElementById("top8");
-  shown.slice(0, 8).forEach(l => {
-    const a = mk(l);
-    a.textContent = l.label;
-    const t = document.createElement("div"); t.className = "tile"; t.textContent = l.icon;
-    a.appendChild(t);
-    top8.appendChild(a);
-  });
-  document.getElementById("fcount").textContent = shown.length;
 
   const d = new Date();
   document.getElementById("login").textContent = d.toLocaleDateString("en-US");
