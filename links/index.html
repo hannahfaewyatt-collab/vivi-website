@@ -39,12 +39,6 @@
   .site { width: 800px; max-width: 100%; margin: 0 auto; background: #000; border-left: 1px solid var(--line); border-right: 1px solid var(--line); box-shadow: 0 0 30px rgba(0,0,0,.8); }
 
   /* ---- header + nav, old-school social network style ---- */
-  .masthead { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 10px; background: linear-gradient(#0e5c55, #063431); }
-  .logo { font: 26px/1 "VT323", monospace; color: #fff; letter-spacing: 1px; text-shadow: 0 0 6px var(--teal); }
-  .logo small { font-size: 14px; color: var(--teal-hi); display: block; letter-spacing: 0; text-shadow: none; }
-  .search { display: flex; gap: 4px; align-items: center; font-size: 10px; color: var(--teal-hi); }
-  .search input { width: 120px; font: 11px Verdana, sans-serif; border: 1px solid var(--teal); background: #001a18; color: var(--text); padding: 2px 4px; }
-  .search button { font: bold 10px Verdana, sans-serif; background: var(--teal); color: #002a26; border: 0; padding: 3px 6px; }
   .navbar { background: var(--teal); padding: 4px 8px; font-size: 10px; font-weight: bold; text-align: center; }
   .navbar a { color: #002a26; }
   .navbar a:hover { color: #fff; }
@@ -66,8 +60,6 @@
   .profile .info p { margin: 0 0 6px; }
   .quote { color: var(--teal-hi); font: 16px/1.1 "VT323", monospace; white-space: nowrap; }
   .online-now { display: block; margin: 6px 0 4px; }
-  .viewmy { margin: 6px 0 4px; }
-  .viewmy b { color: var(--muted); }
   .mood { margin: 0 0 12px; }
   .mood b { color: var(--teal-hi); }
 
@@ -87,9 +79,6 @@
   .contact a.featured .new { margin-left: auto; font: 15px "VT323", monospace; background: var(--pink); color: #fff; padding: 0 4px; animation: blink 1s steps(2) infinite; text-shadow: none; }
   @keyframes blink { 50% { opacity: .15; } }
 
-  .urlbox { border: 1px solid var(--teal); padding: 6px; margin-bottom: 12px; }
-  .urlbox b { display: block; color: var(--muted); }
-  .urlbox span { word-break: break-all; }
 
   .itable { width: 100%; border: 1px solid var(--teal); border-collapse: collapse; margin-bottom: 12px; }
   .itable caption { text-align: left; padding: 3px 6px; background: var(--teal); color: #002a26; font-weight: bold; }
@@ -140,6 +129,22 @@
   .comments .pic { display: block; margin-top: 6px; width: 220px; height: auto; }
   .comments .pic.sm { width: 150px; }
 
+  .rules { border: 1px dashed var(--pink); padding: 8px 10px; margin-bottom: 12px; background: #0a0006; }
+  .rules h3 { margin: 0 0 6px; color: var(--pink); font: 20px/1 "VT323", monospace; text-align: center; }
+  .rules ol { margin: 0; padding-left: 20px; }
+  .rules li { margin-bottom: 3px; }
+  .rules li::marker { color: var(--teal); font-weight: bold; }
+  .kiss { margin: 8px 0 0; text-align: center; font: 20px/1 "VT323", monospace; color: var(--pink); text-shadow: 0 0 6px rgba(255,63,176,.6); }
+
+  .guestbook form { display: grid; gap: 8px; border: 1px solid var(--teal); background: #031c1a; padding: 10px; }
+  .guestbook label { display: grid; gap: 3px; font-weight: bold; color: var(--teal-hi); }
+  .guestbook input, .guestbook textarea { font: 13px Verdana, sans-serif; color: var(--text); background: #000; border: 1px solid var(--teal); padding: 6px; width: 100%; }
+  .guestbook input:focus, .guestbook textarea:focus { outline: 2px solid var(--pink); outline-offset: 0; }
+  .guestbook button { justify-self: start; font: bold 12px Verdana, sans-serif; background: var(--pink); color: #fff; border: 2px solid #fff; padding: 7px 14px; cursor: pointer; }
+  .guestbook button:disabled { opacity: .6; cursor: wait; }
+  .guestbook .hp { position: absolute; left: -9999px; }
+  .gbmsg { margin: 0; min-height: 1em; color: var(--teal-hi); }
+
   footer { text-align: center; padding: 14px 10px 20px; font-size: 10px; color: var(--muted); border-top: 1px solid var(--teal-dk); }
   footer .divider { max-width: 300px; margin: 0 auto 8px; }
   footer .links a { margin: 0 4px; }
@@ -152,7 +157,7 @@
     body { font-size: 12px; }
     .site { border: 0; }
     .cols { grid-template-columns: 1fr; padding: 10px 10px 4px; }
-    .search, .navbar .hide-sm { display: none; }
+    .navbar .hide-sm { display: none; }
     .profile { grid-template-columns: 120px 1fr; }
     .pfp { width: 120px; }
     .sect h3, .ctable h3, .sect h4 { font-size: 12px; }
@@ -181,16 +186,10 @@
 </svg>
 
 <div class="site">
-  <header class="masthead">
-    <div class="logo">ViViSpace<small>† ur digital angel †</small></div>
-    <div class="search" aria-hidden="true">
-      <span>Search:</span><input type="text" value="ViVi" tabindex="-1" readonly><button type="button" tabindex="-1">Search</button>
-    </div>
-  </header>
   <nav class="navbar" aria-label="Profile sections">
-    <a href="#top">Home</a><span>|</span><a href="#music">Music</a><span>|</span><a href="#contact">Links</a><span class="hide-sm">|</span><a class="hide-sm" href="#blog">Blog</a><span>|</span><a href="#friends">Friends</a><span>|</span><a href="#comments">Comments</a>
+    <a href="#top">Home</a><span>|</span><a href="#music">Music</a><span>|</span><a href="#contact">Links</a><span>|</span><a href="#guestbook">Guestbook</a><span class="hide-sm">|</span><a class="hide-sm" href="#rules">Rules</a><span>|</span><a href="#friends">Friends</a><span>|</span><a href="#comments">Comments</a>
   </nav>
-  <div class="marquee" aria-hidden="true"><span>† ur digital angel † &nbsp;✦&nbsp; new single ZOMBIE out now &nbsp;✦&nbsp; bridging IRL and URL &nbsp;✦&nbsp; add ViVi to ur top 8 &nbsp;✦&nbsp; † ur digital angel †</span></div>
+  <div class="marquee" aria-hidden="true"><span>~*~ new single ZOMBIE out now ~*~ &nbsp;✦&nbsp; byte byte kiss kiss 💋 &nbsp;✦&nbsp; rawr means i love u in dinosaur XD &nbsp;✦&nbsp; sign my guestbook :3 &nbsp;✦&nbsp; add ViVi to ur top 8 x3</span></div>
 
   <main class="cols" id="top">
     <!-- ================= LEFT ================= -->
@@ -205,30 +204,24 @@
         <div class="info">
           <p class="quote">"† ur digital angel †"</p>
           <p>music project<br>bridging IRL &amp; URL</p>
+          <p>22 years old</p>
           <p>Last Login:<br><span id="login"></span></p>
           <img class="online-now" src="assets/gg/online-now.jpg" alt="Online Now!" width="95" height="37">
         </div>
       </div>
 
-      <p class="viewmy"><b>View My:</b> <a href="https://www.instagram.com/hannahfaewyatt/" target="_blank" rel="noopener">Pics</a> | <a href="https://www.youtube.com/@Vivi.Onlinemusic" target="_blank" rel="noopener">Videos</a> | <a href="https://www.tiktok.com/@vivi._.online" target="_blank" rel="noopener">TikToks</a></p>
-      <p class="mood"><b>Mood:</b> undead &amp; online 🦇</p>
+      <p class="mood"><b>Mood:</b> dreaming… ☁️</p>
 
       <div class="ctable" id="contact">
         <h3>Contacting ViVi</h3>
         <div class="contact" id="links"></div>
       </div>
 
-      <div class="urlbox">
-        <b>ViVi's URL:</b>
-        <span id="myurl"></span>
-      </div>
-
       <table class="itable">
         <caption>ViVi's Interests</caption>
-        <tr><th>General</th><td>glitter, static, 3am drives, being perceived thru a screen</td></tr>
-        <tr><th>Music</th><td>ZOMBIE on repeat. anything that sounds like a dial-up modem falling in love</td></tr>
-        <tr><th>Movies</th><td>vampire movies. the more eyeliner the better</td></tr>
-        <tr><th>Heroes</th><td>u, for clicking this link †</td></tr>
+        <tr><th>General</th><td>electric guitar, video games, dancing, cats :3</td></tr>
+        <tr><th>Music</th><td>Nine Inch Nails, Damon R., Deftones, New Order, Frost Children</td></tr>
+        <tr><th>Movies</th><td>Donnie Darko, The Virgin Suicides, mid90s</td></tr>
       </table>
 
       <table class="itable">
@@ -237,6 +230,20 @@
         <tr><th>Latest</th><td>ZOMBIE (single)</td></tr>
         <tr><th>Label</th><td>Indie</td></tr>
       </table>
+
+      <div class="rules" id="rules">
+        <h3>~*~ ViVi's Rules ~*~</h3>
+        <ol>
+          <li>no lurking!! sign my guestbook or i'll know :3</li>
+          <li>pc4pc, always. i check every single one</li>
+          <li>be nice or get bitten 🦇</li>
+          <li>ZOMBIE goes on repeat. no skips</li>
+          <li>cats &gt; people (sorry) =^.^=</li>
+          <li>rawr means i love u in dinosaur XD</li>
+          <li>never ever log off</li>
+        </ol>
+        <p class="kiss">byte byte kiss kiss 💋</p>
+      </div>
     </section>
 
     <!-- ================= RIGHT ================= -->
@@ -260,7 +267,8 @@
       <div class="sect" id="blog">
         <h3>ViVi's Latest Blog Entry <a href="#contact">[Subscribe to this Blog]</a></h3>
         <div class="body">
-          <p>ZOMBIE is out now!!! go stream it 🧟 <a href="#contact">(view more)</a></p>
+          <p>ZOMBIE is out now!!! go stream it 🧟 XD <a href="#contact">(view more)</a></p>
+          <p>byte byte kiss kiss ~ViVi</p>
         </div>
       </div>
 
@@ -269,9 +277,9 @@
         <div class="body">
           <h4>About me:</h4>
           <p>ViVi is a music project bridging IRL and URL.</p>
-          <p>half signal, half soul. made for headphones, dark rooms, and screens at 3am.</p>
+          <p>half signal, half soul. made for headphones, dark rooms, and screens at 3am. likes: shredding on electric guitar, staying up way too late on video games, dancing alone in my room, and every cat ever :3</p>
           <h4>Who I'd like to meet:</h4>
-          <p>u. the ones who stay online after the lights go out. †</p>
+          <p>u. the ones who stay online after the lights go out. also trent reznor if ur reading this XD</p>
         </div>
       </div>
 
@@ -286,6 +294,22 @@
         </div>
       </div>
 
+      <div class="sect guestbook" id="guestbook">
+        <h3>✎ Sign ViVi's Guestbook ✎</h3>
+        <div class="body">
+          <p>leave a msg + ur email so we can stay in touch!! i read every one :3</p>
+          <form id="gbform" method="POST">
+            <label>name / screen name<input name="name" required maxlength="60" placeholder="xX_ur_name_Xx"></label>
+            <label>email<input name="email" type="email" required maxlength="120" placeholder="u@email.com"></label>
+            <label>ur message<textarea name="message" rows="3" maxlength="500" placeholder="thanks 4 the add!! rawr XD"></textarea></label>
+            <input type="hidden" name="_subject" value="New ViVi guestbook signature!">
+            <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <button type="submit">sign it ♡</button>
+            <p class="gbmsg" id="gbmsg" role="status"></p>
+          </form>
+        </div>
+      </div>
+
       <div class="sect" id="comments">
         <h3>ViVi's Friends Comments</h3>
         <div class="body">
@@ -293,11 +317,11 @@
           <table class="comments">
             <tr>
               <td class="who"><a href="#comments">xX_angel_URL_Xx</a><img src="assets/gg/emo-angel.gif" alt="" width="170" height="138"></td>
-              <td><div class="date">Nov 8 2026 11:58 PM</div>thanks 4 the add!!! ur music lives in my head rent free ♡<img class="pic" src="assets/gg/fangs-4-the-add.gif" alt="Fangs 4 the add" width="336" height="154"></td>
+              <td><div class="date">Nov 8 2026 11:58 PM</div>thanks 4 the add!!! ur music lives in my head rent free ♡ XD<img class="pic" src="assets/gg/fangs-4-the-add.gif" alt="Fangs 4 the add" width="336" height="154"></td>
             </tr>
             <tr>
               <td class="who"><a href="#comments">teal.gl1tter</a><img class="inv" src="assets/gg/drip-fangs.gif" alt="" width="100" height="100"></td>
-              <td><div class="date">Nov 7 2026 3:03 AM</div>pc4pc? ur layout is sooo cute<img class="pic sm" src="assets/gg/thanks-for-the-add.gif" alt="Thanks for the add" width="283" height="268"></td>
+              <td><div class="date">Nov 7 2026 3:03 AM</div>pc4pc? ur layout is sooo cute :3<img class="pic sm" src="assets/gg/thanks-for-the-add.gif" alt="Thanks for the add" width="283" height="268"></td>
             </tr>
             <tr>
               <td class="who"><a href="#comments">3am_listener</a><img src="assets/gg/glitter-fangs.gif" alt="" width="223" height="158"></td>
@@ -311,7 +335,8 @@
 
   <footer>
     <img class="divider" src="assets/gg/heart-wings-divider.jpg" alt="" width="494" height="83">
-    <div class="links"><a href="#top">Top</a>|<a href="#music">Music</a>|<a href="#contact">Links</a>|<a href="#comments">Comments</a></div>
+    <div class="links"><a href="#top">Top</a>|<a href="#music">Music</a>|<a href="#contact">Links</a>|<a href="#guestbook">Guestbook</a></div>
+    <p class="kiss">byte byte kiss kiss 💋 xoxo</p>
     <p>© <span id="yr"></span> ViVi · graphics from <a href="https://www.glitter-graphics.com" target="_blank" rel="noopener">glitter-graphics.com</a></p>
   </footer>
 </div>
@@ -332,6 +357,10 @@
     { label: "Instagram",    icon: "†", url: "https://www.instagram.com/hannahfaewyatt/" },
     { label: "Email ViVi",   icon: "✉", url: "" }, // e.g. "mailto:you@example.com"
   ];
+
+  // GUESTBOOK: signatures (name, email, message) get emailed to ViVi via formsubmit.co.
+  // Put the form address here, e.g. "https://formsubmit.co/ajax/your-alias-from-formsubmit"
+  const GUESTBOOK_ENDPOINT = "";
 
   // Optional: path to an mp3 snippet (e.g. "assets/zombie-snippet.mp3"). Leave "" for a visual-only player.
   const SNIPPET = "";
@@ -367,7 +396,6 @@
   });
   document.getElementById("fcount").textContent = shown.length;
 
-  document.getElementById("myurl").textContent = location.protocol.startsWith("http") ? location.host + location.pathname : "vivi † online";
   const d = new Date();
   document.getElementById("login").textContent = d.toLocaleDateString("en-US");
   document.getElementById("yr").textContent = d.getFullYear();
@@ -389,6 +417,22 @@
     if (audio) on ? audio.play() : audio.pause();
   });
   if (audio) audio.addEventListener("ended", () => { player.classList.remove("playing"); btn.textContent = "▶"; });
+
+  const gb = document.getElementById("gbform");
+  const gbmsg = document.getElementById("gbmsg");
+  gb.addEventListener("submit", async e => {
+    e.preventDefault();
+    if (!GUESTBOOK_ENDPOINT) { gbmsg.textContent = "guestbook opens soon!! check back :3"; return; }
+    const btn = gb.querySelector("button");
+    btn.disabled = true; gbmsg.textContent = "sending…";
+    try {
+      const r = await fetch(GUESTBOOK_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(gb) });
+      if (!r.ok) throw new Error(r.status);
+      gb.reset(); gbmsg.textContent = "thx 4 signing!! ♡ byte byte kiss kiss XD";
+    } catch {
+      gbmsg.textContent = "oh noes it didn't send :( try again?";
+    } finally { btn.disabled = false; }
+  });
 
   if (matchMedia("(pointer: fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     let last = 0;
