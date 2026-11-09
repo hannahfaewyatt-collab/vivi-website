@@ -537,8 +537,8 @@
   // After activating FormSubmit you can swap the address for the random alias they give you.
   const GUESTBOOK_ENDPOINT = "https://formsubmit.co/ajax/vivi.online.music@gmail.com";
   const GUESTBOOK_DELAY_MS = 4000;
-  const HEAVEN_DELAY_MS = 5000;            // heaven.exe pops up first
-  const GUESTBOOK_AFTER_HEAVEN_MS = 3000;  // then the guestbook, this long after heaven closes
+  const HEAVEN_AFTER_GUESTBOOK_MS = 3000;  // heaven.exe follows this long after the guestbook closes
+  const HEAVEN_DELAY_MS = 5000;            // used when the guestbook doesn't show (already signed/seen)
 
   // The player plays ZOMBIE through Spotify's embed (full song if the listener is
   // logged in to Spotify in their browser, otherwise Spotify's 30-second preview).
@@ -701,21 +701,22 @@
     el.addEventListener("click", e => { e.preventDefault(); openGB(); }));
   document.getElementById("gbclose").addEventListener("click", () => dlg.close());
   dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
-  dlg.addEventListener("close", () => { try { sessionStorage.setItem("vivi-gb-seen", "1"); } catch {} });
   let seen = null; try { seen = sessionStorage.getItem("vivi-gb-seen"); } catch {}
   const wantGB = !store.get("vivi-gb-signed") && !seen;
 
-  // heaven.exe pops up first (~5s in, once per visit); the guestbook follows a few seconds after it closes.
+  // Guestbook pops up first (~4s in); heaven.exe follows a few seconds after it closes. Each once per visit.
   const hv = document.getElementById("heaven");
   hv.querySelectorAll("[data-hv-close]").forEach(b => b.addEventListener("click", () => hv.close()));
   hv.querySelector(".hv-yes").addEventListener("click", () => hv.close());
-  hv.addEventListener("close", () => {
-    try { sessionStorage.setItem("vivi-hv-seen", "1"); } catch {}
-    if (wantGB) setTimeout(openGB, GUESTBOOK_AFTER_HEAVEN_MS);
-  });
+  hv.addEventListener("close", () => { try { sessionStorage.setItem("vivi-hv-seen", "1"); } catch {} });
   let hvSeen = null; try { hvSeen = sessionStorage.getItem("vivi-hv-seen"); } catch {}
-  if (!hvSeen) setTimeout(() => { if (!dlg.open) hv.showModal(); }, HEAVEN_DELAY_MS);
-  else if (wantGB) setTimeout(openGB, GUESTBOOK_DELAY_MS);
+  const openHeaven = () => { if (!hvSeen && !hv.open && !dlg.open) { hvSeen = "1"; hv.showModal(); } };
+  dlg.addEventListener("close", () => {
+    try { sessionStorage.setItem("vivi-gb-seen", "1"); } catch {}
+    setTimeout(openHeaven, HEAVEN_AFTER_GUESTBOOK_MS);
+  });
+  if (wantGB) setTimeout(openGB, GUESTBOOK_DELAY_MS);
+  else setTimeout(openHeaven, HEAVEN_DELAY_MS);
 
   gb.addEventListener("submit", async e => {
     e.preventDefault();
