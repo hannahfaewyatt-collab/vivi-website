@@ -236,6 +236,8 @@
   .l2 { left: 56%; top: 88%; width: 24%; z-index: 8; mix-blend-mode: screen; }
   .l3 { left: 82%; top: 88%; width: 16%; z-index: 8; }
   .l4 { left: 38%; top: 47%; width: 14%; z-index: 7; mix-blend-mode: screen; }
+  .win.nv { position: static; margin: 0 auto 12px; max-width: 420px; }
+  .win.nv video, .win.nv img { display: block; width: 100%; height: auto; border: 1px inset #fff; }
   .l5 { left: 0%;  top: 72%; width: 15%; z-index: 8; border-radius: 50%; }
 
   footer { text-align: center; padding: 14px 10px 20px; font-size: 10px; color: var(--muted); border-top: 1px solid var(--teal-dk); }
@@ -353,6 +355,11 @@
         <div class="zmode">
           <video src="assets/media/l4d2.mp4" poster="assets/media/l4d2.jpg" data-gif="assets/media/l4d2.gif" autoplay muted loop playsinline width="220" height="124" aria-label="Left 4 Dead 2 gif"></video>
         </div>
+      </div>
+
+      <div class="win nv">
+        <div class="tb"><span>nightvision.mpg</span><i>✕</i></div>
+        <video src="assets/media/nightvision.mp4" poster="assets/media/nightvision.jpg" data-gif="assets/media/nightvision.gif" autoplay muted loop playsinline width="400" height="214" aria-label="night vision clip"></video>
       </div>
 
       <div class="network">
