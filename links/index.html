@@ -39,20 +39,15 @@
   .site { width: 800px; max-width: 100%; margin: 0 auto; background: #000; border-left: 1px solid var(--line); border-right: 1px solid var(--line); box-shadow: 0 0 30px rgba(0,0,0,.8); }
 
   /* ---- header + nav, old-school social network style ---- */
-  .masthead { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 10px; background: linear-gradient(#0e5c55, #063431); }
-  .logo { font: 26px/1 "VT323", monospace; color: #fff; letter-spacing: 1px; text-shadow: 0 0 6px var(--teal); }
-  .logo small { font-size: 14px; color: var(--teal-hi); display: block; letter-spacing: 0; text-shadow: none; }
-  .search { display: flex; gap: 4px; align-items: center; font-size: 10px; color: var(--teal-hi); }
-  .search input { width: 120px; font: 11px Verdana, sans-serif; border: 1px solid var(--teal); background: #001a18; color: var(--text); padding: 2px 4px; }
-  .search button { font: bold 10px Verdana, sans-serif; background: var(--teal); color: #002a26; border: 0; padding: 3px 6px; }
   .navbar { background: var(--teal); padding: 4px 8px; font-size: 10px; font-weight: bold; text-align: center; }
   .navbar a { color: #002a26; }
   .navbar a:hover { color: #fff; }
   .navbar span { color: #0b6a62; margin: 0 4px; }
 
-  .marquee { overflow: hidden; white-space: nowrap; border-bottom: 1px dashed var(--teal-dk); font: 17px "VT323", monospace; color: var(--teal); padding: 2px 0; }
-  .marquee span { display: inline-block; padding-left: 100%; animation: scroll 20s linear infinite; }
-  @keyframes scroll { to { transform: translateX(-100%); } }
+  .marquee { overflow: hidden; white-space: nowrap; border-bottom: 1px solid var(--teal); background: #001a18; font: 22px/1 "VT323", monospace; color: var(--teal-hi); text-shadow: 0 0 6px var(--teal); padding: 6px 0; }
+  .marquee .track { display: inline-flex; animation: scroll 18s linear infinite; }
+  .marquee .track span { padding-right: 2em; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
 
   .cols { display: grid; grid-template-columns: 300px 1fr; gap: 14px; padding: 12px 10px 4px; }
 
@@ -66,8 +61,6 @@
   .profile .info p { margin: 0 0 6px; }
   .quote { color: var(--teal-hi); font: 16px/1.1 "VT323", monospace; white-space: nowrap; }
   .online-now { display: block; margin: 6px 0 4px; }
-  .viewmy { margin: 6px 0 4px; }
-  .viewmy b { color: var(--muted); }
   .mood { margin: 0 0 12px; }
   .mood b { color: var(--teal-hi); }
 
@@ -87,9 +80,6 @@
   .contact a.featured .new { margin-left: auto; font: 15px "VT323", monospace; background: var(--pink); color: #fff; padding: 0 4px; animation: blink 1s steps(2) infinite; text-shadow: none; }
   @keyframes blink { 50% { opacity: .15; } }
 
-  .urlbox { border: 1px solid var(--teal); padding: 6px; margin-bottom: 12px; }
-  .urlbox b { display: block; color: var(--muted); }
-  .urlbox span { word-break: break-all; }
 
   .itable { width: 100%; border: 1px solid var(--teal); border-collapse: collapse; margin-bottom: 12px; }
   .itable caption { text-align: left; padding: 3px 6px; background: var(--teal); color: #002a26; font-weight: bold; }
@@ -97,17 +87,32 @@
   .itable th { width: 84px; background: var(--head); color: var(--teal-hi); }
 
   /* ---- right column ---- */
-  .player { border: 1px solid var(--teal); background: #031c1a; padding: 6px; margin-bottom: 12px; }
+  .player { --zg: #7dff3a; border: 1px solid var(--zg); background: linear-gradient(#071a03, #020a01); padding: 6px; margin-bottom: 12px; box-shadow: 0 0 12px rgba(125,255,58,.25); }
+  .player .label { color: #a8e88a; }
+  .spotify { margin-top: 8px; min-height: 80px; }
+  .spotify iframe { display: block; width: 100%; border: 0; border-radius: 12px; }
+  .spotify a { display: block; padding: 28px 0; text-align: center; color: var(--zg); font-weight: bold; }
+  .zmode { margin-top: 8px; padding-top: 8px; border-top: 1px dashed #2f6a1a; }
+  .zmode video { width: 100%; max-width: 300px; height: auto; border: 1px solid var(--zg); display: block; margin: 0 auto; }
+  .topdeco { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 10px 0; }
+  .topdeco .wire { width: 70%; max-width: 360px; height: auto; display: block; }
+  .topdeco .ball { width: 64px; height: auto; border-radius: 50%; mix-blend-mode: screen; animation: bob 2.4s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(45,224,200,.7)); }
+  @keyframes bob { 50% { transform: translateY(-6px) rotate(-6deg); } }
+  .blogpic { display: block; width: 100%; max-width: 300px; height: auto; margin: 4px auto 8px; border: 1px solid var(--teal); box-shadow: 0 0 12px rgba(45,224,200,.35); }
+  .cds { float: right; width: 56px; height: auto; margin: 0 0 4px 6px; border: 1px solid var(--teal-dk); border-radius: 3px; }
+  .meet { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .meet .gg { width: 90px; height: auto; border: 1px solid var(--teal); flex: none; transform: rotate(3deg); box-shadow: 0 0 10px rgba(45,224,200,.35); }
+  .halo { text-align: center; padding: 6px 10px 0; }
+  .halo video { width: 100%; max-width: 356px; height: auto; border: 1px solid var(--teal); display: inline-block; box-shadow: 0 0 14px rgba(45,224,200,.35); }
   .player .bar { display: flex; align-items: center; gap: 8px; }
-  .player button { width: 36px; height: 36px; flex: none; cursor: pointer; background: #000; color: var(--teal-hi); border: 2px solid var(--teal); font: 18px "VT323", monospace; }
+  .player button { width: 36px; height: 36px; flex: none; cursor: pointer; background: #000; color: var(--zg); border: 2px solid var(--zg); font: 18px "VT323", monospace; }
   .player button:hover { border-color: var(--pink); color: var(--pink); }
   .player .meta { flex: 1; min-width: 0; }
   .player .track { font-weight: bold; font-size: 12px; display: flex; align-items: center; gap: 6px; }
   .player .track img { height: 22px; width: auto; filter: invert(1); }
   .player .label { font-size: 10px; color: var(--muted); }
-  .wave { display: flex; gap: 2px; align-items: flex-end; height: 26px; margin-top: 4px; }
-  .wave i { flex: 1; background: var(--teal); background-image: linear-gradient(transparent 50%, rgba(0,0,0,.55) 50%); background-size: 100% 4px; }
-  .playing .wave i { animation: bar .7s ease-in-out infinite alternate; }
+  .wave { display: block; width: 100%; height: 40px; margin-top: 4px; cursor: pointer; }
+  .times { display: flex; justify-content: space-between; font: 14px/1 "VT323", monospace; color: #a8e88a; margin-top: 2px; }
   @keyframes bar { from { height: 15%; } to { height: 100%; } }
 
   .network { border: 1px solid var(--teal); padding: 10px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center; }
@@ -124,12 +129,6 @@
   /* white-background glitter jpgs → inverted to glow on black */
   .divider { display: block; width: 100%; height: auto; filter: invert(1) sepia(1) hue-rotate(130deg) saturate(3); margin: 4px 0 10px; }
 
-  .friends .count b { color: var(--pink); }
-  .top8 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px 6px; text-align: center; }
-  .top8 a { display: block; font-size: 10px; font-weight: bold; }
-  .top8 .tile { aspect-ratio: 1; margin-top: 3px; border: 1px solid var(--teal); display: grid; place-items: center; background: #000 url("assets/gg/teal-bg.gif"); background-size: 120px; font: 30px "VT323", monospace; color: #fff; text-shadow: 0 0 6px #000, 0 0 2px #000; }
-  .top8 a:hover .tile { border-color: var(--pink); }
-  .friends .all { text-align: right; margin: 6px 0 0; }
 
   .comments { width: 100%; border-collapse: collapse; }
   .comments td { border: 1px solid var(--teal-dk); padding: 6px; vertical-align: top; }
@@ -139,6 +138,33 @@
   .comments .date { color: var(--muted); font-size: 10px; margin-bottom: 4px; }
   .comments .pic { display: block; margin-top: 6px; width: 220px; height: auto; }
   .comments .pic.sm { width: 150px; }
+
+  .rules { border: 1px dashed var(--pink); padding: 8px 10px; margin-bottom: 12px; background: #0a0006; }
+  .rules h3 { margin: 0 0 6px; color: var(--pink); font: 20px/1 "VT323", monospace; text-align: center; }
+  .rules ol { margin: 0; padding-left: 20px; }
+  .rules li { margin-bottom: 3px; }
+  .rules li::marker { color: var(--teal); font-weight: bold; }
+  .kiss { margin: 8px 0 0; text-align: center; font: 20px/1 "VT323", monospace; color: var(--pink); text-shadow: 0 0 6px rgba(255,63,176,.6); }
+
+  .gb-open { text-align: center; }
+  .gb-btn { font: bold 13px Verdana, sans-serif; background: var(--teal); color: #002a26; border: 2px solid #fff; padding: 9px 16px; cursor: pointer; box-shadow: 3px 3px 0 #0b6a62; }
+  .gb-btn:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 #0b6a62; }
+  #gbdialog { width: min(360px, calc(100vw - 32px)); border: 2px solid var(--teal); background: #000 url("assets/gg/turquoise-diamonds.gif"); background-size: 180px; color: #fff; padding: 18px 18px 16px; text-align: center; box-shadow: 0 0 0 4px #000, 0 0 30px rgba(45,224,200,.6); }
+  #gbdialog::backdrop { background: rgba(0,0,0,.7); }
+  #gbdialog > * { position: relative; }
+  #gbdialog::before { content: ""; position: absolute; inset: 0; background: rgba(0,0,0,.72); }
+  #gbdialog h2 { margin: 2px 0 12px; font: 30px/1 "VT323", monospace; color: var(--teal-hi); text-shadow: 0 0 8px rgba(45,224,200,.9); }
+  .gb-fangs { display: block; width: 96px; height: auto; margin: 0 auto; mix-blend-mode: screen; animation: popin .5s ease-out both .1s; }
+  @keyframes popin { from { transform: scale(.2) rotate(-12deg); opacity: 0; } 70% { transform: scale(1.15) rotate(4deg); opacity: 1; } to { transform: scale(1) rotate(0); } }
+  #gbform { display: grid; gap: 8px; }
+  #gbform input[type=email] { font: 15px Verdana, sans-serif; color: var(--text); background: #000; border: 1px solid var(--teal); padding: 9px; width: 100%; text-align: center; }
+  #gbform input:focus { outline: 2px solid var(--teal-hi); outline-offset: 0; }
+  #gbform button { font: bold 22px/1 Verdana, sans-serif; background: var(--teal); color: #002a26; border: 2px solid #fff; padding: 9px; cursor: pointer; }
+  #gbform button:disabled { opacity: .6; cursor: wait; }
+  .gb-x { position: absolute !important; top: 6px; right: 8px; background: none; border: 0; color: var(--teal-hi); font-size: 18px; cursor: pointer; z-index: 1; }
+  .hp { position: absolute; left: -9999px; }
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .gbmsg { margin: 8px 0 0; min-height: 1em; color: var(--teal-hi); font-weight: bold; }
 
   footer { text-align: center; padding: 14px 10px 20px; font-size: 10px; color: var(--muted); border-top: 1px solid var(--teal-dk); }
   footer .divider { max-width: 300px; margin: 0 auto 8px; }
@@ -152,7 +178,7 @@
     body { font-size: 12px; }
     .site { border: 0; }
     .cols { grid-template-columns: 1fr; padding: 10px 10px 4px; }
-    .search, .navbar .hide-sm { display: none; }
+    .navbar .hide-sm { display: none; }
     .profile { grid-template-columns: 120px 1fr; }
     .pfp { width: 120px; }
     .sect h3, .ctable h3, .sect h4 { font-size: 12px; }
@@ -165,7 +191,6 @@
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; }
-    .marquee span { padding-left: 0; }
   }
 </style>
 </head>
@@ -181,22 +206,24 @@
 </svg>
 
 <div class="site">
-  <header class="masthead">
-    <div class="logo">ViViSpace<small>† ur digital angel †</small></div>
-    <div class="search" aria-hidden="true">
-      <span>Search:</span><input type="text" value="ViVi" tabindex="-1" readonly><button type="button" tabindex="-1">Search</button>
-    </div>
-  </header>
   <nav class="navbar" aria-label="Profile sections">
-    <a href="#top">Home</a><span>|</span><a href="#music">Music</a><span>|</span><a href="#contact">Links</a><span class="hide-sm">|</span><a class="hide-sm" href="#blog">Blog</a><span>|</span><a href="#friends">Friends</a><span>|</span><a href="#comments">Comments</a>
+    <a href="#top">Home</a><span>|</span><a href="#music">Music</a><span>|</span><a href="#contact">Links</a><span>|</span><a href="#guestbook">Guestbook</a><span class="hide-sm">|</span><a class="hide-sm" href="#rules">Rules</a><span>|</span><a href="#comments">Comments</a>
   </nav>
-  <div class="marquee" aria-hidden="true"><span>† ur digital angel † &nbsp;✦&nbsp; new single ZOMBIE out now &nbsp;✦&nbsp; bridging IRL and URL &nbsp;✦&nbsp; add ViVi to ur top 8 &nbsp;✦&nbsp; † ur digital angel †</span></div>
+  <div class="marquee" aria-hidden="true"><div class="track"><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span></div></div>
+
+  <div class="topdeco">
+    <video class="wire" src="assets/media/barbed-wire.mp4" poster="assets/media/barbed-wire.jpg" autoplay muted loop playsinline width="464" height="136" aria-hidden="true"></video>
+    <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228">
+  </div>
+  <div class="halo">
+    <video src="assets/media/halo.mp4" poster="assets/media/halo.jpg" autoplay muted loop playsinline width="356" height="200" aria-label="Halo gif"></video>
+  </div>
 
   <main class="cols" id="top">
     <!-- ================= LEFT ================= -->
     <section>
       <div class="name-row">
-        <h1 class="name">ViVi</h1>
+        <h1 class="name">vivi</h1>
         <img src="assets/gg/glitter-fangs.gif" alt="" width="223" height="158">
       </div>
 
@@ -205,38 +232,38 @@
         <div class="info">
           <p class="quote">"† ur digital angel †"</p>
           <p>music project<br>bridging IRL &amp; URL</p>
+          <p>22 years old</p>
           <p>Last Login:<br><span id="login"></span></p>
           <img class="online-now" src="assets/gg/online-now.jpg" alt="Online Now!" width="95" height="37">
         </div>
       </div>
 
-      <p class="viewmy"><b>View My:</b> <a href="https://www.instagram.com/hannahfaewyatt/" target="_blank" rel="noopener">Pics</a> | <a href="https://www.youtube.com/@Vivi.Onlinemusic" target="_blank" rel="noopener">Videos</a> | <a href="https://www.tiktok.com/@vivi._.online" target="_blank" rel="noopener">TikToks</a></p>
-      <p class="mood"><b>Mood:</b> undead &amp; online 🦇</p>
+      <p class="mood"><b>Mood:</b> cannibal</p>
 
       <div class="ctable" id="contact">
-        <h3>Contacting ViVi</h3>
         <div class="contact" id="links"></div>
-      </div>
-
-      <div class="urlbox">
-        <b>ViVi's URL:</b>
-        <span id="myurl"></span>
       </div>
 
       <table class="itable">
         <caption>ViVi's Interests</caption>
-        <tr><th>General</th><td>glitter, static, 3am drives, being perceived thru a screen</td></tr>
-        <tr><th>Music</th><td>ZOMBIE on repeat. anything that sounds like a dial-up modem falling in love</td></tr>
-        <tr><th>Movies</th><td>vampire movies. the more eyeliner the better</td></tr>
-        <tr><th>Heroes</th><td>u, for clicking this link †</td></tr>
+        <tr><th>General</th><td>electric guitar, video games, dancing, cats :3</td></tr>
+        <tr><th>Music</th><td><img class="cds" src="assets/media/cds.jpg" alt="" width="200" height="141">Nine Inch Nails, Damon R., Deftones, New Order, Frost Children</td></tr>
+        <tr><th>Movies</th><td>Donnie Darko, The Virgin Suicides, mid90s</td></tr>
       </table>
 
-      <table class="itable">
-        <caption>ViVi's Details</caption>
-        <tr><th>Genre</th><td>IRL / URL</td></tr>
-        <tr><th>Latest</th><td>ZOMBIE (single)</td></tr>
-        <tr><th>Label</th><td>Indie</td></tr>
-      </table>
+      <div class="rules" id="rules">
+        <h3>~*~ ViVi's Rules ~*~</h3>
+        <ol>
+          <li>no lurking!! sign my guestbook or i'll know :3</li>
+          <li>pc4pc, always. i check every single one</li>
+          <li>be nice or get bitten 🦇</li>
+          <li>ZOMBIE goes on repeat. no skips</li>
+          <li>cats &gt; people (sorry) =^.^=</li>
+          <li>rawr means i love u in dinosaur XD</li>
+          <li>never ever log off</li>
+        </ol>
+        <p class="kiss">byte byte kiss kiss 💋</p>
+      </div>
     </section>
 
     <!-- ================= RIGHT ================= -->
@@ -247,8 +274,15 @@
           <div class="meta">
             <div class="track">ViVi — ZOMBIE <img src="assets/gg/attack-of-the-zombies.png" alt="" width="70" height="37"></div>
             <div class="label">new single · out now</div>
-            <div class="wave" id="wave" aria-hidden="true"></div>
+            <canvas class="wave" id="wave" aria-hidden="true"></canvas>
+            <div class="times"><span id="tcur">0:00</span><span id="tdur">2:47</span></div>
           </div>
+        </div>
+        <div class="spotify">
+          <div id="spotify-embed"><a href="https://open.spotify.com/track/5dydrnBvJBTEgO5CHUAuY5" target="_blank" rel="noopener">▶ listen to ZOMBIE on Spotify</a></div>
+        </div>
+        <div class="zmode">
+          <video src="assets/media/l4d2.mp4" poster="assets/media/l4d2.jpg" autoplay muted loop playsinline width="220" height="124" aria-label="Left 4 Dead 2 gif"></video>
         </div>
       </div>
 
@@ -260,29 +294,31 @@
       <div class="sect" id="blog">
         <h3>ViVi's Latest Blog Entry <a href="#contact">[Subscribe to this Blog]</a></h3>
         <div class="body">
-          <p>ZOMBIE is out now!!! go stream it 🧟 <a href="#contact">(view more)</a></p>
+          <p>just released my first single check it out lowk :&gt;</p>
+          <img class="blogpic" src="assets/media/cheer.jpg" alt="ViVi in a cheer uniform with teal pom-poms" width="600" height="578">
         </div>
       </div>
 
       <div class="sect">
         <h3>ViVi's Blurbs</h3>
         <div class="body">
-          <h4>About me:</h4>
-          <p>ViVi is a music project bridging IRL and URL.</p>
-          <p>half signal, half soul. made for headphones, dark rooms, and screens at 3am.</p>
-          <h4>Who I'd like to meet:</h4>
-          <p>u. the ones who stay online after the lights go out. †</p>
+          <div class="meet">
+            <div>
+              <h4>Who I'd like to meet:</h4>
+              <p>u.</p>
+            </div>
+            <img class="gg" src="assets/media/guitar-girl.jpg" alt="" width="240" height="304">
+          </div>
         </div>
       </div>
 
       <img class="divider" src="assets/gg/emo-stars-divider.jpg" alt="" width="579" height="88">
 
-      <div class="sect friends" id="friends">
-        <h3>ViVi's Friend Space</h3>
-        <div class="body">
-          <p class="count">ViVi has <b id="fcount">0</b> friends.</p>
-          <div class="top8" id="top8"></div>
-          <p class="all"><a href="#contact">View All of ViVi's Friends</a></p>
+      <div class="sect" id="guestbook">
+        <h3>✎ ViVi's Guestbook ✎</h3>
+        <div class="body gb-open">
+          <p>stay in touch!! drop ur email and i'll send u new music first</p>
+          <button type="button" class="gb-btn" data-open-gb>sign my guestbook ♡</button>
         </div>
       </div>
 
@@ -292,16 +328,16 @@
           <p>Displaying <b style="color:var(--pink)">3</b> of 3 comments ( <a href="#comments">View All</a> | <a href="https://www.instagram.com/hannahfaewyatt/" target="_blank" rel="noopener">Add Comment</a> )</p>
           <table class="comments">
             <tr>
-              <td class="who"><a href="#comments">xX_angel_URL_Xx</a><img src="assets/gg/emo-angel.gif" alt="" width="170" height="138"></td>
-              <td><div class="date">Nov 8 2026 11:58 PM</div>thanks 4 the add!!! ur music lives in my head rent free ♡<img class="pic" src="assets/gg/fangs-4-the-add.gif" alt="Fangs 4 the add" width="336" height="154"></td>
+              <td class="who"><a href="#comments">xXFangs</a><img src="assets/gg/emo-angel.gif" alt="" width="170" height="138"></td>
+              <td><div class="date">Nov 8 2026 11:58 PM</div>ts fire<img class="pic" src="assets/gg/fangs-4-the-add.gif" alt="Fangs 4 the add" width="336" height="154"></td>
             </tr>
             <tr>
-              <td class="who"><a href="#comments">teal.gl1tter</a><img class="inv" src="assets/gg/drip-fangs.gif" alt="" width="100" height="100"></td>
-              <td><div class="date">Nov 7 2026 3:03 AM</div>pc4pc? ur layout is sooo cute<img class="pic sm" src="assets/gg/thanks-for-the-add.gif" alt="Thanks for the add" width="283" height="268"></td>
+              <td class="who"><a href="#comments">HD</a><img class="inv" src="assets/gg/drip-fangs.gif" alt="" width="100" height="100"></td>
+              <td><div class="date">Nov 7 2026 3:03 AM</div>What ab that next drop tho 👀<img class="pic sm" src="assets/gg/thanks-for-the-add.gif" alt="Thanks for the add" width="283" height="268"></td>
             </tr>
             <tr>
-              <td class="who"><a href="#comments">3am_listener</a><img src="assets/gg/glitter-fangs.gif" alt="" width="223" height="158"></td>
-              <td><div class="date">Nov 6 2026 3:00 AM</div>ZOMBIE is on repeat 🧟 when is the next drop??</td>
+              <td class="who"><a href="#comments">BubbleGum</a><img src="assets/gg/glitter-fangs.gif" alt="" width="223" height="158"></td>
+              <td><div class="date">Nov 6 2026 3:00 AM</div><img class="pic" src="assets/gg/glitter-fangs.gif" alt="glitter fangs" width="223" height="158" style="margin-top:0"></td>
             </tr>
           </table>
         </div>
@@ -311,10 +347,26 @@
 
   <footer>
     <img class="divider" src="assets/gg/heart-wings-divider.jpg" alt="" width="494" height="83">
-    <div class="links"><a href="#top">Top</a>|<a href="#music">Music</a>|<a href="#contact">Links</a>|<a href="#comments">Comments</a></div>
+    <div class="links"><a href="#top">Top</a>|<a href="#music">Music</a>|<a href="#contact">Links</a>|<a href="#guestbook">Guestbook</a></div>
+    <p class="kiss">byte byte kiss kiss 💋 xoxo</p>
     <p>© <span id="yr"></span> ViVi · graphics from <a href="https://www.glitter-graphics.com" target="_blank" rel="noopener">glitter-graphics.com</a></p>
   </footer>
 </div>
+
+<dialog id="gbdialog" aria-labelledby="gbtitle">
+  <button type="button" class="gb-x" id="gbclose" aria-label="Close">✕</button>
+  <img class="gb-fangs" src="assets/gg/teal-drip-fangs.gif" alt="" width="190" height="285">
+  <h2 id="gbtitle">sign my guest book!</h2>
+  <form id="gbform" method="POST">
+    <label for="gbemail" class="sr">email</label>
+    <input id="gbemail" name="email" type="email" required maxlength="120" placeholder="ur.email@xoxo.com" autocomplete="email">
+    <input type="hidden" name="_subject" value="new ViVi guestbook signature ♡">
+    <input type="hidden" name="_template" value="table">
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button type="submit" aria-label="sign it">♡</button>
+  </form>
+  <p class="gbmsg" id="gbmsg" role="status"></p>
+</dialog>
 
 <script>
   /* ============================================================
@@ -333,8 +385,14 @@
     { label: "Email ViVi",   icon: "✉", url: "" }, // e.g. "mailto:you@example.com"
   ];
 
-  // Optional: path to an mp3 snippet (e.g. "assets/zombie-snippet.mp3"). Leave "" for a visual-only player.
-  const SNIPPET = "";
+  // GUESTBOOK: pops up after 4 seconds; emails get forwarded to ViVi via formsubmit.co.
+  // After activating FormSubmit you can swap the address for the random alias they give you.
+  const GUESTBOOK_ENDPOINT = "https://formsubmit.co/ajax/vivi.online.music@gmail.com";
+  const GUESTBOOK_DELAY_MS = 4000;
+
+  // The player plays ZOMBIE through Spotify's embed (full song if the listener is
+  // logged in to Spotify in their browser, otherwise Spotify's 30-second preview).
+  const SPOTIFY_TRACK = "spotify:track:5dydrnBvJBTEgO5CHUAuY5";
 
   const shown = LINKS.filter(l => l.url);
   const isWeb = u => /^https?:/.test(u);
@@ -357,38 +415,138 @@
     box.appendChild(a);
   });
 
-  const top8 = document.getElementById("top8");
-  shown.slice(0, 8).forEach(l => {
-    const a = mk(l);
-    a.textContent = l.label;
-    const t = document.createElement("div"); t.className = "tile"; t.textContent = l.icon;
-    a.appendChild(t);
-    top8.appendChild(a);
-  });
-  document.getElementById("fcount").textContent = shown.length;
-
-  document.getElementById("myurl").textContent = location.protocol.startsWith("http") ? location.host + location.pathname : "vivi † online";
   const d = new Date();
   document.getElementById("login").textContent = d.toLocaleDateString("en-US");
   document.getElementById("yr").textContent = d.getFullYear();
 
+  /* ---- realistic waveform: seeded peaks with a song-shaped envelope ---- */
   const wave = document.getElementById("wave");
-  for (let i = 0; i < 30; i++) {
-    const b = document.createElement("i");
-    b.style.height = (20 + Math.abs(Math.sin(i * 0.7)) * 70) + "%";
-    b.style.animationDelay = (i * 37 % 700) + "ms";
-    wave.appendChild(b);
+  const wctx = wave.getContext("2d");
+  let DURATION = 167; // updated from Spotify once the track loads
+  const BARS = 140;
+  let seed = 1337;
+  const rnd = () => (seed = (seed * 16807) % 2147483647) / 2147483647;
+  const peaks = [];
+  for (let i = 0, prev = 0.3; i < BARS; i++) {
+    const t = i / BARS;
+    // intro → verse → chorus → breakdown → chorus → outro
+    const env = t < .08 ? .25 + t * 4 : t < .3 ? .55 : t < .45 ? .95 : t < .55 ? .45 : t < .85 ? 1 : 1 - (t - .85) * 4.5;
+    const kick = i % 4 === 0 ? .18 : 0;
+    prev = prev * .45 + (rnd() * .75 + .25) * .55;
+    peaks.push(Math.max(.06, Math.min(1, prev * env + kick * env)));
+  }
+  let progress = 0, playing = false, lastT = 0;
+  const fmt = s => Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0");
+  function drawWave(now = 0) {
+    const dpr = window.devicePixelRatio || 1;
+    const w = wave.clientWidth, h = wave.clientHeight;
+    if (wave.width !== Math.round(w * dpr)) { wave.width = Math.round(w * dpr); wave.height = Math.round(h * dpr); }
+    wctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    wctx.clearRect(0, 0, w, h);
+    const n = Math.min(BARS, Math.floor(w / 3));
+    const bw = w / n, mid = h * .62;
+    for (let k = 0; k < n; k++) {
+      const pk = peaks[Math.floor(k * BARS / n)];
+      const played = k / n < progress;
+      const near = playing && Math.abs(k / n - progress) < .02;
+      const jig = near ? 1 + Math.sin(now / 60 + k) * .12 : 1;
+      const up = pk * (mid - 2) * jig, down = pk * (h - mid - 1) * .8 * jig;
+      wctx.fillStyle = played ? "#3dffc0" : "#1a5a4c";
+      wctx.fillRect(k * bw, mid - up, Math.max(1, bw - 1), up);
+      wctx.fillStyle = played ? "rgba(61,255,192,.45)" : "rgba(26,90,76,.6)";
+      wctx.fillRect(k * bw, mid + 1, Math.max(1, bw - 1), down);
+    }
+    if (progress > 0) { wctx.fillStyle = "#e0fff7"; wctx.fillRect(progress * w - 1, 0, 2, h); }
+    document.getElementById("tcur").textContent = fmt(progress * DURATION);
+  }
+  function tick(now) {
+    if (!playing) return;
+    if (lastT) progress += (now - lastT) / 1000 / DURATION;
+    lastT = now;
+    if (progress >= 1) progress = 0;
+    drawWave(now);
+    requestAnimationFrame(tick);
   }
   const player = document.getElementById("player");
   const btn = document.getElementById("play");
-  const audio = SNIPPET ? new Audio(SNIPPET) : null;
-  btn.addEventListener("click", () => {
-    const on = player.classList.toggle("playing");
+  let spotify = null;
+  const setPlaying = on => {
+    if (on === playing) return;
+    playing = on;
+    player.classList.toggle("playing", on);
     btn.textContent = on ? "❚❚" : "▶";
     btn.setAttribute("aria-label", on ? "Pause" : "Play");
-    if (audio) on ? audio.play() : audio.pause();
+    lastT = 0;
+    if (on) requestAnimationFrame(tick); else drawWave();
+  };
+
+  wave.addEventListener("click", e => {
+    const r = wave.getBoundingClientRect();
+    progress = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
+    if (spotify) spotify.seek(progress * DURATION);
+    drawWave();
   });
-  if (audio) audio.addEventListener("ended", () => { player.classList.remove("playing"); btn.textContent = "▶"; });
+  addEventListener("resize", () => drawWave());
+  drawWave();
+
+  btn.addEventListener("click", () => {
+    if (spotify) spotify.togglePlay();   // Spotify's events keep the button + waveform in sync
+    else setPlaying(!playing);          // embed not loaded yet: just animate
+  });
+
+  window.onSpotifyIframeApiReady = api => {
+    api.createController(document.getElementById("spotify-embed"),
+      { uri: SPOTIFY_TRACK, width: "100%", height: 80, theme: "dark" },
+      ctrl => {
+        spotify = ctrl;
+        ctrl.addListener("playback_update", e => {
+          const { isPaused, position, duration } = e.data;
+          if (duration) {
+            DURATION = duration / 1000;
+            document.getElementById("tdur").textContent = fmt(DURATION);
+            progress = position / duration;
+          }
+          lastT = 0;
+          setPlaying(!isPaused);
+          drawWave();
+        });
+      });
+  };
+  const sp = document.createElement("script");
+  sp.src = "https://open.spotify.com/embed/iframe-api/v1";
+  sp.async = true;
+  document.body.appendChild(sp);
+
+  const store = {
+    get(k) { try { return localStorage.getItem(k); } catch { return null; } },
+    set(k, v) { try { localStorage.setItem(k, v); } catch {} },
+  };
+  const dlg = document.getElementById("gbdialog");
+  const gb = document.getElementById("gbform");
+  const gbmsg = document.getElementById("gbmsg");
+  const openGB = () => { if (!dlg.open) { gbmsg.textContent = ""; dlg.showModal(); } };
+  document.querySelectorAll("[data-open-gb], a[href='#guestbook']").forEach(el =>
+    el.addEventListener("click", e => { e.preventDefault(); openGB(); }));
+  document.getElementById("gbclose").addEventListener("click", () => dlg.close());
+  dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+  dlg.addEventListener("close", () => { try { sessionStorage.setItem("vivi-gb-seen", "1"); } catch {} });
+  let seen = null; try { seen = sessionStorage.getItem("vivi-gb-seen"); } catch {}
+  if (!store.get("vivi-gb-signed") && !seen) setTimeout(openGB, GUESTBOOK_DELAY_MS);
+
+  gb.addEventListener("submit", async e => {
+    e.preventDefault();
+    const sbtn = gb.querySelector("button");
+    sbtn.disabled = true; gbmsg.textContent = "sending… ♡";
+    try {
+      const r = await fetch(GUESTBOOK_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(gb) });
+      if (!r.ok) throw new Error(r.status);
+      gb.reset(); store.set("vivi-gb-signed", "1");
+      gbmsg.textContent = "thx 4 signing!! ♡ byte byte kiss kiss XD";
+      setTimeout(() => dlg.close(), 2500);
+    } catch {
+      gbmsg.textContent = "oh noes it didn't send :( try again?";
+    } finally { sbtn.disabled = false; }
+  });
 
   if (matchMedia("(pointer: fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     let last = 0;
