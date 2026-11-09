@@ -101,7 +101,12 @@
   @keyframes bob { 50% { transform: translateY(-6px) rotate(-6deg); } }
   .linkbox { display: flex; align-items: stretch; background: var(--teal-dk); gap: 1px; }
   .linkbox .contact { flex: 1 1 56%; min-width: 0; grid-template-columns: 1fr; }
-  .linkbox .cheer { flex: 0 0 44%; width: 44%; min-width: 0; object-fit: cover; object-position: 30% 50%; display: block; height: auto; }
+  .sparkbar { flex: 0 0 18px; position: relative; overflow: hidden; background: #0a3a36 url("assets/gg/turquoise-diamonds.gif"); background-size: 90px; box-shadow: inset 0 0 8px rgba(0,0,0,.6), 0 0 10px rgba(45,224,200,.6); border-left: 1px solid var(--teal-hi); border-right: 1px solid var(--teal-hi); animation: sbscroll 3s linear infinite; }
+  @keyframes sbscroll { to { background-position: 0 90px; } }
+  @keyframes twinkle { 0%,100% { transform: scale(.4) rotate(0); opacity: .5; } 50% { transform: scale(1.1) rotate(45deg); opacity: 1; } }
+  .sparkbar i { position: absolute; left: 50%; width: 10px; height: 10px; margin-left: -5px; background: #fff; clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); filter: drop-shadow(0 0 3px #9ffff2); animation: twinkle 1.4s ease-in-out infinite; }
+  .sparkbar i:nth-child(1) { top: 8%; } .sparkbar i:nth-child(2) { top: 28%; animation-delay: .3s; } .sparkbar i:nth-child(3) { top: 48%; animation-delay: .6s; } .sparkbar i:nth-child(4) { top: 68%; animation-delay: .9s; } .sparkbar i:nth-child(5) { top: 88%; animation-delay: 1.2s; }
+  .linkbox .cheer { flex: 0 0 40%; width: 40%; min-width: 0; object-fit: cover; object-position: 30% 50%; display: block; height: auto; }
   .cds { float: right; width: 56px; height: auto; margin: 0 0 4px 6px; border: 1px solid var(--teal-dk); border-radius: 3px; }
   .meet { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
   .meet .gg { width: 90px; height: auto; border: 1px solid var(--teal); flex: none; transform: rotate(3deg); box-shadow: 0 0 10px rgba(45,224,200,.35); }
@@ -237,8 +242,7 @@
   .win .tb span { flex: 1; overflow: hidden; text-overflow: ellipsis; }
   .win .tb i { font-style: normal; width: 12px; height: 11px; display: grid; place-items: center; background: #c0c0c0; color: #000; border: 1px outset #fff; font-size: 8px; }
   .win img { display: block; width: 100%; height: auto; border: 1px inset #fff; }
-  .desktop .wmp img { filter: none; }
-  .desktop img:not(.wmp img) { filter: grayscale(1) sepia(1) hue-rotate(165deg) saturate(2.6) brightness(.95) contrast(1.1); }
+  img[src$="canva-skull.gif"], img[src$="canva-revolver.gif"], img[src$="canva-dollar.gif"] { filter: grayscale(1) sepia(1) hue-rotate(130deg) saturate(3) brightness(1.05) drop-shadow(0 0 4px rgba(45,224,200,.7)); }
   .loose { position: absolute; height: auto; }
   .w1 { left: 1%;  top: 0%;  width: 55%; z-index: 2; }
   .w2 { left: 47%; top: 3%;  width: 51%; z-index: 1; }
@@ -337,6 +341,7 @@
 
       <div class="ctable linkbox" id="contact">
         <div class="contact" id="links"></div>
+        <div class="sparkbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
         <img class="cheer" src="assets/media/cheer.jpg" alt="ViVi in a cheer uniform with teal pom-poms" width="600" height="578">
       </div>
 
