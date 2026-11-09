@@ -94,7 +94,13 @@
   .spotify a { display: block; padding: 28px 0; text-align: center; color: var(--zg); font-weight: bold; }
   .zmode { margin-top: 8px; padding-top: 8px; border-top: 1px dashed #2f6a1a; }
   .zmode video { width: 100%; max-width: 300px; height: auto; border: 1px solid var(--zg); display: block; margin: 0 auto; }
-  .halo { text-align: center; padding: 10px 10px 0; }
+  .topdeco { display: flex; align-items: center; justify-content: center; gap: 6px; padding: 8px 10px 0; }
+  .topdeco .wire { width: 70%; max-width: 360px; height: auto; display: block; }
+  .topdeco .ball { width: 64px; height: auto; border-radius: 50%; mix-blend-mode: screen; animation: bob 2.4s ease-in-out infinite; filter: drop-shadow(0 0 10px rgba(45,224,200,.7)); }
+  @keyframes bob { 50% { transform: translateY(-6px) rotate(-6deg); } }
+  .meet { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+  .meet .gg { width: 90px; height: auto; border: 1px solid var(--teal); flex: none; transform: rotate(3deg); box-shadow: 0 0 10px rgba(45,224,200,.35); }
+  .halo { text-align: center; padding: 6px 10px 0; }
   .halo video { width: 100%; max-width: 356px; height: auto; border: 1px solid var(--teal); display: inline-block; box-shadow: 0 0 14px rgba(45,224,200,.35); }
   .player .bar { display: flex; align-items: center; gap: 8px; }
   .player button { width: 36px; height: 36px; flex: none; cursor: pointer; background: #000; color: var(--zg); border: 2px solid var(--zg); font: 18px "VT323", monospace; }
@@ -203,6 +209,10 @@
   </nav>
   <div class="marquee" aria-hidden="true"><div class="track"><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span></div></div>
 
+  <div class="topdeco">
+    <video class="wire" src="assets/media/barbed-wire.mp4" poster="assets/media/barbed-wire.jpg" autoplay muted loop playsinline width="464" height="136" aria-hidden="true"></video>
+    <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228">
+  </div>
   <div class="halo">
     <video src="assets/media/halo.mp4" poster="assets/media/halo.jpg" autoplay muted loop playsinline width="356" height="200" aria-label="Halo gif"></video>
   </div>
@@ -289,8 +299,13 @@
       <div class="sect">
         <h3>ViVi's Blurbs</h3>
         <div class="body">
-          <h4>Who I'd like to meet:</h4>
-          <p>u.</p>
+          <div class="meet">
+            <div>
+              <h4>Who I'd like to meet:</h4>
+              <p>u.</p>
+            </div>
+            <img class="gg" src="assets/media/guitar-girl.jpg" alt="" width="240" height="304">
+          </div>
         </div>
       </div>
 
