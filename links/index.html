@@ -203,7 +203,7 @@
   #secretpop p { margin: 0 0 4px; color: #fff; font: 13px Verdana, sans-serif; }
   #secretpop p b { color: var(--pink); }
   #secretpop .sp-small { color: var(--muted); font-size: 11px; }
-  .sp-ok { margin-top: 10px; min-width: 80px; padding: 4px 12px; background: #c0c0c0; color: #000; border: 2px outset #fff; font: bold 12px Tahoma, sans-serif; }
+  .sp-ok { margin: 10px 3px 0; min-width: 80px; padding: 4px 12px; background: #c0c0c0; color: #000; border: 2px outset #fff; font: bold 12px Tahoma, sans-serif; }
   .sp-ok:active { border-style: inset; }
   #heaven { width: min(340px, calc(100vw - 32px)); padding: 0; border: 2px outset #dfdfdf; background: #c0c0c0; color: #000; font: 11px Tahoma, Verdana, sans-serif; box-shadow: 6px 6px 0 rgba(0,0,0,.6); animation: hvshake .45s ease-out; }
   #heaven::backdrop { background: rgba(0,0,0,.35); }
@@ -584,8 +584,9 @@
   <div class="sp-body">
     <img class="sp-fangs" src="assets/gg/teal-drip-fangs-clear.gif" alt="">
     <h2 id="sptitle">u found a secret</h2>
-    <p>now playing: <b>HD</b> (unreleased demo)</p>
+    <p>an unreleased demo: <b>HD</b></p>
     <p class="sp-small">shhh... this stays between us †</p>
+    <button type="button" class="sp-ok" id="splisten">▶ listen</button>
     <button type="button" class="sp-ok" data-sp-close>OK</button>
   </div>
 </dialog>
@@ -857,8 +858,30 @@
     const btn2 = document.getElementById("secretbtn"), box = document.getElementById("secret");
     const au = document.getElementById("hdaudio"), pb = document.getElementById("hdplay");
     const fill = document.getElementById("hdfill"), cur = document.getElementById("hdcur"), bar = document.getElementById("hdbar");
-    const sp = document.getElementById("secretpop"); let foundSecret = false;
+    // "u found a secret" pops up once per visit when they scroll down to ViVi's Rules.
+    const sp = document.getElementById("secretpop");
     sp.querySelectorAll("[data-sp-close]").forEach(x => x.addEventListener("click", () => sp.close()));
+    sp.addEventListener("close", () => { try { sessionStorage.setItem("vivi-secret-seen", "1"); } catch {} });
+    document.getElementById("splisten").addEventListener("click", () => {
+      sp.close();
+      box.hidden = false; btn2.setAttribute("aria-expanded", "true");
+      if (typeof spotify !== "undefined" && spotify && playing) spotify.togglePlay();
+      au.play();
+      box.scrollIntoView({ behavior: "smooth", block: "center" });
+    });
+    let spSeen = null; try { spSeen = sessionStorage.getItem("vivi-secret-seen"); } catch {}
+    const rulesEl = document.getElementById("rules");
+    if (!spSeen && rulesEl && "IntersectionObserver" in window) {
+      const io = new IntersectionObserver(entries => {
+        if (!entries.some(en => en.isIntersecting)) return;
+        const show = () => {
+          if (document.querySelector("dialog[open]")) { setTimeout(show, 1000); return; } // wait for other popups
+          if (!sp.open) sp.showModal();
+        };
+        io.disconnect(); show();
+      }, { threshold: 0.5 });
+      io.observe(rulesEl);
+    }
     btn2.addEventListener("click", () => {
       box.hidden = !box.hidden; btn2.setAttribute("aria-expanded", String(!box.hidden));
       if (!box.hidden) box.scrollIntoView({ behavior: "smooth", block: "nearest" });
@@ -867,7 +890,6 @@
       if (au.paused) {
         if (typeof spotify !== "undefined" && spotify && playing) spotify.togglePlay();
         au.play();
-        if (!foundSecret) { foundSecret = true; sp.showModal(); setTimeout(() => sp.open && sp.close(), 4000); }
       }
       else au.pause();
     });
