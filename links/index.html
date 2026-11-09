@@ -188,6 +188,7 @@
 
   /* ---- fake "scam" popup window: heaven.exe ---- */
   #deskpop { width: min(420px, calc(100vw - 24px)); max-height: calc(100vh - 24px); overflow: auto; padding: 0 3px 3px; border: 2px outset #dfdfdf; background: #c0c0c0; box-shadow: 6px 6px 0 rgba(0,0,0,.6); animation: hvshake .45s ease-out; }
+  #deskpop { cursor: pointer; }
   #deskpop::backdrop { background: rgba(0,0,0,.35); }
   .dp-bar { display: flex; align-items: center; gap: 3px; margin: 0 -3px 3px; padding: 2px 3px 2px 6px; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font: bold 11px/1.4 Tahoma, sans-serif; position: sticky; top: 0; z-index: 40; }
   .dp-bar span { flex: 1; }
@@ -293,6 +294,28 @@
   footer .divider { max-width: 300px; margin: 0 auto 8px; }
   footer .links a { margin: 0 4px; }
   footer .email { font-size: 12px; margin-top: 4px; }
+  /* secret MySpace-style demo player */
+  .secret-btn { background: none; border: 0; color: #1c3a37; font: 14px/1 serif; cursor: pointer; padding: 6px 10px; margin-top: 2px; }
+  .secret-btn:hover, .secret-btn:focus-visible { color: var(--teal-hi); text-shadow: 0 0 6px var(--teal); }
+  .msp { max-width: 320px; margin: 10px auto 0; text-align: left; background: #1a1a1a; border: 1px solid #555; font: 11px Verdana, Arial, sans-serif; color: #ddd; box-shadow: 0 0 18px rgba(45,224,200,.35); animation: popin .4s ease-out both; }
+  @keyframes popin { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+  .msp-head { display: flex; align-items: baseline; gap: 6px; padding: 4px 6px; background: linear-gradient(#3b3b3b, #111); border-bottom: 1px solid #000; color: #bbb; }
+  .msp-logo { font: bold 13px Verdana, sans-serif; color: #fff; }
+  .msp-new { margin-left: auto; color: var(--pink); font-weight: bold; animation: blink 1s steps(2) infinite; }
+  .msp-now { display: flex; align-items: center; gap: 8px; padding: 8px 6px; background: #000; }
+  .msp-play { width: 30px; height: 30px; flex: none; border-radius: 50%; border: 1px solid #888; background: linear-gradient(#5a5a5a, #1c1c1c); color: #fff; font-size: 12px; cursor: pointer; }
+  .msp-play:hover { border-color: var(--teal); color: var(--teal-hi); }
+  .msp-meta { flex: 1; min-width: 0; }
+  .msp-title { color: #fff; font-weight: bold; margin-bottom: 4px; }
+  .msp-title small, .msp-list small { color: #999; font-weight: normal; }
+  .msp-bar { height: 6px; background: #333; border: 1px solid #555; cursor: pointer; }
+  .msp-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--teal), var(--teal-hi)); }
+  .msp-time { display: flex; justify-content: space-between; margin-top: 3px; color: #999; font-size: 10px; }
+  .msp-list { margin: 0; padding: 0; list-style: none; }
+  .msp-list li { display: flex; gap: 4px; padding: 4px 6px; border-top: 1px solid #2a2a2a; }
+  .msp-list li.on { background: #0b2e2a; color: #fff; }
+  .msp-list li b { margin-left: auto; font-weight: normal; color: #999; }
+  .msp-foot { padding: 4px 6px; border-top: 1px solid #2a2a2a; color: #777; font-size: 10px; text-align: center; }
   footer .email a { color: var(--teal-hi); }
 
   .trail { position: fixed; pointer-events: none; width: 10px; height: 10px; z-index: 99; animation: fall .8s linear forwards; }
@@ -425,11 +448,6 @@
         </div>
       </div>
 
-      <div class="network">
-        <img src="assets/gg/teal-emo-angel.gif" alt="" width="170" height="138">
-        <strong>ViVi is in your extended network &lt;3</strong>
-      </div>
-
       <div class="sect" id="comments">
         <h3>ViVi's Friends Comments</h3>
         <div class="body">
@@ -467,7 +485,6 @@
           <li>no lurking!! sign my guestbook or i'll know :3</li>
           <li>be nice or get bitten 🦇</li>
         </ol>
-        <p class="kiss">byte byte kiss kiss 💋</p>
       </div>
   </section>
 
@@ -477,6 +494,26 @@
     <p class="kiss"><img class="cg" src="assets/gg/canva-revolver.gif" alt="" width="135" height="132" style="transform:scaleX(-1)"> byte byte kiss kiss 💋 xoxo <img class="cg" src="assets/gg/canva-revolver.gif" alt="" width="135" height="132"></p>
     <p>© <span id="yr"></span> ViVi · graphics from <a href="https://www.glitter-graphics.com" target="_blank" rel="noopener">glitter-graphics.com</a></p>
     <p class="email">email: <a href="mailto:vivi.online.music@gmail.com">vivi.online.music@gmail.com</a></p>
+    <button type="button" class="secret-btn" id="secretbtn" aria-expanded="false" aria-controls="secret">†</button>
+    <div class="msp" id="secret" hidden>
+      <div class="msp-head"><span class="msp-logo">ViVi</span><span>Music Player</span><span class="msp-new">secret demo!!</span></div>
+      <div class="msp-now">
+        <button type="button" class="msp-play" id="hdplay" aria-label="Play HD">▶</button>
+        <div class="msp-meta">
+          <div class="msp-title">HD <small>(demo)</small></div>
+          <div class="msp-bar" id="hdbar"><i id="hdfill"></i></div>
+          <div class="msp-time"><span id="hdcur">0:00</span><span>0:56</span></div>
+        </div>
+      </div>
+      <ol class="msp-list">
+        <li class="on"><span>1.</span> HD <small>(demo)</small><b>Plays: 1,337</b></li>
+      </ol>
+      <div class="msp-foot">u found it. don't tell anyone †</div>
+      <audio id="hdaudio" preload="none">
+        <source src="assets/audio/hd-demo.m4a" type="audio/mp4">
+        <source src="assets/audio/hd-demo.mp3" type="audio/mpeg">
+      </audio>
+    </div>
   </footer>
 </div>
 
@@ -670,7 +707,10 @@
   const SPOTIFY_URL = "https://open.spotify.com/track/5dydrnBvJBTEgO5CHUAuY5";
   const START_AT = 104; // first play starts ZOMBIE at 1:44
   let started = false;
-  const startPlaying = () => { started = true; spotify.togglePlay(); setTimeout(() => spotify.seek(START_AT), 400); };
+  // First play: ask Spotify to start at 1:44 (startAt), then double-check once audio is
+  // actually running and jump there if Spotify ignored it. Retries a few times.
+  let needJump = 0;
+  const startPlaying = () => { started = true; needJump = 4; (spotify.play ? spotify.play() : spotify.togglePlay()); };
   // Tapping the waveform plays ZOMBIE from 1:44; once it's playing, taps jump to that spot.
   wave.addEventListener("click", e => {
     const r = wave.getBoundingClientRect();
@@ -691,7 +731,7 @@
 
   window.onSpotifyIframeApiReady = api => {
     api.createController(document.getElementById("spotify-embed"),
-      { uri: SPOTIFY_TRACK, width: "100%", height: 80, theme: "dark" },
+      { uri: SPOTIFY_TRACK, width: "100%", height: 80, theme: "dark", startAt: START_AT },
       ctrl => {
         spotify = ctrl;
         ctrl.addListener("playback_update", e => {
@@ -700,6 +740,10 @@
             DURATION = duration / 1000;
             document.getElementById("tdur").textContent = fmt(DURATION);
             progress = position / duration;
+          }
+          if (needJump && !isPaused && duration > START_AT * 1000) {
+            if (Math.abs(position / 1000 - START_AT) > 3) { needJump--; ctrl.seek(START_AT); return; }
+            needJump = 0; // landed on 1:44
           }
           lastT = 0;
           setPlaying(!isPaused);
@@ -754,7 +798,8 @@
   let hvSeen = null; try { hvSeen = sessionStorage.getItem("vivi-hv-seen"); } catch {}
 
   const dp = document.getElementById("deskpop");
-  document.getElementById("dpclose").addEventListener("click", () => dp.close());
+  // Tapping anywhere on ViVi's Desktop (or around it) makes the whole popup disappear.
+  dp.addEventListener("click", () => dp.close());
   dp.addEventListener("close", () => { try { sessionStorage.setItem("vivi-dt-seen", "1"); } catch {} });
   let dtSeen = null; try { dtSeen = sessionStorage.getItem("vivi-dt-seen"); } catch {}
 
@@ -776,6 +821,33 @@
       gbmsg.textContent = "oh noes it didn't send :( try again?";
     } finally { sbtn.disabled = false; }
   });
+
+  // secret HD demo: tap the tiny † at the very bottom
+  (() => {
+    const btn2 = document.getElementById("secretbtn"), box = document.getElementById("secret");
+    const au = document.getElementById("hdaudio"), pb = document.getElementById("hdplay");
+    const fill = document.getElementById("hdfill"), cur = document.getElementById("hdcur"), bar = document.getElementById("hdbar");
+    btn2.addEventListener("click", () => {
+      box.hidden = !box.hidden; btn2.setAttribute("aria-expanded", String(!box.hidden));
+      if (!box.hidden) box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+    pb.addEventListener("click", () => {
+      if (au.paused) { if (typeof spotify !== "undefined" && spotify && playing) spotify.togglePlay(); au.play(); }
+      else au.pause();
+    });
+    au.addEventListener("play", () => { pb.textContent = "❚❚"; pb.setAttribute("aria-label", "Pause HD"); });
+    au.addEventListener("pause", () => { pb.textContent = "▶"; pb.setAttribute("aria-label", "Play HD"); });
+    au.addEventListener("timeupdate", () => {
+      const d = au.duration || 56; fill.style.width = (au.currentTime / d * 100) + "%";
+      cur.textContent = Math.floor(au.currentTime / 60) + ":" + String(Math.floor(au.currentTime % 60)).padStart(2, "0");
+    });
+    au.addEventListener("ended", () => { au.currentTime = 0; });
+    bar.addEventListener("click", e => {
+      const r = bar.getBoundingClientRect(); const d = au.duration || 56;
+      au.currentTime = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * d;
+      if (au.paused) au.play();
+    });
+  })();
 
   if (matchMedia("(pointer: fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     let last = 0;
