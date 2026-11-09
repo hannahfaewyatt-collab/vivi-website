@@ -294,6 +294,28 @@
   footer .divider { max-width: 300px; margin: 0 auto 8px; }
   footer .links a { margin: 0 4px; }
   footer .email { font-size: 12px; margin-top: 4px; }
+  /* secret MySpace-style demo player */
+  .secret-btn { background: none; border: 0; color: #1c3a37; font: 14px/1 serif; cursor: pointer; padding: 6px 10px; margin-top: 2px; }
+  .secret-btn:hover, .secret-btn:focus-visible { color: var(--teal-hi); text-shadow: 0 0 6px var(--teal); }
+  .msp { max-width: 320px; margin: 10px auto 0; text-align: left; background: #1a1a1a; border: 1px solid #555; font: 11px Verdana, Arial, sans-serif; color: #ddd; box-shadow: 0 0 18px rgba(45,224,200,.35); animation: popin .4s ease-out both; }
+  @keyframes popin { from { transform: scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+  .msp-head { display: flex; align-items: baseline; gap: 6px; padding: 4px 6px; background: linear-gradient(#3b3b3b, #111); border-bottom: 1px solid #000; color: #bbb; }
+  .msp-logo { font: bold 13px Verdana, sans-serif; color: #fff; }
+  .msp-new { margin-left: auto; color: var(--pink); font-weight: bold; animation: blink 1s steps(2) infinite; }
+  .msp-now { display: flex; align-items: center; gap: 8px; padding: 8px 6px; background: #000; }
+  .msp-play { width: 30px; height: 30px; flex: none; border-radius: 50%; border: 1px solid #888; background: linear-gradient(#5a5a5a, #1c1c1c); color: #fff; font-size: 12px; cursor: pointer; }
+  .msp-play:hover { border-color: var(--teal); color: var(--teal-hi); }
+  .msp-meta { flex: 1; min-width: 0; }
+  .msp-title { color: #fff; font-weight: bold; margin-bottom: 4px; }
+  .msp-title small, .msp-list small { color: #999; font-weight: normal; }
+  .msp-bar { height: 6px; background: #333; border: 1px solid #555; cursor: pointer; }
+  .msp-bar i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--teal), var(--teal-hi)); }
+  .msp-time { display: flex; justify-content: space-between; margin-top: 3px; color: #999; font-size: 10px; }
+  .msp-list { margin: 0; padding: 0; list-style: none; }
+  .msp-list li { display: flex; gap: 4px; padding: 4px 6px; border-top: 1px solid #2a2a2a; }
+  .msp-list li.on { background: #0b2e2a; color: #fff; }
+  .msp-list li b { margin-left: auto; font-weight: normal; color: #999; }
+  .msp-foot { padding: 4px 6px; border-top: 1px solid #2a2a2a; color: #777; font-size: 10px; text-align: center; }
   footer .email a { color: var(--teal-hi); }
 
   .trail { position: fixed; pointer-events: none; width: 10px; height: 10px; z-index: 99; animation: fall .8s linear forwards; }
@@ -473,6 +495,26 @@
     <p class="kiss"><img class="cg" src="assets/gg/canva-revolver.gif" alt="" width="135" height="132" style="transform:scaleX(-1)"> byte byte kiss kiss 💋 xoxo <img class="cg" src="assets/gg/canva-revolver.gif" alt="" width="135" height="132"></p>
     <p>© <span id="yr"></span> ViVi · graphics from <a href="https://www.glitter-graphics.com" target="_blank" rel="noopener">glitter-graphics.com</a></p>
     <p class="email">email: <a href="mailto:vivi.online.music@gmail.com">vivi.online.music@gmail.com</a></p>
+    <button type="button" class="secret-btn" id="secretbtn" aria-expanded="false" aria-controls="secret">†</button>
+    <div class="msp" id="secret" hidden>
+      <div class="msp-head"><span class="msp-logo">ViVi</span><span>Music Player</span><span class="msp-new">secret demo!!</span></div>
+      <div class="msp-now">
+        <button type="button" class="msp-play" id="hdplay" aria-label="Play HD">▶</button>
+        <div class="msp-meta">
+          <div class="msp-title">HD <small>(demo)</small></div>
+          <div class="msp-bar" id="hdbar"><i id="hdfill"></i></div>
+          <div class="msp-time"><span id="hdcur">0:00</span><span>0:56</span></div>
+        </div>
+      </div>
+      <ol class="msp-list">
+        <li class="on"><span>1.</span> HD <small>(demo)</small><b>Plays: 1,337</b></li>
+      </ol>
+      <div class="msp-foot">u found it. don't tell anyone †</div>
+      <audio id="hdaudio" preload="none">
+        <source src="assets/audio/hd-demo.m4a" type="audio/mp4">
+        <source src="assets/audio/hd-demo.mp3" type="audio/mpeg">
+      </audio>
+    </div>
   </footer>
 </div>
 
@@ -780,6 +822,33 @@
       gbmsg.textContent = "oh noes it didn't send :( try again?";
     } finally { sbtn.disabled = false; }
   });
+
+  // secret HD demo: tap the tiny † at the very bottom
+  (() => {
+    const btn2 = document.getElementById("secretbtn"), box = document.getElementById("secret");
+    const au = document.getElementById("hdaudio"), pb = document.getElementById("hdplay");
+    const fill = document.getElementById("hdfill"), cur = document.getElementById("hdcur"), bar = document.getElementById("hdbar");
+    btn2.addEventListener("click", () => {
+      box.hidden = !box.hidden; btn2.setAttribute("aria-expanded", String(!box.hidden));
+      if (!box.hidden) box.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    });
+    pb.addEventListener("click", () => {
+      if (au.paused) { if (typeof spotify !== "undefined" && spotify && playing) spotify.togglePlay(); au.play(); }
+      else au.pause();
+    });
+    au.addEventListener("play", () => { pb.textContent = "❚❚"; pb.setAttribute("aria-label", "Pause HD"); });
+    au.addEventListener("pause", () => { pb.textContent = "▶"; pb.setAttribute("aria-label", "Play HD"); });
+    au.addEventListener("timeupdate", () => {
+      const d = au.duration || 56; fill.style.width = (au.currentTime / d * 100) + "%";
+      cur.textContent = Math.floor(au.currentTime / 60) + ":" + String(Math.floor(au.currentTime % 60)).padStart(2, "0");
+    });
+    au.addEventListener("ended", () => { au.currentTime = 0; });
+    bar.addEventListener("click", e => {
+      const r = bar.getBoundingClientRect(); const d = au.duration || 56;
+      au.currentTime = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * d;
+      if (au.paused) au.play();
+    });
+  })();
 
   if (matchMedia("(pointer: fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
     let last = 0;
