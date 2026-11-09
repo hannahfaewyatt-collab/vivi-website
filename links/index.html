@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ViVi's Space</title>
+<meta name="description" content="† ur digital angel † — ViVi is a music project bridging IRL and URL. New single ZOMBIE out now.">
+<meta property="og:title" content="ViVi's Space">
+<meta property="og:description" content="† ur digital angel † — ViVi is a music project bridging IRL and URL.">
+<meta property="og:image" content="assets/vivi-pfp.jpg">
+<meta name="theme-color" content="#000000">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=VT323&display=swap" rel="stylesheet">
+<style>
+  /* ============ "custom layout" — teal glitter emo ============ */
+  :root {
+    --teal: #2de0c8;
+    --teal-hi: #9ffff2;
+    --teal-dk: #0b3f3a;
+    --head: #0f4d47;
+    --pink: #ff3fb0;
+    --text: #e9fffc;
+    --muted: #8ec9c1;
+    --line: #2de0c8;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: #021514 url("assets/gg/teal-bg.gif") repeat;
+    color: var(--text);
+    font: 11px/1.4 Verdana, Tahoma, Arial, sans-serif;
+    overflow-x: hidden;
+  }
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { color: var(--pink); text-decoration: underline; }
+  img { max-width: 100%; }
+
+  .site { width: 800px; max-width: 100%; margin: 0 auto; background: #000; border-left: 1px solid var(--line); border-right: 1px solid var(--line); box-shadow: 0 0 30px rgba(0,0,0,.8); }
+
+  /* ---- header + nav, old-school social network style ---- */
+  .masthead { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 10px; background: linear-gradient(#0e5c55, #063431); }
+  .logo { font: 26px/1 "VT323", monospace; color: #fff; letter-spacing: 1px; text-shadow: 0 0 6px var(--teal); }
+  .logo small { font-size: 14px; color: var(--teal-hi); display: block; letter-spacing: 0; text-shadow: none; }
+  .search { display: flex; gap: 4px; align-items: center; font-size: 10px; color: var(--teal-hi); }
+  .search input { width: 120px; font: 11px Verdana, sans-serif; border: 1px solid var(--teal); background: #001a18; color: var(--text); padding: 2px 4px; }
+  .search button { font: bold 10px Verdana, sans-serif; background: var(--teal); color: #002a26; border: 0; padding: 3px 6px; }
+  .navbar { background: var(--teal); padding: 4px 8px; font-size: 10px; font-weight: bold; text-align: center; }
+  .navbar a { color: #002a26; }
+  .navbar a:hover { color: #fff; }
+  .navbar span { color: #0b6a62; margin: 0 4px; }
+
+  .marquee { overflow: hidden; white-space: nowrap; border-bottom: 1px dashed var(--teal-dk); font: 17px "VT323", monospace; color: var(--teal); padding: 2px 0; }
+  .marquee span { display: inline-block; padding-left: 100%; animation: scroll 20s linear infinite; }
+  @keyframes scroll { to { transform: translateX(-100%); } }
+
+  .cols { display: grid; grid-template-columns: 300px 1fr; gap: 14px; padding: 12px 10px 4px; }
+
+  /* ---- left column ---- */
+  .name-row { display: flex; align-items: center; gap: 6px; margin: 0 0 6px; }
+  .name { font: 40px/1 "UnifrakturMaguntia", serif; margin: 0; color: #fff; text-shadow: 0 0 8px var(--teal), 0 0 2px #fff; }
+  .name-row img { width: 64px; height: auto; }
+
+  .profile { display: grid; grid-template-columns: 150px 1fr; gap: 8px; }
+  .pfp { width: 150px; height: auto; border: 1px solid var(--teal); display: block; }
+  .profile .info p { margin: 0 0 6px; }
+  .quote { color: var(--teal-hi); font: 16px/1.1 "VT323", monospace; white-space: nowrap; }
+  .online-now { display: block; margin: 6px 0 4px; }
+  .viewmy { margin: 6px 0 4px; }
+  .viewmy b { color: var(--muted); }
+  .mood { margin: 0 0 12px; }
+  .mood b { color: var(--teal-hi); }
+
+  /* classic "Contacting X" box */
+  .ctable { border: 1px solid var(--teal); margin-bottom: 12px; }
+  .ctable h3 { margin: 0; padding: 3px 6px; background: var(--teal); color: #002a26; font-size: 11px; }
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--teal-dk); }
+  .contact a {
+    display: flex; align-items: center; gap: 6px; min-height: 40px; padding: 6px;
+    background: #000; color: var(--text); font-weight: bold; line-height: 1.2;
+  }
+  .contact a:hover { background: #052a27; color: var(--pink); text-decoration: none; }
+  .contact .ico { width: 22px; height: 22px; flex: none; display: grid; place-items: center; background: #04312d; border: 1px solid var(--teal); color: var(--teal-hi); font: 18px/1 "VT323", monospace; }
+  .contact a.featured { grid-column: 1 / -1; min-height: 50px; background: #0a1414 url("assets/gg/turquoise-diamonds.gif"); background-size: 150px; color: #fff; text-shadow: 0 1px 2px #000, 0 0 4px #000; font-size: 14px; }
+  .contact a.featured .ico { background: var(--pink); border-color: #fff; color: #fff; }
+  .contact a.featured small { display: block; font-weight: normal; font-size: 10px; }
+  .contact a.featured .new { margin-left: auto; font: 15px "VT323", monospace; background: var(--pink); color: #fff; padding: 0 4px; animation: blink 1s steps(2) infinite; text-shadow: none; }
+  @keyframes blink { 50% { opacity: .15; } }
+
+  .urlbox { border: 1px solid var(--teal); padding: 6px; margin-bottom: 12px; }
+  .urlbox b { display: block; color: var(--muted); }
+  .urlbox span { word-break: break-all; }
+
+  .itable { width: 100%; border: 1px solid var(--teal); border-collapse: collapse; margin-bottom: 12px; }
+  .itable caption { text-align: left; padding: 3px 6px; background: var(--teal); color: #002a26; font-weight: bold; }
+  .itable th, .itable td { border: 1px solid var(--teal-dk); padding: 5px 6px; vertical-align: top; text-align: left; }
+  .itable th { width: 84px; background: var(--head); color: var(--teal-hi); }
+
+  /* ---- right column ---- */
+  .player { border: 1px solid var(--teal); background: #031c1a; padding: 6px; margin-bottom: 12px; }
+  .player .bar { display: flex; align-items: center; gap: 8px; }
+  .player button { width: 36px; height: 36px; flex: none; cursor: pointer; background: #000; color: var(--teal-hi); border: 2px solid var(--teal); font: 18px "VT323", monospace; }
+  .player button:hover { border-color: var(--pink); color: var(--pink); }
+  .player .meta { flex: 1; min-width: 0; }
+  .player .track { font-weight: bold; font-size: 12px; display: flex; align-items: center; gap: 6px; }
+  .player .track img { height: 22px; width: auto; filter: invert(1); }
+  .player .label { font-size: 10px; color: var(--muted); }
+  .wave { display: flex; gap: 2px; align-items: flex-end; height: 26px; margin-top: 4px; }
+  .wave i { flex: 1; background: var(--teal); background-image: linear-gradient(transparent 50%, rgba(0,0,0,.55) 50%); background-size: 100% 4px; }
+  .playing .wave i { animation: bar .7s ease-in-out infinite alternate; }
+  @keyframes bar { from { height: 15%; } to { height: 100%; } }
+
+  .network { border: 1px solid var(--teal); padding: 10px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; text-align: center; }
+  .network img { width: 90px; height: auto; }
+  .network strong { font-size: 15px; color: #fff; text-shadow: 0 0 6px var(--teal); }
+
+  .sect { margin-bottom: 12px; }
+  .sect h3 { margin: 0 0 6px; padding: 3px 6px; background: var(--head); border: 1px solid var(--teal); color: var(--teal-hi); font-size: 11px; display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
+  .sect h3 a { color: #fff; font-weight: normal; font-size: 10px; }
+  .sect .body { padding: 0 4px; }
+  .sect h4 { margin: 8px 0 3px; color: var(--pink); font-size: 11px; }
+  .sect p { margin: 0 0 6px; }
+
+  /* white-background glitter jpgs → inverted to glow on black */
+  .divider { display: block; width: 100%; height: auto; filter: invert(1) sepia(1) hue-rotate(130deg) saturate(3); margin: 4px 0 10px; }
+
+  .friends .count b { color: var(--pink); }
+  .top8 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px 6px; text-align: center; }
+  .top8 a { display: block; font-size: 10px; font-weight: bold; }
+  .top8 .tile { aspect-ratio: 1; margin-top: 3px; border: 1px solid var(--teal); display: grid; place-items: center; background: #000 url("assets/gg/teal-bg.gif"); background-size: 120px; font: 30px "VT323", monospace; color: #fff; text-shadow: 0 0 6px #000, 0 0 2px #000; }
+  .top8 a:hover .tile { border-color: var(--pink); }
+  .friends .all { text-align: right; margin: 6px 0 0; }
+
+  .comments { width: 100%; border-collapse: collapse; }
+  .comments td { border: 1px solid var(--teal-dk); padding: 6px; vertical-align: top; }
+  .comments td.who { width: 96px; text-align: center; background: #031c1a; font-weight: bold; font-size: 10px; word-break: break-all; }
+  .comments td.who img { display: block; margin: 4px auto 0; width: 80px; height: auto; }
+  .comments td.who img.inv { filter: invert(1) sepia(1) hue-rotate(130deg) saturate(3); }
+  .comments .date { color: var(--muted); font-size: 10px; margin-bottom: 4px; }
+  .comments .pic { display: block; margin-top: 6px; width: 220px; height: auto; }
+  .comments .pic.sm { width: 150px; }
+
+  footer { text-align: center; padding: 14px 10px 20px; font-size: 10px; color: var(--muted); border-top: 1px solid var(--teal-dk); }
+  footer .divider { max-width: 300px; margin: 0 auto 8px; }
+  footer .links a { margin: 0 4px; }
+
+  .trail { position: fixed; pointer-events: none; width: 10px; height: 10px; z-index: 99; animation: fall .8s linear forwards; }
+  @keyframes fall { to { transform: translateY(24px) scale(.2); opacity: 0; } }
+
+  /* ---- phone (Instagram in-app browser) ---- */
+  @media (max-width: 760px) {
+    body { font-size: 12px; }
+    .site { border: 0; }
+    .cols { grid-template-columns: 1fr; padding: 10px 10px 4px; }
+    .search, .navbar .hide-sm { display: none; }
+    .profile { grid-template-columns: 120px 1fr; }
+    .pfp { width: 120px; }
+    .sect h3, .ctable h3, .sect h4 { font-size: 12px; }
+    .contact a { min-height: 46px; }
+    .comments td.who { width: 82px; }
+    .comments td.who img { width: 64px; }
+    .comments .pic { width: 170px; }
+    .comments .pic.sm { width: 120px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; }
+    .marquee span { padding-left: 0; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="spark" viewBox="0 0 11 11" shape-rendering="crispEdges">
+      <rect x="5" y="0" width="1" height="11" fill="#9ffff2"/><rect x="0" y="5" width="11" height="1" fill="#9ffff2"/>
+      <rect x="4" y="4" width="3" height="3" fill="#fff"/>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="site">
+  <header class="masthead">
+    <div class="logo">ViViSpace<small>† ur digital angel †</small></div>
+    <div class="search" aria-hidden="true">
+      <span>Search:</span><input type="text" value="ViVi" tabindex="-1" readonly><button type="button" tabindex="-1">Search</button>
+    </div>
+  </header>
+  <nav class="navbar" aria-label="Profile sections">
+    <a href="#top">Home</a><span>|</span><a href="#music">Music</a><span>|</span><a href="#contact">Links</a><span class="hide-sm">|</span><a class="hide-sm" href="#blog">Blog</a><span>|</span><a href="#friends">Friends</a><span>|</span><a href="#comments">Comments</a>
+  </nav>
+  <div class="marquee" aria-hidden="true"><span>† ur digital angel † &nbsp;✦&nbsp; new single ZOMBIE out now &nbsp;✦&nbsp; bridging IRL and URL &nbsp;✦&nbsp; add ViVi to ur top 8 &nbsp;✦&nbsp; † ur digital angel †</span></div>
+
+  <main class="cols" id="top">
+    <!-- ================= LEFT ================= -->
+    <section>
+      <div class="name-row">
+        <h1 class="name">ViVi</h1>
+        <img src="assets/gg/glitter-fangs.gif" alt="" width="223" height="158">
+      </div>
+
+      <div class="profile">
+        <img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="400" height="372">
+        <div class="info">
+          <p class="quote">"† ur digital angel †"</p>
+          <p>music project<br>bridging IRL &amp; URL</p>
+          <p>Last Login:<br><span id="login"></span></p>
+          <img class="online-now" src="assets/gg/online-now.jpg" alt="Online Now!" width="95" height="37">
+        </div>
+      </div>
+
+      <p class="viewmy"><b>View My:</b> <a href="https://www.instagram.com/hannahfaewyatt/" target="_blank" rel="noopener">Pics</a> | <a href="https://www.youtube.com/@Vivi.Onlinemusic" target="_blank" rel="noopener">Videos</a> | <a href="https://www.tiktok.com/@vivi._.online" target="_blank" rel="noopener">TikToks</a></p>
+      <p class="mood"><b>Mood:</b> undead &amp; online 🦇</p>
+
+      <div class="ctable" id="contact">
+        <h3>Contacting ViVi</h3>
+        <div class="contact" id="links"></div>
+      </div>
+
+      <div class="urlbox">
+        <b>ViVi's URL:</b>
+        <span id="myurl"></span>
+      </div>
+
+      <table class="itable">
+        <caption>ViVi's Interests</caption>
+        <tr><th>General</th><td>glitter, static, 3am drives, being perceived thru a screen</td></tr>
+        <tr><th>Music</th><td>ZOMBIE on repeat. anything that sounds like a dial-up modem falling in love</td></tr>
+        <tr><th>Movies</th><td>vampire movies. the more eyeliner the better</td></tr>
+        <tr><th>Heroes</th><td>u, for clicking this link †</td></tr>
+      </table>
+
+      <table class="itable">
+        <caption>ViVi's Details</caption>
+        <tr><th>Genre</th><td>IRL / URL</td></tr>
+        <tr><th>Latest</th><td>ZOMBIE (single)</td></tr>
+        <tr><th>Label</th><td>Indie</td></tr>
+      </table>
+    </section>
+
+    <!-- ================= RIGHT ================= -->
+    <section>
+      <div class="player" id="music">
+        <div class="bar" id="player">
+          <button type="button" id="play" aria-label="Play">▶</button>
+          <div class="meta">
+            <div class="track">ViVi — ZOMBIE <img src="assets/gg/attack-of-the-zombies.png" alt="" width="70" height="37"></div>
+            <div class="label">new single · out now</div>
+            <div class="wave" id="wave" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="network">
+        <img src="assets/gg/teal-emo-angel.gif" alt="" width="170" height="138">
+        <strong>ViVi is in your extended network</strong>
+      </div>
+
+      <div class="sect" id="blog">
+        <h3>ViVi's Latest Blog Entry <a href="#contact">[Subscribe to this Blog]</a></h3>
+        <div class="body">
+          <p>ZOMBIE is out now!!! go stream it 🧟 <a href="#contact">(view more)</a></p>
+        </div>
+      </div>
+
+      <div class="sect">
+        <h3>ViVi's Blurbs</h3>
+        <div class="body">
+          <h4>About me:</h4>
+          <p>ViVi is a music project bridging IRL and URL.</p>
+          <p>half signal, half soul. made for headphones, dark rooms, and screens at 3am.</p>
+          <h4>Who I'd like to meet:</h4>
+          <p>u. the ones who stay online after the lights go out. †</p>
+        </div>
+      </div>
+
+      <img class="divider" src="assets/gg/emo-stars-divider.jpg" alt="" width="579" height="88">
+
+      <div class="sect friends" id="friends">
+        <h3>ViVi's Friend Space</h3>
+        <div class="body">
+          <p class="count">ViVi has <b id="fcount">0</b> friends.</p>
+          <div class="top8" id="top8"></div>
+          <p class="all"><a href="#contact">View All of ViVi's Friends</a></p>
+        </div>
+      </div>
+
+      <div class="sect" id="comments">
+        <h3>ViVi's Friends Comments</h3>
+        <div class="body">
+          <p>Displaying <b style="color:var(--pink)">3</b> of 3 comments ( <a href="#comments">View All</a> | <a href="https://www.instagram.com/hannahfaewyatt/" target="_blank" rel="noopener">Add Comment</a> )</p>
+          <table class="comments">
+            <tr>
+              <td class="who"><a href="#comments">xX_angel_URL_Xx</a><img src="assets/gg/emo-angel.gif" alt="" width="170" height="138"></td>
+              <td><div class="date">Nov 8 2026 11:58 PM</div>thanks 4 the add!!! ur music lives in my head rent free ♡<img class="pic" src="assets/gg/fangs-4-the-add.gif" alt="Fangs 4 the add" width="336" height="154"></td>
+            </tr>
+            <tr>
+              <td class="who"><a href="#comments">teal.gl1tter</a><img class="inv" src="assets/gg/drip-fangs.gif" alt="" width="100" height="100"></td>
+              <td><div class="date">Nov 7 2026 3:03 AM</div>pc4pc? ur layout is sooo cute<img class="pic sm" src="assets/gg/thanks-for-the-add.gif" alt="Thanks for the add" width="283" height="268"></td>
+            </tr>
+            <tr>
+              <td class="who"><a href="#comments">3am_listener</a><img src="assets/gg/glitter-fangs.gif" alt="" width="223" height="158"></td>
+              <td><div class="date">Nov 6 2026 3:00 AM</div>ZOMBIE is on repeat 🧟 when is the next drop??</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <img class="divider" src="assets/gg/heart-wings-divider.jpg" alt="" width="494" height="83">
+    <div class="links"><a href="#top">Top</a>|<a href="#music">Music</a>|<a href="#contact">Links</a>|<a href="#comments">Comments</a></div>
+    <p>© <span id="yr"></span> ViVi · graphics from <a href="https://www.glitter-graphics.com" target="_blank" rel="noopener">glitter-graphics.com</a></p>
+  </footer>
+</div>
+
+<script>
+  /* ============================================================
+     EDIT YOUR LINKS HERE
+     - url: paste the real link (leave "" to hide a button)
+     - featured: true = big glitter button on top with NEW!
+     ============================================================ */
+  const LINKS = [
+    { label: "ZOMBIE", sub: "new single · Apple Music", icon: "♫", featured: true,
+      url: "https://music.apple.com/us/album/zombie-single/6824446240?uo=4&app=music&at=1001lry3&ct=dashboard" },
+    { label: "Spotify",      icon: "♪", url: "https://open.spotify.com/artist/5wxNlRPBX9SxWxK39dIuNM" },
+    { label: "Amazon Music", icon: "♪", url: "https://www.amazon.com/gp/product/B0HNK863LL/?tag=distrokid06-20" },
+    { label: "YouTube",      icon: "▶", url: "https://www.youtube.com/@Vivi.Onlinemusic" },
+    { label: "TikTok",       icon: "✦", url: "https://www.tiktok.com/@vivi._.online" },
+    { label: "Instagram",    icon: "†", url: "https://www.instagram.com/hannahfaewyatt/" },
+    { label: "Email ViVi",   icon: "✉", url: "" }, // e.g. "mailto:you@example.com"
+  ];
+
+  // Optional: path to an mp3 snippet (e.g. "assets/zombie-snippet.mp3"). Leave "" for a visual-only player.
+  const SNIPPET = "";
+
+  const shown = LINKS.filter(l => l.url);
+  const isWeb = u => /^https?:/.test(u);
+  const mk = (l, cls) => {
+    const a = document.createElement("a");
+    a.href = l.url;
+    if (cls) a.className = cls;
+    if (isWeb(l.url)) { a.target = "_blank"; a.rel = "noopener"; }
+    return a;
+  };
+
+  const box = document.getElementById("links");
+  shown.forEach(l => {
+    const a = mk(l, l.featured ? "featured" : "");
+    const ico = document.createElement("span"); ico.className = "ico"; ico.textContent = l.icon;
+    const txt = document.createElement("span"); txt.textContent = l.label;
+    if (l.sub) { const s = document.createElement("small"); s.textContent = l.sub; txt.appendChild(s); }
+    a.append(ico, txt);
+    if (l.featured) { const n = document.createElement("span"); n.className = "new"; n.textContent = "NEW!"; a.appendChild(n); }
+    box.appendChild(a);
+  });
+
+  const top8 = document.getElementById("top8");
+  shown.slice(0, 8).forEach(l => {
+    const a = mk(l);
+    a.textContent = l.label;
+    const t = document.createElement("div"); t.className = "tile"; t.textContent = l.icon;
+    a.appendChild(t);
+    top8.appendChild(a);
+  });
+  document.getElementById("fcount").textContent = shown.length;
+
+  document.getElementById("myurl").textContent = location.protocol.startsWith("http") ? location.host + location.pathname : "vivi † online";
+  const d = new Date();
+  document.getElementById("login").textContent = d.toLocaleDateString("en-US");
+  document.getElementById("yr").textContent = d.getFullYear();
+
+  const wave = document.getElementById("wave");
+  for (let i = 0; i < 30; i++) {
+    const b = document.createElement("i");
+    b.style.height = (20 + Math.abs(Math.sin(i * 0.7)) * 70) + "%";
+    b.style.animationDelay = (i * 37 % 700) + "ms";
+    wave.appendChild(b);
+  }
+  const player = document.getElementById("player");
+  const btn = document.getElementById("play");
+  const audio = SNIPPET ? new Audio(SNIPPET) : null;
+  btn.addEventListener("click", () => {
+    const on = player.classList.toggle("playing");
+    btn.textContent = on ? "❚❚" : "▶";
+    btn.setAttribute("aria-label", on ? "Pause" : "Play");
+    if (audio) on ? audio.play() : audio.pause();
+  });
+  if (audio) audio.addEventListener("ended", () => { player.classList.remove("playing"); btn.textContent = "▶"; });
+
+  if (matchMedia("(pointer: fine)").matches && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    let last = 0;
+    addEventListener("mousemove", e => {
+      const now = performance.now();
+      if (now - last < 45) return;
+      last = now;
+      const s = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      s.setAttribute("class", "trail");
+      s.innerHTML = '<use href="#spark"/>';
+      s.style.left = e.clientX - 5 + "px";
+      s.style.top = e.clientY - 5 + "px";
+      document.body.appendChild(s);
+      setTimeout(() => s.remove(), 800);
+    });
+  }
+</script>
+</body>
+</html>
