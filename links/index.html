@@ -44,9 +44,10 @@
   .navbar a:hover { color: #fff; }
   .navbar span { color: #0b6a62; margin: 0 4px; }
 
-  .marquee { overflow: hidden; white-space: nowrap; border-bottom: 1px dashed var(--teal-dk); font: 17px "VT323", monospace; color: var(--teal); padding: 2px 0; }
-  .marquee span { display: inline-block; padding-left: 100%; animation: scroll 20s linear infinite; }
-  @keyframes scroll { to { transform: translateX(-100%); } }
+  .marquee { overflow: hidden; white-space: nowrap; border-bottom: 1px solid var(--teal); background: #001a18; font: 22px/1 "VT323", monospace; color: var(--teal-hi); text-shadow: 0 0 6px var(--teal); padding: 6px 0; }
+  .marquee .track { display: inline-flex; animation: scroll 18s linear infinite; }
+  .marquee .track span { padding-right: 2em; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
 
   .cols { display: grid; grid-template-columns: 300px 1fr; gap: 14px; padding: 12px 10px 4px; }
 
@@ -182,7 +183,6 @@
 
   @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after { animation: none !important; }
-    .marquee span { padding-left: 0; }
   }
 </style>
 </head>
@@ -201,7 +201,7 @@
   <nav class="navbar" aria-label="Profile sections">
     <a href="#top">Home</a><span>|</span><a href="#music">Music</a><span>|</span><a href="#contact">Links</a><span>|</span><a href="#guestbook">Guestbook</a><span class="hide-sm">|</span><a class="hide-sm" href="#rules">Rules</a><span>|</span><a href="#comments">Comments</a>
   </nav>
-  <div class="marquee" aria-hidden="true"><span>~*~ new single ZOMBIE out now ~*~ &nbsp;✦&nbsp; byte byte kiss kiss 💋 &nbsp;✦&nbsp; rawr means i love u in dinosaur XD &nbsp;✦&nbsp; sign my guestbook :3 &nbsp;✦&nbsp; add ViVi to ur top 8 x3</span></div>
+  <div class="marquee" aria-hidden="true"><div class="track"><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span></div></div>
 
   <div class="halo">
     <video src="assets/media/halo.mp4" poster="assets/media/halo.jpg" autoplay muted loop playsinline width="356" height="200" aria-label="Halo gif"></video>
