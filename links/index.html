@@ -94,7 +94,7 @@
   .spotify { position: absolute; left: 0; bottom: 0; width: 100%; height: 80px; opacity: 0; pointer-events: none; z-index: -1; overflow: hidden; }
   .spotify iframe { display: block; width: 100%; border: 0; }
   .zmode { margin-top: 8px; padding-top: 8px; border-top: 1px dashed #2f6a1a; }
-  .zmode video, .zmode img { width: 100%; max-width: 300px; height: auto; border: 1px solid var(--zg); display: block; margin: 0 auto; }
+  .zwrap > video, .zwrap > img { width: 100%; max-width: 300px; height: auto; border: 1px solid var(--zg); display: block; margin: 0 auto; }
   .wire { display: block; width: 110px; height: auto; margin: 0 auto 4px; }
   .mood .ball { width: 26px; height: auto; vertical-align: middle; margin-left: 4px; border-radius: 50%; mix-blend-mode: screen; animation: bob 2.4s ease-in-out infinite; filter: drop-shadow(0 0 6px rgba(45,224,200,.8)); }
   @keyframes bob { 50% { transform: translateY(-6px) rotate(-6deg); } }
@@ -238,8 +238,11 @@
   .l2 { left: 56%; top: 88%; width: 24%; z-index: 8; mix-blend-mode: screen; }
   .l3 { left: 82%; top: 88%; width: 16%; z-index: 8; }
   .l4 { left: 38%; top: 47%; width: 14%; z-index: 7; mix-blend-mode: screen; }
-  .win.nv { position: static; margin: 0 auto 12px; max-width: 420px; }
-  .win.nv video, .win.nv img { display: block; width: 100%; height: auto; border: 1px inset #fff; }
+  .zwrap { position: relative; max-width: 300px; margin: 0 auto; }
+  .zmode .win.nv { position: absolute; right: -10px; top: -14px; width: 42%; max-width: none; margin: 0; z-index: 2; transform: rotate(3deg); border-color: #fff; }
+  .zmode .win.nv .tb { font-size: 8px; }
+  .zmode .win.nv video, .zmode .win.nv img { border: 1px inset #fff; max-width: none; }
+  .win.nv video, .win.nv img { display: block; width: 100%; height: auto; }
   .l5 { left: 0%;  top: 72%; width: 15%; z-index: 8; border-radius: 50%; }
 
   footer { text-align: center; padding: 14px 10px 20px; font-size: 10px; color: var(--muted); border-top: 1px solid var(--teal-dk); }
@@ -355,13 +358,14 @@
           <div id="spotify-embed" aria-hidden="true"></div>
         </div>
         <div class="zmode">
-          <video src="assets/media/l4d2.mp4" poster="assets/media/l4d2.jpg" data-gif="assets/media/l4d2.gif" autoplay muted loop playsinline width="220" height="124" aria-label="Left 4 Dead 2 gif"></video>
+          <div class="zwrap">
+            <video src="assets/media/l4d2.mp4" poster="assets/media/l4d2.jpg" data-gif="assets/media/l4d2.gif" autoplay muted loop playsinline width="220" height="124" aria-label="Left 4 Dead 2 gif"></video>
+            <div class="win nv">
+              <div class="tb"><span>nightvision.mpg</span><i>✕</i></div>
+              <video src="assets/media/nightvision.mp4" poster="assets/media/nightvision.jpg" data-gif="assets/media/nightvision.gif" autoplay muted loop playsinline width="400" height="214" aria-label="night vision clip"></video>
+            </div>
+          </div>
         </div>
-      </div>
-
-      <div class="win nv">
-        <div class="tb"><span>nightvision.mpg</span><i>✕</i></div>
-        <video src="assets/media/nightvision.mp4" poster="assets/media/nightvision.jpg" data-gif="assets/media/nightvision.gif" autoplay muted loop playsinline width="400" height="214" aria-label="night vision clip"></video>
       </div>
 
       <div class="network">
@@ -426,12 +430,12 @@
           <p>Displaying <b style="color:var(--pink)">3</b> of 3 comments ( <a href="#comments">View All</a> | <a href="https://www.instagram.com/hannahfaewyatt/" target="_blank" rel="noopener">Add Comment</a> )</p>
           <table class="comments">
             <tr>
-              <td class="who"><a href="#comments">xXFangs</a><img src="assets/gg/emo-angel.gif" alt="" width="170" height="138"></td>
+              <td class="who"><a href="#comments">xXFangs</a><img src="assets/gg/neon-skeleton.gif" alt="" width="118" height="156"></td>
               <td><div class="date">Nov 8 2026 11:58 PM</div>ts fire<img class="pic" src="assets/gg/fangs-4-the-add.gif" alt="Fangs 4 the add" width="336" height="154"></td>
             </tr>
             <tr>
-              <td class="who"><a href="#comments">HD</a><img class="inv" src="assets/gg/drip-fangs.gif" alt="" width="100" height="100"></td>
-              <td><div class="date">Nov 7 2026 3:03 AM</div>What ab that next drop tho 👀<img class="pic sm" src="assets/gg/thanks-for-the-add.gif" alt="Thanks for the add" width="283" height="268"></td>
+              <td class="who"><a href="#comments">HD</a><img src="assets/gg/bat-skull.jpg" alt="" width="188" height="185"></td>
+              <td><div class="date">Nov 7 2026 3:03 AM</div>What ab that next drop tho 👀</td>
             </tr>
             <tr>
               <td class="who"><a href="#comments">BubbleGum</a><img class="pxpfp" src="assets/media/angel-cat.jpg" alt="" width="200" height="200"></td>
