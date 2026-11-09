@@ -49,20 +49,26 @@
   .marquee .track span { padding-right: 2em; }
   @keyframes scroll { to { transform: translateX(-50%); } }
 
-  .cols { display: grid; grid-template-columns: 300px 1fr; gap: 14px; padding: 12px 10px 4px; }
+  .cols { display: grid; grid-template-columns: 360px 1fr; gap: 14px; padding: 12px 10px 4px; }
 
   /* ---- left column ---- */
-  .name-row { display: flex; align-items: center; gap: 6px; margin: 0 0 6px; }
-  .name { font: 40px/1 "UnifrakturMaguntia", serif; margin: 0; color: #fff; text-shadow: 0 0 8px var(--teal), 0 0 2px #fff; }
-  .name-row img { width: 64px; height: auto; }
-  .name-row img.dripfangs { width: 58px; mix-blend-mode: screen; }
+  /* MySpace-style profile box: name plate over the banner, big pfp + details */
+  .banner { border-bottom: 2px solid var(--teal); box-shadow: 0 4px 18px rgba(45,224,200,.35); background: #000; }
+  .banner img { display: block; width: 100%; height: 190px; object-fit: cover; object-position: 50% 35%; }
+  .cols > section:last-child { padding-top: 28px; }
+  .pbox { position: relative; margin: -40px 0 12px; padding: 0 8px 8px; border: 1px solid var(--teal); background: linear-gradient(#001f1c, #000 60%); box-shadow: 0 0 14px rgba(45,224,200,.25); z-index: 2; }
+  .nameplate { display: flex; align-items: center; gap: 8px; margin: 6px 0 10px; }
+  .name { font: 50px/1 "UnifrakturMaguntia", serif; margin: 0; color: #9ffff2; text-shadow: 0 0 10px rgba(159,255,242,.6), 0 0 2px #fff; }
+  .name-fangs { width: 34px; height: auto; filter: drop-shadow(0 0 6px rgba(45,224,200,.8)); }
 
-  .profile { display: grid; grid-template-columns: 150px 1fr; gap: 8px; }
-  .pfp { width: 150px; height: auto; border: 1px solid var(--teal); display: block; }
+  .profile { display: grid; grid-template-columns: 175px 1fr; gap: 10px; align-items: start; }
+  .pfp { width: 175px; height: auto; border: 2px solid var(--teal); box-shadow: 0 0 10px rgba(45,224,200,.4); display: block; }
   .profile .info p { margin: 0 0 6px; }
-  .quote { color: var(--teal-hi); font: 16px/1.1 "VT323", monospace; white-space: nowrap; }
-  .online-now { display: block; margin: 6px 0 4px; }
-  .mood { margin: 0 0 12px; }
+  .quote { color: var(--teal-hi); font: 17px/1.1 "VT323", monospace; }
+  .online-now { display: block; margin: 4px 0 0; }
+  .profile .info p.login { margin-bottom: 2px; }
+  .profile .info b { color: var(--teal-hi); font-weight: bold; }
+  .profile .info .mood { margin: 0 0 6px; }
   .mood b { color: var(--teal-hi); }
 
   /* classic "Contacting X" box */
@@ -110,8 +116,6 @@
   .cds { float: right; width: 56px; height: auto; margin: 0 0 4px 6px; border: 1px solid var(--teal-dk); border-radius: 3px; }
   .meet { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
   .meet .gg { width: 90px; height: auto; border: 1px solid var(--teal); flex: none; transform: rotate(3deg); box-shadow: 0 0 10px rgba(45,224,200,.35); }
-  .halo { text-align: center; padding: 6px 10px 0; }
-  .halo video, .halo img { width: 100%; max-width: 356px; height: auto; border: 1px solid var(--teal); display: inline-block; box-shadow: 0 0 14px rgba(45,224,200,.35); }
   .player .bar { display: flex; align-items: center; gap: 8px; }
   .player button { width: 36px; height: 36px; flex: none; cursor: pointer; background: #000; color: var(--zg); border: 2px solid var(--zg); font: 18px "VT323", monospace; }
   .player button:hover { border-color: var(--pink); color: var(--pink); }
@@ -270,6 +274,9 @@
   .desktop .c3 { left: 64%; top: 62%; width: 18%; z-index: 9; }
   .desktop .c4 { left: 4%;  top: 66%; width: 22%; z-index: 9; }
 
+  .dump { padding: 4px 10px 16px; }
+  .dumpwin { position: static; max-width: 460px; margin: 0 auto; }
+  .dumpwin img { display: block; width: 100%; height: auto; border: 1px inset #fff; }
   footer { text-align: center; padding: 14px 10px 20px; font-size: 10px; color: var(--muted); border-top: 1px solid var(--teal-dk); }
   footer .divider { max-width: 300px; margin: 0 auto 8px; }
   footer .links a { margin: 0 4px; }
@@ -282,9 +289,11 @@
     body { font-size: 12px; }
     .site { border: 0; }
     .cols { grid-template-columns: 1fr; padding: 10px 10px 4px; }
+    .cols > section:last-child { padding-top: 0; }
     .navbar .hide-sm { display: none; }
-    .profile { grid-template-columns: 120px 1fr; }
-    .pfp { width: 120px; }
+    .banner img { height: 150px; }
+    .profile { grid-template-columns: 170px 1fr; }
+    .pfp { width: 170px; }
     .sect h3, .ctable h3, .sect h4 { font-size: 12px; }
     .contact a { min-height: 46px; }
     .comments td.who { width: 82px; }
@@ -315,30 +324,27 @@
   </nav>
   <div class="marquee" aria-hidden="true"><div class="track"><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span></div></div>
 
-  <div class="halo">
+  <div class="banner">
     <img src="assets/media/halo.gif" alt="" width="300" height="169">
   </div>
 
   <main class="cols" id="top">
     <!-- ================= LEFT ================= -->
     <section>
-      <div class="name-row">
-        <h1 class="name">vivi</h1>
-        <img class="dripfangs" src="assets/gg/teal-drip-fangs.gif" alt="" width="190" height="285">
-      </div>
-
-      <div class="profile">
-        <img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="400" height="372">
-        <div class="info">
-          <p class="quote">"† ur digital angel †"</p>
-          <p>music project<br>bridging IRL &amp; URL</p>
-          <p>22 years old</p>
-          <p>Last Login:<br><span id="login"></span></p>
-          <img class="online-now" src="assets/gg/online-now.jpg" alt="Online Now!" width="95" height="37">
+      <div class="pbox">
+        <div class="nameplate"><h1 class="name">vivi</h1><img class="name-fangs" src="assets/gg/teal-drip-fangs-clear.gif" alt=""></div>
+        <div class="profile">
+          <img class="pfp" src="assets/vivi-pfp.jpg" alt="ViVi" width="500" height="460">
+          <div class="info">
+            <p class="quote">"† ur digital angel †"</p>
+            <p>music project<br>bridging IRL &amp; URL</p>
+            <p>22 years old</p>
+            <p class="mood"><b>Mood:</b> silly <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228"></p>
+            <p class="login"><b>Last Login:</b><br><span id="login"></span></p>
+            <img class="online-now" src="assets/gg/online-now.jpg" alt="Online Now!" width="95" height="37">
+          </div>
         </div>
       </div>
-
-      <p class="mood"><b>Mood:</b> silly <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228"></p>
 
       <div class="ctable linkbox" id="contact">
         <div class="contact" id="links"></div>
@@ -383,16 +389,11 @@
           <div class="zwrap">
             <img src="assets/media/l4d2.gif" alt="" width="200" height="113">
             <div class="win nv">
-              <div class="tb"><span>nightvision.mpg</span><i>✕</i></div>
+              <div class="tb"><span>snipelol.mp3</span><i>✕</i></div>
               <img src="assets/media/nightvision.gif" alt="" width="300" height="160">
             </div>
           </div>
         </div>
-      </div>
-
-      <div class="network">
-        <img src="assets/gg/teal-emo-angel.gif" alt="" width="170" height="138">
-        <strong>ViVi is in your extended network</strong>
       </div>
 
       <div class="sect" id="blog">
@@ -419,7 +420,6 @@
           <div class="win w8"><div class="tb"><span>message.txt</span><i>✕</i></div><img src="assets/collage/trumpet.jpg" alt="" width="380" height="135"></div>
           <div class="win w9"><div class="tb"><span>CYBER</span><i>✕</i></div><img src="assets/collage/sendable.jpg" alt="" width="260" height="261"></div>
           <div class="win w10"><div class="tb"><span>angel_dream.gif</span><i>✕</i></div><img src="assets/gg/angel-dream.gif" alt="" width="320" height="256"></div>
-          <img class="loose l1" src="assets/gg/teal-skull.gif" alt="" width="150" height="150">
           <img class="loose l2" src="assets/gg/money-chain.jpg" alt="" width="230" height="175">
           <img class="loose l3" src="assets/gg/cyber-heart.jpg" alt="" width="100" height="100">
           <img class="loose l4" src="assets/collage/cross.jpg" alt="" width="200" height="231">
@@ -439,6 +439,11 @@
           <p>stay in touch!! drop ur email and i'll send u new music first</p>
           <button type="button" class="gb-btn" data-open-gb>sign my guestbook ♡</button>
         </div>
+      </div>
+
+      <div class="network">
+        <img src="assets/gg/teal-emo-angel.gif" alt="" width="170" height="138">
+        <strong>ViVi is in your extended network &lt;3</strong>
       </div>
 
       <div class="sect" id="comments">
@@ -463,6 +468,13 @@
       </div>
     </section>
   </main>
+
+  <section class="dump">
+    <div class="win dumpwin">
+      <div class="tb"><span>pic_dump.jpg</span><i>✕</i></div>
+      <img src="assets/media/pic-dump.jpg" alt="ViVi cheer pic dump" width="700" height="874">
+    </div>
+  </section>
 
   <footer>
     <img class="divider" src="assets/gg/heart-wings-divider.jpg" alt="" width="494" height="83">
@@ -505,7 +517,7 @@
     </div>
     <span class="hv-flash">!! U HAVE BEEN CHOSEN !!</span>
   </div>
-  <div class="hv-down" aria-hidden="true">⬇ ⬇ CLICK YES TO ASCEND ⬇ ⬇</div>
+  <div class="hv-down" aria-hidden="true">CLICK YES TO ASCEND</div>
   <div class="hv-actions">
     <span class="hv-arr" aria-hidden="true">➤➤</span>
     <a class="hv-yes" href="https://open.spotify.com/track/5dydrnBvJBTEgO5CHUAuY5" target="_blank" rel="noopener">YES ↑</a>
@@ -537,8 +549,8 @@
   // After activating FormSubmit you can swap the address for the random alias they give you.
   const GUESTBOOK_ENDPOINT = "https://formsubmit.co/ajax/vivi.online.music@gmail.com";
   const GUESTBOOK_DELAY_MS = 4000;
-  const HEAVEN_DELAY_MS = 5000;            // heaven.exe pops up first
-  const GUESTBOOK_AFTER_HEAVEN_MS = 3000;  // then the guestbook, this long after heaven closes
+  const HEAVEN_AFTER_GUESTBOOK_MS = 3000;  // heaven.exe follows this long after the guestbook closes
+  const HEAVEN_DELAY_MS = 5000;            // used when the guestbook doesn't show (already signed/seen)
 
   // The player plays ZOMBIE through Spotify's embed (full song if the listener is
   // logged in to Spotify in their browser, otherwise Spotify's 30-second preview).
@@ -631,21 +643,25 @@
   };
 
   const SPOTIFY_URL = "https://open.spotify.com/track/5dydrnBvJBTEgO5CHUAuY5";
-  // Tapping the waveform plays ZOMBIE (and jumps to that spot once it's playing).
+  const START_AT = 104; // first play starts ZOMBIE at 1:44
+  let started = false;
+  const startPlaying = () => { started = true; spotify.togglePlay(); setTimeout(() => spotify.seek(START_AT), 400); };
+  // Tapping the waveform plays ZOMBIE from 1:44; once it's playing, taps jump to that spot.
   wave.addEventListener("click", e => {
     const r = wave.getBoundingClientRect();
     const at = Math.min(1, Math.max(0, (e.clientX - r.left) / r.width));
     if (!spotify) { window.open(SPOTIFY_URL, "_blank", "noopener"); return; }
-    if (!playing) { spotify.togglePlay(); setTimeout(() => spotify.seek(at * DURATION), 400); }
-    else spotify.seek(at * DURATION);
+    if (!started) { startPlaying(); return; }
+    if (!playing) spotify.togglePlay();
+    spotify.seek(at * DURATION);
     progress = at; drawWave();
   });
   addEventListener("resize", () => drawWave());
   drawWave();
 
   btn.addEventListener("click", () => {
-    if (spotify) spotify.togglePlay();   // Spotify's events keep the button + waveform in sync
-    else window.open(SPOTIFY_URL, "_blank", "noopener"); // embed couldn't load: open Spotify
+    if (!spotify) { window.open(SPOTIFY_URL, "_blank", "noopener"); return; } // embed couldn't load: open Spotify
+    if (!started) startPlaying(); else spotify.togglePlay();
   });
 
   window.onSpotifyIframeApiReady = api => {
@@ -701,21 +717,22 @@
     el.addEventListener("click", e => { e.preventDefault(); openGB(); }));
   document.getElementById("gbclose").addEventListener("click", () => dlg.close());
   dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
-  dlg.addEventListener("close", () => { try { sessionStorage.setItem("vivi-gb-seen", "1"); } catch {} });
   let seen = null; try { seen = sessionStorage.getItem("vivi-gb-seen"); } catch {}
   const wantGB = !store.get("vivi-gb-signed") && !seen;
 
-  // heaven.exe pops up first (~5s in, once per visit); the guestbook follows a few seconds after it closes.
+  // Guestbook pops up first (~4s in); heaven.exe follows a few seconds after it closes. Each once per visit.
   const hv = document.getElementById("heaven");
   hv.querySelectorAll("[data-hv-close]").forEach(b => b.addEventListener("click", () => hv.close()));
   hv.querySelector(".hv-yes").addEventListener("click", () => hv.close());
-  hv.addEventListener("close", () => {
-    try { sessionStorage.setItem("vivi-hv-seen", "1"); } catch {}
-    if (wantGB) setTimeout(openGB, GUESTBOOK_AFTER_HEAVEN_MS);
-  });
+  hv.addEventListener("close", () => { try { sessionStorage.setItem("vivi-hv-seen", "1"); } catch {} });
   let hvSeen = null; try { hvSeen = sessionStorage.getItem("vivi-hv-seen"); } catch {}
-  if (!hvSeen) setTimeout(() => { if (!dlg.open) hv.showModal(); }, HEAVEN_DELAY_MS);
-  else if (wantGB) setTimeout(openGB, GUESTBOOK_DELAY_MS);
+  const openHeaven = () => { if (!hvSeen && !hv.open && !dlg.open) { hvSeen = "1"; hv.showModal(); } };
+  dlg.addEventListener("close", () => {
+    try { sessionStorage.setItem("vivi-gb-seen", "1"); } catch {}
+    setTimeout(openHeaven, HEAVEN_AFTER_GUESTBOOK_MS);
+  });
+  if (wantGB) setTimeout(openGB, GUESTBOOK_DELAY_MS);
+  else setTimeout(openHeaven, HEAVEN_DELAY_MS);
 
   gb.addEventListener("submit", async e => {
     e.preventDefault();
