@@ -55,6 +55,7 @@
   .name-row { display: flex; align-items: center; gap: 6px; margin: 0 0 6px; }
   .name { font: 40px/1 "UnifrakturMaguntia", serif; margin: 0; color: #fff; text-shadow: 0 0 8px var(--teal), 0 0 2px #fff; }
   .name-row img { width: 64px; height: auto; }
+  .name-row img.dripfangs { width: 58px; mix-blend-mode: screen; }
 
   .profile { display: grid; grid-template-columns: 150px 1fr; gap: 8px; }
   .pfp { width: 150px; height: auto; border: 1px solid var(--teal); display: block; }
@@ -98,7 +99,14 @@
   .wire { display: block; width: 110px; height: auto; margin: 0 auto 4px; }
   .mood .ball { width: 26px; height: auto; vertical-align: middle; margin-left: 4px; border-radius: 50%; mix-blend-mode: screen; animation: bob 2.4s ease-in-out infinite; filter: drop-shadow(0 0 6px rgba(45,224,200,.8)); }
   @keyframes bob { 50% { transform: translateY(-6px) rotate(-6deg); } }
-  .cheer { display: block; width: 100%; max-width: 280px; height: auto; margin: -4px auto 14px; border: 1px solid var(--teal); box-shadow: 0 0 12px rgba(45,224,200,.35); }
+  .linkbox { display: flex; align-items: stretch; background: var(--teal-dk); gap: 1px; }
+  .linkbox .contact { flex: 1 1 56%; min-width: 0; grid-template-columns: 1fr; }
+  .sparkbar { flex: 0 0 18px; position: relative; overflow: hidden; background: #0a3a36 url("assets/gg/turquoise-diamonds.gif"); background-size: 90px; box-shadow: inset 0 0 8px rgba(0,0,0,.6), 0 0 10px rgba(45,224,200,.6); border-left: 1px solid var(--teal-hi); border-right: 1px solid var(--teal-hi); animation: sbscroll 3s linear infinite; }
+  @keyframes sbscroll { to { background-position: 0 90px; } }
+  @keyframes twinkle { 0%,100% { transform: scale(.4) rotate(0); opacity: .5; } 50% { transform: scale(1.1) rotate(45deg); opacity: 1; } }
+  .sparkbar i { position: absolute; left: 50%; width: 10px; height: 10px; margin-left: -5px; background: #fff; clip-path: polygon(50% 0, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0 50%, 38% 38%); filter: drop-shadow(0 0 3px #9ffff2); animation: twinkle 1.4s ease-in-out infinite; }
+  .sparkbar i:nth-child(1) { top: 8%; } .sparkbar i:nth-child(2) { top: 28%; animation-delay: .3s; } .sparkbar i:nth-child(3) { top: 48%; animation-delay: .6s; } .sparkbar i:nth-child(4) { top: 68%; animation-delay: .9s; } .sparkbar i:nth-child(5) { top: 88%; animation-delay: 1.2s; }
+  .linkbox .cheer { flex: 0 0 40%; width: 40%; min-width: 0; object-fit: cover; object-position: 30% 50%; display: block; height: auto; }
   .cds { float: right; width: 56px; height: auto; margin: 0 0 4px 6px; border: 1px solid var(--teal-dk); border-radius: 3px; }
   .meet { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
   .meet .gg { width: 90px; height: auto; border: 1px solid var(--teal); flex: none; transform: rotate(3deg); box-shadow: 0 0 10px rgba(45,224,200,.35); }
@@ -138,7 +146,6 @@
   .comments td.who img { display: block; margin: 4px auto 0; width: 80px; height: auto; }
   .comments td.who img.inv { filter: invert(1) sepia(1) hue-rotate(130deg) saturate(3); }
   .comments .date { color: var(--muted); font-size: 10px; margin-bottom: 4px; }
-  .comments img.pic[src$="rainbow-tv.gif"], .comments video.pic { border: 1px solid var(--teal-dk); }
   .comments td.who img.sqpfp { border: 1px solid var(--teal); }
   .comments td.who img.pxpfp { image-rendering: pixelated; border: 1px solid var(--teal); }
   .comments .pic { display: block; margin-top: 6px; width: 220px; height: auto; }
@@ -213,20 +220,29 @@
   .hv-actions a:active, .hv-actions button:active { border-style: inset; }
   .hv-yes { outline: 1px dotted #000; outline-offset: -5px; }
 
-  .clicknow { text-align: center; margin: 2px 0 4px; }
-  .cn-row { display: flex; align-items: center; justify-content: center; gap: 4px; }
-  .clicknow .cn { display: block; min-width: 0; flex: 1 1 auto; max-width: 250px; height: auto; animation: blink 1.2s steps(2) infinite; }
   .cg { width: 50px; height: auto; flex: none; image-rendering: pixelated; }
-  .clicknow span { display: block; font: bold 18px/1 Tahoma, sans-serif; color: var(--teal-hi); text-shadow: 0 0 6px var(--teal); animation: bounce .6s ease-in-out infinite alternate; }
   @keyframes bounce { to { transform: translateY(4px); } }
 
   /* ViVi's Desktop: overlapping 2000s windows */
+  .wmp { position: absolute; left: 9%; top: 30%; width: 82%; z-index: 30; background: #c0c0c0; border: 2px outset #fff; box-shadow: 6px 8px 0 rgba(0,0,0,.65), 0 0 24px rgba(45,224,200,.5); padding: 0 3px 3px; animation: wmpin .5s ease-out both; }
+  @keyframes wmpin { from { transform: scale(.5) rotate(-4deg); opacity: 0; } 70% { transform: scale(1.04) rotate(1deg); opacity: 1; } to { transform: none; } }
+  .wmp-bar { display: flex; align-items: center; gap: 3px; margin: 0 -3px 3px; padding: 2px 3px 2px 5px; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font: bold 10px/1.4 Tahoma, sans-serif; }
+  .wmp-bar span { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .wmp-bar i, .wmp-bar button { font-style: normal; width: 15px; height: 13px; display: grid; place-items: center; padding: 0; background: #c0c0c0; color: #000; border: 1px outset #fff; font: bold 9px/1 Tahoma, sans-serif; cursor: pointer; }
+  .wmp-screen { background: #000; border: 2px inset #fff; }
+  .wmp-screen img { display: block; width: 100%; height: auto; }
+  .wmp-ctrl { display: flex; align-items: center; gap: 3px; margin-top: 3px; font: 9px Tahoma, sans-serif; }
+  .wmp-ctrl b { width: 18px; height: 15px; display: grid; place-items: center; border: 1px outset #fff; font-size: 8px; }
+  .wmp-ctrl .seek { flex: 1; height: 6px; border: 1px inset #fff; background: #fff; position: relative; }
+  .wmp-ctrl .seek i { position: absolute; left: 0; top: 0; bottom: 0; background: #000080; animation: seek 2.5s linear infinite; }
+  @keyframes seek { from { width: 0; } to { width: 100%; } }
   .desktop { position: relative; aspect-ratio: 3 / 4.4; background: #001a3a url("assets/gg/cyber-bg.gif"); background-size: 180px; border: 2px inset #c0c0c0; overflow: hidden; }
   .win { position: absolute; background: #c0c0c0; border: 2px outset #fff; box-shadow: 3px 3px 0 rgba(0,0,0,.6); padding: 0 2px 2px; }
   .win .tb { display: flex; align-items: center; gap: 4px; margin: 0 -2px 2px; padding: 1px 2px 1px 4px; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font: bold 9px/1.4 Tahoma, sans-serif; white-space: nowrap; }
   .win .tb span { flex: 1; overflow: hidden; text-overflow: ellipsis; }
   .win .tb i { font-style: normal; width: 12px; height: 11px; display: grid; place-items: center; background: #c0c0c0; color: #000; border: 1px outset #fff; font-size: 8px; }
   .win img { display: block; width: 100%; height: auto; border: 1px inset #fff; }
+  img[src$="canva-skull.gif"], img[src$="canva-revolver.gif"], img[src$="canva-dollar.gif"] { filter: grayscale(1) sepia(1) hue-rotate(130deg) saturate(3) brightness(1.05) drop-shadow(0 0 4px rgba(45,224,200,.7)); }
   .loose { position: absolute; height: auto; }
   .w1 { left: 1%;  top: 0%;  width: 55%; z-index: 2; }
   .w2 { left: 47%; top: 3%;  width: 51%; z-index: 1; }
@@ -241,6 +257,7 @@
   .l1 { left: 78%; top: 24%; width: 20%; z-index: 8; animation: bob 2.4s ease-in-out infinite; }
   .l2 { left: 56%; top: 88%; width: 24%; z-index: 8; mix-blend-mode: screen; }
   .l3 { left: 82%; top: 88%; width: 16%; z-index: 8; }
+  .desktop .l3 { filter: grayscale(1) sepia(1) hue-rotate(265deg) saturate(5) brightness(1.1) drop-shadow(0 0 6px rgba(255,63,176,.8)); }
   .l4 { left: 38%; top: 47%; width: 14%; z-index: 7; mix-blend-mode: screen; }
   .zwrap { position: relative; max-width: 300px; margin: 0 auto; }
   .zmode .win.nv { position: absolute; right: -10px; top: -14px; width: 42%; max-width: none; margin: 0; z-index: 2; transform: rotate(3deg); border-color: #fff; }
@@ -299,7 +316,7 @@
   <div class="marquee" aria-hidden="true"><div class="track"><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span><span>new single ZOMBIE out now ✦</span></div></div>
 
   <div class="halo">
-    <video src="assets/media/halo.mp4" poster="assets/media/halo.jpg" data-gif="assets/media/halo.gif" autoplay muted loop playsinline width="356" height="200" aria-label="Halo gif"></video>
+    <img src="assets/media/halo.gif" alt="" width="300" height="169">
   </div>
 
   <main class="cols" id="top">
@@ -307,7 +324,7 @@
     <section>
       <div class="name-row">
         <h1 class="name">vivi</h1>
-        <img src="assets/gg/glitter-fangs.gif" alt="" width="223" height="158">
+        <img class="dripfangs" src="assets/gg/teal-drip-fangs.gif" alt="" width="190" height="285">
       </div>
 
       <div class="profile">
@@ -323,18 +340,11 @@
 
       <p class="mood"><b>Mood:</b> silly <img class="ball" src="assets/media/sad-ball.jpg" alt="" width="240" height="228"></p>
 
-      <div class="clicknow" aria-hidden="true">
-        <div class="cn-row">
-          <img class="cg" src="assets/gg/canva-dollar.gif" alt="" width="159" height="93">
-          <img class="cn" src="assets/collage/clickhere.jpg" alt="" width="600" height="82">
-          <img class="cg" src="assets/gg/canva-revolver.gif" alt="" width="135" height="132">
-        </div>
-        <span>⬇ ⬇ ⬇</span>
-      </div>
-      <div class="ctable" id="contact">
+      <div class="ctable linkbox" id="contact">
         <div class="contact" id="links"></div>
+        <div class="sparkbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <img class="cheer" src="assets/media/cheer.jpg" alt="ViVi in a cheer uniform with teal pom-poms" width="600" height="578">
       </div>
-      <img class="cheer" src="assets/media/cheer.jpg" alt="ViVi in a cheer uniform with teal pom-poms" width="600" height="578">
 
       <img class="wire" src="assets/media/barbed-wire.gif" alt="" width="160" height="47">
       <table class="itable">
@@ -371,10 +381,10 @@
         </div>
         <div class="zmode">
           <div class="zwrap">
-            <video src="assets/media/l4d2.mp4" poster="assets/media/l4d2.jpg" data-gif="assets/media/l4d2.gif" autoplay muted loop playsinline width="220" height="124" aria-label="Left 4 Dead 2 gif"></video>
+            <img src="assets/media/l4d2.gif" alt="" width="200" height="113">
             <div class="win nv">
               <div class="tb"><span>nightvision.mpg</span><i>✕</i></div>
-              <video src="assets/media/nightvision.mp4" poster="assets/media/nightvision.jpg" data-gif="assets/media/nightvision.gif" autoplay muted loop playsinline width="400" height="214" aria-label="night vision clip"></video>
+              <img src="assets/media/nightvision.gif" alt="" width="300" height="160">
             </div>
           </div>
         </div>
@@ -392,31 +402,23 @@
         </div>
       </div>
 
-      <div class="sect">
-        <h3>ViVi's Blurbs</h3>
-        <div class="body">
-          <div class="meet">
-            <div>
-              <h4>Who I'd like to meet:</h4>
-              <p>u.</p>
-            </div>
-            <img class="gg" src="assets/media/guitar-girl.jpg" alt="" width="240" height="304">
-          </div>
-        </div>
-      </div>
-
       <div class="sect desk-sect">
         <h3>ViVi's Desktop</h3>
-        <div class="desktop" aria-hidden="true">
-          <div class="win w1"><div class="tb"><span>skull_tv.mpg</span><i>✕</i></div><img src="assets/collage/skulltv.jpg" alt="" width="480" height="383" loading="lazy"></div>
-          <div class="win w2"><div class="tb"><span>void.bmp</span><i>✕</i></div><img src="assets/collage/blackorb.jpg" alt="" width="420" height="398" loading="lazy"></div>
-          <div class="win w4"><div class="tb"><span>AngelS.gif</span><i>✕</i></div><img src="assets/collage/angels.jpg" alt="" width="339" height="91" loading="lazy"></div>
-          <div class="win w5"><div class="tb"><span>depart.jpg</span><i>✕</i></div><img src="assets/collage/sadangel.jpg" alt="" width="330" height="248" loading="lazy"></div>
-          <div class="win w6"><div class="tb"><span>orb.exe</span><i>✕</i></div><img src="assets/collage/orb.jpg" alt="" width="254" height="179" loading="lazy"></div>
-          <div class="win w7"><div class="tb"><span>README.TXT</span><i>✕</i></div><img src="assets/collage/mosh.jpg" alt="" width="480" height="266" loading="lazy"></div>
-          <div class="win w8"><div class="tb"><span>message.txt</span><i>✕</i></div><img src="assets/collage/trumpet.jpg" alt="" width="380" height="135" loading="lazy"></div>
-          <div class="win w9"><div class="tb"><span>CYBER</span><i>✕</i></div><img src="assets/collage/sendable.jpg" alt="" width="260" height="261" loading="lazy"></div>
-          <div class="win w10"><div class="tb"><span>angel_dream.gif</span><i>✕</i></div><img src="assets/gg/angel-dream.gif" alt="" width="320" height="256" loading="lazy"></div>
+        <div class="desktop">
+          <div class="wmp" id="wmp">
+            <div class="wmp-bar"><span>▶ vivi.wmv - Windows Media Player</span><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" id="wmpx" aria-label="Close">✕</button></div>
+            <div class="wmp-screen"><img src="assets/media/vivi-clip.gif" alt="ViVi clip" width="300" height="187"></div>
+            <div class="wmp-ctrl" aria-hidden="true"><b>▶</b><b>❚❚</b><b>■</b><span class="seek"><i></i></span><span class="t">0:02</span></div>
+          </div>
+          <div class="win w1"><div class="tb"><span>skull_tv.mpg</span><i>✕</i></div><img src="assets/collage/skulltv.jpg" alt="" width="480" height="383"></div>
+          <div class="win w2"><div class="tb"><span>void.bmp</span><i>✕</i></div><img src="assets/collage/blackorb.jpg" alt="" width="420" height="398"></div>
+          <div class="win w4"><div class="tb"><span>AngelS.gif</span><i>✕</i></div><img src="assets/collage/angels.jpg" alt="" width="339" height="91"></div>
+          <div class="win w5"><div class="tb"><span>depart.jpg</span><i>✕</i></div><img src="assets/collage/sadangel.jpg" alt="" width="330" height="248"></div>
+          <div class="win w6"><div class="tb"><span>orb.exe</span><i>✕</i></div><img src="assets/collage/orb.jpg" alt="" width="254" height="179"></div>
+          <div class="win w7"><div class="tb"><span>README.TXT</span><i>✕</i></div><img src="assets/collage/mosh.jpg" alt="" width="480" height="266"></div>
+          <div class="win w8"><div class="tb"><span>message.txt</span><i>✕</i></div><img src="assets/collage/trumpet.jpg" alt="" width="380" height="135"></div>
+          <div class="win w9"><div class="tb"><span>CYBER</span><i>✕</i></div><img src="assets/collage/sendable.jpg" alt="" width="260" height="261"></div>
+          <div class="win w10"><div class="tb"><span>angel_dream.gif</span><i>✕</i></div><img src="assets/gg/angel-dream.gif" alt="" width="320" height="256"></div>
           <img class="loose l1" src="assets/gg/teal-skull.gif" alt="" width="150" height="150">
           <img class="loose l2" src="assets/gg/money-chain.jpg" alt="" width="230" height="175">
           <img class="loose l3" src="assets/gg/cyber-heart.jpg" alt="" width="100" height="100">
@@ -446,7 +448,7 @@
           <table class="comments">
             <tr>
               <td class="who"><a href="#comments">xXFangs</a><img class="sqpfp" src="assets/media/pfp-beanie.jpg" alt="" width="200" height="200"></td>
-              <td><div class="date">Nov 8 2026 11:58 PM</div>ts fire<img class="pic" src="assets/gg/fangs-4-the-add.gif" alt="Fangs 4 the add" width="336" height="154"></td>
+              <td><div class="date">Nov 8 2026 11:58 PM</div>ts fire</td>
             </tr>
             <tr>
               <td class="who"><a href="#comments">HD</a><img class="sqpfp" src="assets/media/pfp-panda.jpg" alt="" width="200" height="200"></td>
@@ -454,7 +456,7 @@
             </tr>
             <tr>
               <td class="who"><a href="#comments">BubbleGum</a><img class="pxpfp" src="assets/media/angel-cat.jpg" alt="" width="200" height="200"></td>
-              <td><div class="date">Nov 6 2026 3:00 AM</div><video class="pic" src="assets/media/rainbow-tv.mp4" poster="assets/media/rainbow-tv.jpg" data-gif="assets/media/rainbow-tv.gif" autoplay muted loop playsinline width="320" height="238" style="margin-top:0" aria-label="rainbow TV clip"></video></td>
+              <td><div class="date">Nov 6 2026 3:00 AM</div>aestheticccc</td>
             </tr>
           </table>
         </div>
@@ -684,6 +686,8 @@
     v.addEventListener("error", toGif);
     setTimeout(() => { if (v.paused || v.currentTime === 0) toGif(); }, 2500);
   });
+
+  document.getElementById("wmpx").addEventListener("click", () => { document.getElementById("wmp").hidden = true; });
 
   const store = {
     get(k) { try { return localStorage.getItem(k); } catch { return null; } },
