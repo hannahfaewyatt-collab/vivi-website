@@ -187,6 +187,11 @@
   .gbmsg { margin: 8px 0 0; min-height: 1em; color: var(--teal-hi); font-weight: bold; }
 
   /* ---- fake "scam" popup window: heaven.exe ---- */
+  #deskpop { width: min(420px, calc(100vw - 24px)); max-height: calc(100vh - 24px); overflow: auto; padding: 0 3px 3px; border: 2px outset #dfdfdf; background: #c0c0c0; box-shadow: 6px 6px 0 rgba(0,0,0,.6); animation: hvshake .45s ease-out; }
+  #deskpop::backdrop { background: rgba(0,0,0,.35); }
+  .dp-bar { display: flex; align-items: center; gap: 3px; margin: 0 -3px 3px; padding: 2px 3px 2px 6px; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font: bold 11px/1.4 Tahoma, sans-serif; position: sticky; top: 0; z-index: 40; }
+  .dp-bar span { flex: 1; }
+  .dp-bar i, .dp-bar button { font-style: normal; width: 16px; height: 14px; display: grid; place-items: center; padding: 0; background: #c0c0c0; color: #000; border: 1px outset #fff; font: bold 9px/1 Tahoma, sans-serif; cursor: pointer; }
   #heaven { width: min(340px, calc(100vw - 32px)); padding: 0; border: 2px outset #dfdfdf; background: #c0c0c0; color: #000; font: 11px Tahoma, Verdana, sans-serif; box-shadow: 6px 6px 0 rgba(0,0,0,.6); animation: hvshake .45s ease-out; }
   #heaven::backdrop { background: rgba(0,0,0,.35); }
   @keyframes hvshake { 0% { transform: scale(.6); } 40% { transform: scale(1.05) rotate(-2deg); } 60% { transform: rotate(2deg); } 100% { transform: none; } }
@@ -340,34 +345,6 @@
   <main class="cols" id="top">
     <!-- ================= LEFT ================= -->
     <section>
-      <div class="sect desk-sect">
-        <h3>ViVi's Desktop</h3>
-        <div class="desktop">
-          <div class="wmp" id="wmp">
-            <div class="wmp-bar"><span>▶ vivi.wmv - Windows Media Player</span><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" id="wmpx" aria-label="Close">✕</button></div>
-            <div class="wmp-screen"><img src="assets/media/vivi-clip.gif" alt="ViVi clip" width="300" height="187"></div>
-            <div class="wmp-ctrl" aria-hidden="true"><b>▶</b><b>❚❚</b><b>■</b><span class="seek"><i></i></span><span class="t">0:02</span></div>
-          </div>
-          <div class="win w1"><div class="tb"><span>skull_tv.mpg</span><i>✕</i></div><img src="assets/collage/skulltv.jpg" alt="" width="480" height="383"></div>
-          <div class="win w2"><div class="tb"><span>void.bmp</span><i>✕</i></div><img src="assets/collage/blackorb.jpg" alt="" width="420" height="398"></div>
-          <div class="win w4"><div class="tb"><span>AngelS.gif</span><i>✕</i></div><img src="assets/collage/angels.jpg" alt="" width="339" height="91"></div>
-          <div class="win w5"><div class="tb"><span>depart.jpg</span><i>✕</i></div><img src="assets/collage/sadangel.jpg" alt="" width="330" height="248"></div>
-          <div class="win w6"><div class="tb"><span>orb.exe</span><i>✕</i></div><img src="assets/collage/orb.jpg" alt="" width="254" height="179"></div>
-          <div class="win w7"><div class="tb"><span>README.TXT</span><i>✕</i></div><img src="assets/collage/mosh.jpg" alt="" width="480" height="266"></div>
-          <div class="win w8"><div class="tb"><span>message.txt</span><i>✕</i></div><img src="assets/collage/trumpet.jpg" alt="" width="380" height="135"></div>
-          <div class="win w9"><div class="tb"><span>CYBER</span><i>✕</i></div><img src="assets/collage/sendable.jpg" alt="" width="260" height="261"></div>
-          <div class="win w10"><div class="tb"><span>angel_dream.gif</span><i>✕</i></div><img src="assets/gg/angel-dream.gif" alt="" width="320" height="256"></div>
-          <img class="loose l2" src="assets/gg/money-chain.jpg" alt="" width="230" height="175">
-          <img class="loose l3" src="assets/gg/cyber-heart.jpg" alt="" width="100" height="100">
-          <img class="loose l4" src="assets/collage/cross.jpg" alt="" width="200" height="231">
-          <img class="loose l5" src="assets/gg/warp.gif" alt="" width="100" height="100">
-          <img class="loose cg c1" src="assets/gg/canva-skull.gif" alt="" width="153" height="147">
-          <img class="loose cg c2" src="assets/gg/canva-computer.gif" alt="" width="84" height="90">
-          <img class="loose cg c3" src="assets/gg/canva-revolver.gif" alt="" width="135" height="132">
-          <img class="loose cg c4" src="assets/gg/canva-dollar.gif" alt="" width="159" height="93">
-        </div>
-      </div>
-
       <div class="ctable linkbox" id="contact">
         <div class="contact" id="links"></div>
         <div class="sparkbar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
@@ -519,6 +496,34 @@
   <p class="gbmsg" id="gbmsg" role="status"></p>
 </dialog>
 
+<dialog id="deskpop" aria-labelledby="dptitle">
+  <div class="dp-bar"><span id="dptitle">ViVi's Desktop</span><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" id="dpclose" aria-label="Close">✕</button></div>
+        <div class="desktop">
+    <div class="wmp" id="wmp">
+      <div class="wmp-bar"><span>▶ vivi.wmv - Windows Media Player</span><i aria-hidden="true">_</i><i aria-hidden="true">□</i><button type="button" id="wmpx" aria-label="Close">✕</button></div>
+      <div class="wmp-screen"><img src="assets/media/vivi-clip.gif" alt="ViVi clip" width="300" height="187"></div>
+      <div class="wmp-ctrl" aria-hidden="true"><b>▶</b><b>❚❚</b><b>■</b><span class="seek"><i></i></span><span class="t">0:02</span></div>
+    </div>
+    <div class="win w1"><div class="tb"><span>skull_tv.mpg</span><i>✕</i></div><img src="assets/collage/skulltv.jpg" alt="" width="480" height="383"></div>
+    <div class="win w2"><div class="tb"><span>void.bmp</span><i>✕</i></div><img src="assets/collage/blackorb.jpg" alt="" width="420" height="398"></div>
+    <div class="win w4"><div class="tb"><span>AngelS.gif</span><i>✕</i></div><img src="assets/collage/angels.jpg" alt="" width="339" height="91"></div>
+    <div class="win w5"><div class="tb"><span>depart.jpg</span><i>✕</i></div><img src="assets/collage/sadangel.jpg" alt="" width="330" height="248"></div>
+    <div class="win w6"><div class="tb"><span>orb.exe</span><i>✕</i></div><img src="assets/collage/orb.jpg" alt="" width="254" height="179"></div>
+    <div class="win w7"><div class="tb"><span>README.TXT</span><i>✕</i></div><img src="assets/collage/mosh.jpg" alt="" width="480" height="266"></div>
+    <div class="win w8"><div class="tb"><span>message.txt</span><i>✕</i></div><img src="assets/collage/trumpet.jpg" alt="" width="380" height="135"></div>
+    <div class="win w9"><div class="tb"><span>CYBER</span><i>✕</i></div><img src="assets/collage/sendable.jpg" alt="" width="260" height="261"></div>
+    <div class="win w10"><div class="tb"><span>angel_dream.gif</span><i>✕</i></div><img src="assets/gg/angel-dream.gif" alt="" width="320" height="256"></div>
+    <img class="loose l2" src="assets/gg/money-chain.jpg" alt="" width="230" height="175">
+    <img class="loose l3" src="assets/gg/cyber-heart.jpg" alt="" width="100" height="100">
+    <img class="loose l4" src="assets/collage/cross.jpg" alt="" width="200" height="231">
+    <img class="loose l5" src="assets/gg/warp.gif" alt="" width="100" height="100">
+    <img class="loose cg c1" src="assets/gg/canva-skull.gif" alt="" width="153" height="147">
+    <img class="loose cg c2" src="assets/gg/canva-computer.gif" alt="" width="84" height="90">
+    <img class="loose cg c3" src="assets/gg/canva-revolver.gif" alt="" width="135" height="132">
+    <img class="loose cg c4" src="assets/gg/canva-dollar.gif" alt="" width="159" height="93">
+  </div>
+</dialog>
+
 <dialog id="heaven" aria-labelledby="hvtitle">
   <div class="hv-bar">
     <img src="assets/gg/teal-skull.gif" alt="" width="16" height="16">
@@ -568,9 +573,10 @@
   // GUESTBOOK: pops up after 4 seconds; emails get forwarded to ViVi via formsubmit.co.
   // After activating FormSubmit you can swap the address for the random alias they give you.
   const GUESTBOOK_ENDPOINT = "https://formsubmit.co/ajax/vivi.online.music@gmail.com";
-  const GUESTBOOK_DELAY_MS = 4000;
-  const HEAVEN_AFTER_GUESTBOOK_MS = 3000;  // heaven.exe follows this long after the guestbook closes
-  const HEAVEN_DELAY_MS = 5000;            // used when the guestbook doesn't show (already signed/seen)
+  // Popup timeline (ms after the page loads). Each shows once per visit and stacks on top of the last.
+  const DESKTOP_AT = 1000;               // ViVi's Desktop
+  const HEAVEN_AT = DESKTOP_AT + 4000;   // heaven.exe, 4s after the desktop
+  const GUESTBOOK_AT = HEAVEN_AT + 9000; // guestbook, 9s after heaven
 
   // The player plays ZOMBIE through Spotify's embed (full song if the listener is
   // logged in to Spotify in their browser, otherwise Spotify's 30-second preview).
@@ -740,19 +746,22 @@
   let seen = null; try { seen = sessionStorage.getItem("vivi-gb-seen"); } catch {}
   const wantGB = !store.get("vivi-gb-signed") && !seen;
 
-  // Guestbook pops up first (~4s in); heaven.exe follows a few seconds after it closes. Each once per visit.
+  dlg.addEventListener("close", () => { try { sessionStorage.setItem("vivi-gb-seen", "1"); } catch {} });
+
   const hv = document.getElementById("heaven");
   hv.querySelectorAll("[data-hv-close]").forEach(b => b.addEventListener("click", () => hv.close()));
   hv.querySelector(".hv-yes").addEventListener("click", () => hv.close());
   hv.addEventListener("close", () => { try { sessionStorage.setItem("vivi-hv-seen", "1"); } catch {} });
   let hvSeen = null; try { hvSeen = sessionStorage.getItem("vivi-hv-seen"); } catch {}
-  const openHeaven = () => { if (!hvSeen && !hv.open && !dlg.open) { hvSeen = "1"; hv.showModal(); } };
-  dlg.addEventListener("close", () => {
-    try { sessionStorage.setItem("vivi-gb-seen", "1"); } catch {}
-    setTimeout(openHeaven, HEAVEN_AFTER_GUESTBOOK_MS);
-  });
-  if (wantGB) setTimeout(openGB, GUESTBOOK_DELAY_MS);
-  else setTimeout(openHeaven, HEAVEN_DELAY_MS);
+
+  const dp = document.getElementById("deskpop");
+  document.getElementById("dpclose").addEventListener("click", () => dp.close());
+  dp.addEventListener("close", () => { try { sessionStorage.setItem("vivi-dt-seen", "1"); } catch {} });
+  let dtSeen = null; try { dtSeen = sessionStorage.getItem("vivi-dt-seen"); } catch {}
+
+  if (!dtSeen) setTimeout(() => { if (!dp.open) dp.showModal(); }, DESKTOP_AT);
+  if (!hvSeen) setTimeout(() => { if (!hv.open) hv.showModal(); }, HEAVEN_AT);
+  if (wantGB) setTimeout(openGB, GUESTBOOK_AT);
 
   gb.addEventListener("submit", async e => {
     e.preventDefault();
