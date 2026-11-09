@@ -837,11 +837,15 @@
 
   const dp = document.getElementById("deskpop");
   // Tapping anywhere on ViVi's Desktop (or around it) makes the whole popup disappear.
-  dp.addEventListener("click", () => dp.close());
+  // Taps are ignored for the first 2s after it appears, so nobody closes it by accident.
+  const DESKTOP_LOCK_MS = 2000;
+  let dpOpenedAt = 0;
+  dp.addEventListener("click", () => { if (Date.now() - dpOpenedAt >= DESKTOP_LOCK_MS) dp.close(); });
+  dp.addEventListener("cancel", e => { if (Date.now() - dpOpenedAt < DESKTOP_LOCK_MS) e.preventDefault(); });
   dp.addEventListener("close", () => { try { sessionStorage.setItem("vivi-dt-seen", "1"); } catch {} });
   let dtSeen = null; try { dtSeen = sessionStorage.getItem("vivi-dt-seen"); } catch {}
 
-  if (!dtSeen) setTimeout(() => { if (!dp.open) dp.showModal(); }, DESKTOP_AT);
+  if (!dtSeen) setTimeout(() => { if (!dp.open) { dpOpenedAt = Date.now(); dp.showModal(); } }, DESKTOP_AT);
   if (!hvSeen) setTimeout(() => { if (!hv.open) hv.showModal(); }, HEAVEN_AT);
   if (wantGB) setTimeout(openGB, GUESTBOOK_AT);
 
