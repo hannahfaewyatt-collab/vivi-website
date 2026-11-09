@@ -217,7 +217,7 @@
     <!-- ================= LEFT ================= -->
     <section>
       <div class="name-row">
-        <h1 class="name">ViVi</h1>
+        <h1 class="name">vivi</h1>
         <img src="assets/gg/glitter-fangs.gif" alt="" width="223" height="158">
       </div>
 
@@ -235,7 +235,6 @@
       <p class="mood"><b>Mood:</b> dreaming… ☁️</p>
 
       <div class="ctable" id="contact">
-        <h3>Contacting ViVi</h3>
         <div class="contact" id="links"></div>
       </div>
 
@@ -461,12 +460,12 @@
       const near = playing && Math.abs(k / n - progress) < .02;
       const jig = near ? 1 + Math.sin(now / 60 + k) * .12 : 1;
       const up = pk * (mid - 2) * jig, down = pk * (h - mid - 1) * .8 * jig;
-      wctx.fillStyle = played ? "#7dff3a" : "#2c5a1a";
+      wctx.fillStyle = played ? "#3dffc0" : "#1a5a4c";
       wctx.fillRect(k * bw, mid - up, Math.max(1, bw - 1), up);
-      wctx.fillStyle = played ? "rgba(125,255,58,.45)" : "rgba(44,90,26,.6)";
+      wctx.fillStyle = played ? "rgba(61,255,192,.45)" : "rgba(26,90,76,.6)";
       wctx.fillRect(k * bw, mid + 1, Math.max(1, bw - 1), down);
     }
-    if (progress > 0) { wctx.fillStyle = "#e9ffd9"; wctx.fillRect(progress * w - 1, 0, 2, h); }
+    if (progress > 0) { wctx.fillStyle = "#e0fff7"; wctx.fillRect(progress * w - 1, 0, 2, h); }
     document.getElementById("tcur").textContent = fmt(progress * DURATION);
   }
   function tick(now) {
