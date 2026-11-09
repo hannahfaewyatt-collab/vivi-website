@@ -86,16 +86,23 @@
   .itable th { width: 84px; background: var(--head); color: var(--teal-hi); }
 
   /* ---- right column ---- */
-  .player { border: 1px solid var(--teal); background: #031c1a; padding: 6px; margin-bottom: 12px; }
+  .player { --zg: #7dff3a; border: 1px solid var(--zg); background: linear-gradient(#071a03, #020a01); padding: 6px; margin-bottom: 12px; box-shadow: 0 0 12px rgba(125,255,58,.25); }
+  .player .label { color: #a8e88a; }
+  .zmode { display: flex; align-items: center; gap: 8px; margin-top: 8px; padding-top: 8px; border-top: 1px dashed #2f6a1a; }
+  .zmode video { width: 160px; height: auto; border: 1px solid var(--zg); display: block; flex: none; }
+  .zmode p { margin: 0; color: #a8e88a; font: 18px/1.15 "VT323", monospace; }
+  .zmode b { color: var(--zg); text-shadow: 0 0 6px var(--zg); }
+  .halo { text-align: center; padding: 10px 10px 0; }
+  .halo video { width: 100%; max-width: 356px; height: auto; border: 1px solid var(--teal); display: inline-block; box-shadow: 0 0 14px rgba(45,224,200,.35); }
   .player .bar { display: flex; align-items: center; gap: 8px; }
-  .player button { width: 36px; height: 36px; flex: none; cursor: pointer; background: #000; color: var(--teal-hi); border: 2px solid var(--teal); font: 18px "VT323", monospace; }
+  .player button { width: 36px; height: 36px; flex: none; cursor: pointer; background: #000; color: var(--zg); border: 2px solid var(--zg); font: 18px "VT323", monospace; }
   .player button:hover { border-color: var(--pink); color: var(--pink); }
   .player .meta { flex: 1; min-width: 0; }
   .player .track { font-weight: bold; font-size: 12px; display: flex; align-items: center; gap: 6px; }
   .player .track img { height: 22px; width: auto; filter: invert(1); }
   .player .label { font-size: 10px; color: var(--muted); }
   .wave { display: flex; gap: 2px; align-items: flex-end; height: 26px; margin-top: 4px; }
-  .wave i { flex: 1; background: var(--teal); background-image: linear-gradient(transparent 50%, rgba(0,0,0,.55) 50%); background-size: 100% 4px; }
+  .wave i { flex: 1; background: var(--zg); box-shadow: 0 0 4px rgba(125,255,58,.6); background-image: linear-gradient(transparent 50%, rgba(0,0,0,.55) 50%); background-size: 100% 4px; }
   .playing .wave i { animation: bar .7s ease-in-out infinite alternate; }
   @keyframes bar { from { height: 15%; } to { height: 100%; } }
 
@@ -191,6 +198,10 @@
   </nav>
   <div class="marquee" aria-hidden="true"><span>~*~ new single ZOMBIE out now ~*~ &nbsp;✦&nbsp; byte byte kiss kiss 💋 &nbsp;✦&nbsp; rawr means i love u in dinosaur XD &nbsp;✦&nbsp; sign my guestbook :3 &nbsp;✦&nbsp; add ViVi to ur top 8 x3</span></div>
 
+  <div class="halo">
+    <video src="assets/media/halo.mp4" poster="assets/media/halo.jpg" autoplay muted loop playsinline width="356" height="200" aria-label="Halo gif"></video>
+  </div>
+
   <main class="cols" id="top">
     <!-- ================= LEFT ================= -->
     <section>
@@ -224,13 +235,6 @@
         <tr><th>Movies</th><td>Donnie Darko, The Virgin Suicides, mid90s</td></tr>
       </table>
 
-      <table class="itable">
-        <caption>ViVi's Details</caption>
-        <tr><th>Genre</th><td>IRL / URL</td></tr>
-        <tr><th>Latest</th><td>ZOMBIE (single)</td></tr>
-        <tr><th>Label</th><td>Indie</td></tr>
-      </table>
-
       <div class="rules" id="rules">
         <h3>~*~ ViVi's Rules ~*~</h3>
         <ol>
@@ -256,6 +260,10 @@
             <div class="label">new single · out now</div>
             <div class="wave" id="wave" aria-hidden="true"></div>
           </div>
+        </div>
+        <div class="zmode">
+          <video src="assets/media/l4d2.mp4" poster="assets/media/l4d2.jpg" autoplay muted loop playsinline width="220" height="124" aria-label="Left 4 Dead 2 gif"></video>
+          <p>zombie mode: <b>ON</b> 🧟<br>survivors only XD</p>
         </div>
       </div>
 
